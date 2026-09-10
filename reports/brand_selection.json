@@ -1,0 +1,110 @@
+[
+  {
+    "brand": "AmazonHelp",
+    "n_threads": 82556,
+    "pct_brand_closed": 0.7882528223266632,
+    "median_turns": 3.0,
+    "pct_in_channel_resolved": 0.9131740878918553,
+    "intent_spread": 1.3283146359108635,
+    "score": 0.7502
+  },
+  {
+    "brand": "AppleSupport",
+    "n_threads": 80717,
+    "pct_brand_closed": 0.8959450921119467,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.34794405143897816,
+    "intent_spread": 2.085248798571489,
+    "score": 0.7403
+  },
+  {
+    "brand": "Uber_Support",
+    "n_threads": 41923,
+    "pct_brand_closed": 0.8533740428881521,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.5861937361352957,
+    "intent_spread": 1.8654952224522523,
+    "score": 0.6502
+  },
+  {
+    "brand": "SpotifyCares",
+    "n_threads": 28277,
+    "pct_brand_closed": 0.9385366198677371,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.561693248930226,
+    "intent_spread": 1.952103243704074,
+    "score": 0.6416
+  },
+  {
+    "brand": "VirginTrains",
+    "n_threads": 14851,
+    "pct_brand_closed": 0.6642650326577335,
+    "median_turns": 3.0,
+    "pct_in_channel_resolved": 0.9530671335263619,
+    "intent_spread": 1.6377843066520814,
+    "score": 0.6012
+  },
+  {
+    "brand": "Delta",
+    "n_threads": 26166,
+    "pct_brand_closed": 0.8909271573798059,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.7419934265841168,
+    "intent_spread": 1.5618085607342818,
+    "score": 0.6008
+  },
+  {
+    "brand": "British_Airways",
+    "n_threads": 16452,
+    "pct_brand_closed": 0.8310843666423535,
+    "median_turns": 3.0,
+    "pct_in_channel_resolved": 0.7596644784828592,
+    "intent_spread": 1.6211514584720947,
+    "score": 0.5763
+  },
+  {
+    "brand": "AmericanAir",
+    "n_threads": 26386,
+    "pct_brand_closed": 0.7956113090275146,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.7784431137724551,
+    "intent_spread": 1.4430257912519067,
+    "score": 0.5642
+  },
+  {
+    "brand": "SouthwestAir",
+    "n_threads": 21634,
+    "pct_brand_closed": 0.8450124803549968,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.7774336692243691,
+    "intent_spread": 1.3823066853825519,
+    "score": 0.5488
+  },
+  {
+    "brand": "TMobileHelp",
+    "n_threads": 22820,
+    "pct_brand_closed": 0.8821209465381245,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.1053900087642419,
+    "intent_spread": 1.7347271281445462,
+    "score": 0.4039
+  },
+  {
+    "brand": "comcastcares",
+    "n_threads": 24063,
+    "pct_brand_closed": 0.8999293521173586,
+    "median_turns": 2.0,
+    "pct_in_channel_resolved": 0.12076632173876907,
+    "intent_spread": 1.6045903251075844,
+    "score": 0.3888
+  },
+  {
+    "brand": "Tesco",
+    "n_threads": 16722,
+    "pct_brand_closed": 0.8322569070685325,
+    "median_turns": 4.0,
+    "pct_in_channel_resolved": 0.45389307499102977,
+    "intent_spread": 1.1757306540459245,
+    "score": 0.3725
+  }
+]

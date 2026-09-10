@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------------------
+# Central config. Every script reads this. Override the raw CSV path here.
+# ---------------------------------------------------------------------------
+
+paths:
+  raw_csv: "Primary Customer Support on Twitter Dataset/twcs/twcs.csv"
+  processed_dir: "data/processed"
+  golden_dir: "data/golden"
+  reports_dir: "reports"
+
+data_prep:
+  # If null, scripts/pick_brand.py chooses the brand and writes it back here.
+  brand: "AppleSupport"
+  # Chronological split: threads before `split_date` become the agent's
+  # "historical memory"; threads on/after are the pool we sample eval from.
+  # This prevents the agent retrieving a reply it is being tested on.
+  split_date: "2017-11-15"
+  min_thread_turns: 2           # need at least 1 customer + 1 brand turn
+  max_history_threads: 30000    # BM25 index cap; sampled across the whole pre-split window
+  eval_pool_size: 1500          # candidate pool the golden set is sampled from
+  random_seed: 13
+
+llm:
+  # provider: "ollama" | "openai"
+  provider: "ollama"
+  ollama:
+    base_url: "http://localhost:11434"
+    model: "llama3.1:8b"
+    judge_model: "llama3.1:8b"     # bump to a bigger local model if you have one
+  openai:
+    model: "gpt-4o-mini"
+    judge_model: "gpt-4o"
+  temperature: 0.0
+  max_tokens: 512
+  cache_dir: ".llm_cache"
+  timeout_s: 120
+
+retrieval:
+  method: "bm25"                # bm25 | tfidf
+  k: 4                          # exemplars shown to the drafter
+  min_score: 3.0               # below this the drafter is told "no strong precedent"
+
+escalation:
+  # Auto-handle only if ALL of these hold; otherwise escalate.
+  min_intent_confidence: 0.60
+  min_retrieval_score: 3.0
+  # Intents that are never auto-handled regardless of confidence (slugs from src/intents.py).
+  always_escalate_intents:
+    - "account_access_security"
+    - "billing_appstore_subscription"
+    - "complaint_churn_risk"
+  # Regexes (case-insensitive) that force escalation from the raw message.
+  hard_escalation_patterns:
+    - "\\b(lawyer|legal|sue|lawsuit|attorney|ombudsman|gdpr|ferpa)\\b"
+    - "\\b(fraud|hacked|unauthori[sz]ed|stolen|identity theft)\\b"
+    - "\\b(cancel|close) my account\\b"
+    - "\\b(refund|reimburse|compensat)"
+    - "\\b(dying|suicid|self.harm|emergency)\\b"
+
+eval:
+  golden_set: "data/golden/golden_set.jsonl"
+  judge_human_scores: "data/golden/judge_human_scores.csv"
+  results_json: "reports/results.json"
+  results_md: "reports/results.md"

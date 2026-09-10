@@ -1,0 +1,15 @@
+{
+  "brand": "AppleSupport",
+  "threads_total": 80717,
+  "history_threads": 30000,
+  "eval_pool_threads": 1500,
+  "split_date": "2017-11-15",
+  "date_min": "2013-05-04T22:04:43+00:00",
+  "date_max": "2017-12-03T23:01:39+00:00",
+  "turn_dist": {
+    "min": 2,
+    "p50": 2,
+    "p90": 5,
+    "max": 282
+  }
+}

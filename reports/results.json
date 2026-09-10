@@ -1,0 +1,665 @@
+{
+  "meta": {
+    "brand": "AppleSupport",
+    "provider": "mock",
+    "model": "mock",
+    "judge_model": "mock",
+    "n_golden": 30,
+    "limit": null,
+    "timestamp": "2026-09-10T14:28:31.654312+00:00",
+    "seconds": 17.9,
+    "llm_usage_agent": {
+      "calls": 60,
+      "cache_hits": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
+    },
+    "llm_usage_judge": {
+      "calls": 90,
+      "cache_hits": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
+    }
+  },
+  "intent": {
+    "agent": {
+      "n": 30,
+      "accuracy": 0.5,
+      "macro_f1": 0.346,
+      "weighted_f1": 0.538,
+      "per_class": {
+        "software_update_issue": {
+          "precision": 0.917,
+          "recall": 0.611,
+          "f1": 0.733,
+          "support": 18
+        },
+        "device_hardware_battery": {
+          "precision": 0.143,
+          "recall": 0.333,
+          "f1": 0.2,
+          "support": 3
+        },
+        "account_access_security": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "billing_appstore_subscription": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 1
+        },
+        "connectivity_sync": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.667,
+          "support": 1
+        },
+        "how_to_feature_question": {
+          "precision": 0.125,
+          "recall": 0.25,
+          "f1": 0.167,
+          "support": 4
+        },
+        "complaint_churn_risk": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "praise_or_non_actionable": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "software_update_issue",
+          "device_hardware_battery",
+          "account_access_security",
+          "billing_appstore_subscription",
+          "connectivity_sync",
+          "how_to_feature_question",
+          "complaint_churn_risk",
+          "praise_or_non_actionable"
+        ],
+        "matrix": [
+          [
+            11,
+            5,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "pred_distribution": {
+        "how_to_feature_question": 8,
+        "software_update_issue": 12,
+        "device_hardware_battery": 7,
+        "connectivity_sync": 2,
+        "billing_appstore_subscription": 1
+      }
+    },
+    "baseline_majority_trivial": {
+      "n": 30,
+      "accuracy": 0.6,
+      "macro_f1": 0.094,
+      "weighted_f1": 0.45,
+      "per_class": {
+        "software_update_issue": {
+          "precision": 0.6,
+          "recall": 1.0,
+          "f1": 0.75,
+          "support": 18
+        },
+        "device_hardware_battery": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "account_access_security": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "billing_appstore_subscription": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "connectivity_sync": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "how_to_feature_question": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "complaint_churn_risk": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 2
+        },
+        "praise_or_non_actionable": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "software_update_issue",
+          "device_hardware_battery",
+          "account_access_security",
+          "billing_appstore_subscription",
+          "connectivity_sync",
+          "how_to_feature_question",
+          "complaint_churn_risk",
+          "praise_or_non_actionable"
+        ],
+        "matrix": [
+          [
+            18,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "pred_distribution": {
+        "software_update_issue": 30
+      }
+    },
+    "baseline_keyword_simple": {
+      "n": 30,
+      "accuracy": 0.5,
+      "macro_f1": 0.341,
+      "weighted_f1": 0.574,
+      "per_class": {
+        "software_update_issue": {
+          "precision": 1.0,
+          "recall": 0.611,
+          "f1": 0.759,
+          "support": 18
+        },
+        "device_hardware_battery": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        },
+        "account_access_security": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "billing_appstore_subscription": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "connectivity_sync": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.667,
+          "support": 1
+        },
+        "how_to_feature_question": {
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4,
+          "support": 4
+        },
+        "complaint_churn_risk": {
+          "precision": 0.333,
+          "recall": 0.5,
+          "f1": 0.4,
+          "support": 2
+        },
+        "praise_or_non_actionable": {
+          "precision": 0.333,
+          "recall": 1.0,
+          "f1": 0.5,
+          "support": 1
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "software_update_issue",
+          "device_hardware_battery",
+          "account_access_security",
+          "billing_appstore_subscription",
+          "connectivity_sync",
+          "how_to_feature_question",
+          "complaint_churn_risk",
+          "praise_or_non_actionable"
+        ],
+        "matrix": [
+          [
+            11,
+            3,
+            0,
+            0,
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "pred_distribution": {
+        "other": 4,
+        "software_update_issue": 11,
+        "device_hardware_battery": 4,
+        "connectivity_sync": 2,
+        "praise_or_non_actionable": 3,
+        "complaint_churn_risk": 3,
+        "how_to_feature_question": 1,
+        "billing_appstore_subscription": 1,
+        "account_access_security": 1
+      }
+    }
+  },
+  "escalation": {
+    "agent": {
+      "n": 30,
+      "escalate_precision": 1.0,
+      "escalate_recall": 0.091,
+      "escalate_f1": 0.167,
+      "accuracy": 0.667,
+      "auto_rate": 0.967,
+      "missed_escalation_rate": 0.909,
+      "unnecessary_escalation_rate": 0.0,
+      "counts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 10,
+        "tn": 19
+      },
+      "kappa": 0.112
+    },
+    "baseline_always_auto": {
+      "n": 30,
+      "escalate_precision": 0.0,
+      "escalate_recall": 0.0,
+      "escalate_f1": 0.0,
+      "accuracy": 0.633,
+      "auto_rate": 1.0,
+      "missed_escalation_rate": 1.0,
+      "unnecessary_escalation_rate": 0.0,
+      "counts": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 11,
+        "tn": 19
+      },
+      "kappa": 0.0
+    },
+    "baseline_always_escalate": {
+      "n": 30,
+      "escalate_precision": 0.367,
+      "escalate_recall": 1.0,
+      "escalate_f1": 0.537,
+      "accuracy": 0.367,
+      "auto_rate": 0.0,
+      "missed_escalation_rate": 0.0,
+      "unnecessary_escalation_rate": 1.0,
+      "counts": {
+        "tp": 11,
+        "fp": 19,
+        "fn": 0,
+        "tn": 0
+      },
+      "kappa": 0.0
+    },
+    "baseline_intent_prior": {
+      "n": 30,
+      "escalate_precision": 1.0,
+      "escalate_recall": 0.091,
+      "escalate_f1": 0.167,
+      "accuracy": 0.667,
+      "auto_rate": 0.967,
+      "missed_escalation_rate": 0.909,
+      "unnecessary_escalation_rate": 0.0,
+      "counts": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 10,
+        "tn": 19
+      },
+      "kappa": 0.112
+    }
+  },
+  "reply_quality": {
+    "judge_n": 30,
+    "agent": {
+      "n": 30,
+      "groundedness": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "relevance": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "correctness_safety": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "tone": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "completeness": {
+        "mean": 3.0,
+        "p25": 3.0,
+        "min": 3
+      },
+      "pass_rate": 1.0
+    },
+    "baseline_retrieval_only": {
+      "n": 30,
+      "groundedness": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "relevance": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "correctness_safety": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "tone": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "completeness": {
+        "mean": 3.0,
+        "p25": 3.0,
+        "min": 3
+      },
+      "pass_rate": 1.0
+    },
+    "baseline_canned": {
+      "n": 30,
+      "groundedness": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "relevance": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "correctness_safety": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "tone": {
+        "mean": 4.0,
+        "p25": 4.0,
+        "min": 4
+      },
+      "completeness": {
+        "mean": 3.0,
+        "p25": 3.0,
+        "min": 3
+      },
+      "pass_rate": 1.0
+    }
+  },
+  "headline": {
+    "intent_macro_f1": 0.346,
+    "intent_accuracy": 0.5,
+    "missed_escalation_rate": 0.909,
+    "unnecessary_escalation_rate": 0.0,
+    "auto_rate": 0.967,
+    "reply_pass_rate": 1.0
+  }
+}
