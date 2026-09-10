@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"Lacks clear actionable next step. Should provide a direct link to report the issue or a specific form.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -50,12 +50,14 @@ python -m eval.label_tool     # interactive; writes data/golden/golden_set.jsonl
 
 ### 3. Headline numbers
 ```bash
-make eval-fast        # 60 golden rows + 45 judged, the <15-min path
-# or
-make eval             # full golden set
+make eval             # full golden set; reuses the committed .llm_cache -> seconds
+make eval-fast        # --limit 60 --judge-sample 45 (for a bigger golden set)
 ```
-Writes `reports/results.json` (committed) and `reports/results.md` (the tables).
-The first run populates `.llm_cache/`; re-runs are near-instant.
+Writes `reports/results.json` (committed) + `reports/results.md` (tables) +
+`reports/agent_golden_preds.jsonl` (per-example, for failure analysis).
+A cold run (`rm -rf .llm_cache/`) on `llama3.1:8b` CPU is ~1 min/row; on
+`gpt-4o-mini` the full seed set is ~1 min. Switch backend in `config.yaml`
+(`llm.provider`).
 
 ### 4. Is the LLM judge trustworthy?
 ```bash
@@ -108,12 +110,16 @@ escalates**. Every decision carries a human-readable `reason` and a `signals`
 dict for failure analysis.
 
 ## Caveats that matter
-- **No live API budget was available during development**, so the committed
-  `reports/results.json` is from `<BACKEND>` — re-run `make eval` on your backend
-  to regenerate.
-- The dataset is from 2017; "how the brand resolves things" is frozen at that
-  point.
-- Single annotator for the golden set. See `data/golden/SAMPLING_NOTES.md`.
+- The committed `reports/results.json` is a **real `ollama/llama3.1:8b` run over
+  a 30-row seed golden set** (27 min; `.llm_cache/` is committed so `make eval`
+  reproduces it in seconds). On this brand + model the agent **loses to the
+  keyword baseline on intent macro-F1** and misses 36% of escalations — the
+  grounded drafter's reply quality is the only clear win. See `REPORT.md` §3/§5.
+- The golden set is a **30-row seed**; 233 candidates are staged for labelling
+  (`python -m eval.label_tool`). Single annotator. `data/golden/SAMPLING_NOTES.md`.
+- The LLM judge is also `llama3.1:8b` and its human-agreement κ is **not yet
+  measured** (`make worksheet` → hand-score → `make judge`).
+- The dataset is from 2017; "how the brand resolves things" is frozen there.
 
 ## Attribution
 - Dataset: *Customer Support on Twitter*, thoughtvector, Kaggle (CC0).

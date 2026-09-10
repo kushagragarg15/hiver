@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 3,\n  \"tone\": 5,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"Article link is relevant, but doesn't directly address the issue. No clear next step.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

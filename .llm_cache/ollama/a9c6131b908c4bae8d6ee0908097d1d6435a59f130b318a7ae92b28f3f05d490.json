@@ -1,0 +1,1 @@
+{"content": "{\"intent\": \"how_to_feature_question\", \"confidence\": 0.95, \"rationale\": \"Customer is asking how to resolve a specific issue with iMovie, not reporting a fault.\"}", "model": "llama3.1:8b", "provider": "ollama"}

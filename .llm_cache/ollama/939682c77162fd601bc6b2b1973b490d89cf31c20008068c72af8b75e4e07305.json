@@ -1,0 +1,1 @@
+{"content": "{\"reply\": \"We'd like to help you resolve the issue with group messaging on your iPhone 8s. Can you try removing each contact from 'recents' by tapping the (i) beside them? If that doesn't work, please DM us so we can continue troubleshooting.\", \"grounded_in\": [1], \"used_weak_precedent\": false}", "model": "llama3.1:8b", "provider": "ollama"}

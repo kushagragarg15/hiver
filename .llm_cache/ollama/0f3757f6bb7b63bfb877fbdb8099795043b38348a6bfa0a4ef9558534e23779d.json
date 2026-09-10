@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":4,\"relevance\":5,\"correctness_safety\":5,\"tone\":5,\n \"completeness\":5,\"overall_pass\":true,\"notes\":\"Clear and actionable steps\"}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\": 2, \"relevance\": 4, \"correctness_safety\": 3, \"tone\": 5, \"completeness\": 4, \"overall_pass\": false, \"notes\": \"Generic troubleshooting steps without acknowledging the customer's specific issue\"}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":2,\"relevance\":3,\"correctness_safety\":4,\"tone\":5,\"completeness\":1,\"overall_pass\":false,\"notes\":\"Lacks clear next step, assumes customer is aware of workaround\"}", "model": "llama3.1:8b", "provider": "ollama"}

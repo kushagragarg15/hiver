@@ -86,10 +86,11 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     honest floor for "predict the prior" and the caveat is cheaper than a
     train split on 200 rows. Flagged inline in `run_eval.py`.
 
-14. **On-disk LLM cache keyed by (provider, model, messages, params).** Makes
-    re-runs of the headline near-instant and deterministic for a fixed model,
-    which is what "reproduce in 15 minutes" actually requires. Cache is
-    gitignored; `reports/results.json` is the committed record.
+14. **On-disk LLM cache keyed by (provider, model, messages, params), and the
+    winning run's cache is committed.** `.llm_cache/` holds the exact
+    `llama3.1:8b` calls behind `reports/results.json` (232 KB), so `make eval`
+    reproduces the headline in seconds instead of 27 minutes. A different
+    backend or model misses cleanly. `rm -rf .llm_cache/` for a true cold run.
 
 15. **`mock` LLM provider ships in `llm.py`.** Lets `make smoke` and the test
     suite exercise the whole pipeline with no backend and no network — useful
@@ -99,3 +100,15 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
 16. **Config is one `config.yaml`, read once.** Every threshold that could be
     argued about (confidence floor, BM25 floor, `k`, split date, always-escalate
     list) is there, not buried in code, so tuning is visible in a diff.
+
+17. **Committed a 30-row hand-labelled *seed* golden set, not the full 150–250.**
+    The 233 candidates are staged; the seed is enough to (a) prove the harness
+    on real data and (b) surface real failure modes for the report, without
+    front-loading hours of labelling before the method was settled. Expanding it
+    is the top "next week" item, and the report's numbers are all flagged n=30.
+
+18. **Default backend `llama3.1:8b` (local, free) — and it loses to the keyword
+    baseline on intent.** Kept as the committed run because it's honest and
+    reproducible with zero cost/keys. The report treats "hosted model
+    (`gpt-4o-mini`) as worker" as the obvious next comparison, not as the thing
+    that was hidden. Provider is a one-line `config.yaml` switch.

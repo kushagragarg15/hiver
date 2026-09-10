@@ -1,22 +1,22 @@
 {
   "meta": {
     "brand": "AppleSupport",
-    "provider": "mock",
-    "model": "mock",
-    "judge_model": "mock",
+    "provider": "ollama",
+    "model": "llama3.1:8b",
+    "judge_model": "llama3.1:8b",
     "n_golden": 30,
     "limit": null,
-    "timestamp": "2026-09-10T14:28:31.654312+00:00",
-    "seconds": 17.9,
+    "timestamp": "2026-09-10T15:36:39.054719+00:00",
+    "seconds": 13.6,
     "llm_usage_agent": {
-      "calls": 60,
-      "cache_hits": 0,
+      "calls": 0,
+      "cache_hits": 60,
       "prompt_tokens": 0,
       "completion_tokens": 0
     },
     "llm_usage_judge": {
-      "calls": 90,
-      "cache_hits": 0,
+      "calls": 0,
+      "cache_hits": 90,
       "prompt_tokens": 0,
       "completion_tokens": 0
     }
@@ -24,20 +24,20 @@
   "intent": {
     "agent": {
       "n": 30,
-      "accuracy": 0.5,
-      "macro_f1": 0.346,
-      "weighted_f1": 0.538,
+      "accuracy": 0.367,
+      "macro_f1": 0.315,
+      "weighted_f1": 0.397,
       "per_class": {
         "software_update_issue": {
-          "precision": 0.917,
-          "recall": 0.611,
-          "f1": 0.733,
+          "precision": 1.0,
+          "recall": 0.278,
+          "f1": 0.435,
           "support": 18
         },
         "device_hardware_battery": {
-          "precision": 0.143,
+          "precision": 0.2,
           "recall": 0.333,
-          "f1": 0.2,
+          "f1": 0.25,
           "support": 3
         },
         "account_access_security": {
@@ -53,21 +53,21 @@
           "support": 1
         },
         "connectivity_sync": {
-          "precision": 0.5,
-          "recall": 1.0,
-          "f1": 0.667,
-          "support": 1
-        },
-        "how_to_feature_question": {
-          "precision": 0.125,
-          "recall": 0.25,
-          "f1": 0.167,
-          "support": 4
-        },
-        "complaint_churn_risk": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
+          "support": 1
+        },
+        "how_to_feature_question": {
+          "precision": 0.25,
+          "recall": 0.5,
+          "f1": 0.333,
+          "support": 4
+        },
+        "complaint_churn_risk": {
+          "precision": 0.333,
+          "recall": 1.0,
+          "f1": 0.5,
           "support": 2
         },
         "praise_or_non_actionable": {
@@ -90,73 +90,73 @@
         ],
         "matrix": [
           [
-            11,
             5,
+            3,
+            0,
+            0,
+            2,
+            5,
+            3,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
             2,
             0,
             0
           ],
           [
             0,
-            1,
-            0,
-            0,
-            0,
-            2,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0
-          ],
-          [
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0
-          ],
-          [
             0,
             0,
             0,
             0,
             0,
             2,
-            0,
             0
           ],
           [
@@ -172,10 +172,11 @@
         ]
       },
       "pred_distribution": {
+        "connectivity_sync": 5,
+        "complaint_churn_risk": 6,
+        "software_update_issue": 5,
+        "device_hardware_battery": 5,
         "how_to_feature_question": 8,
-        "software_update_issue": 12,
-        "device_hardware_battery": 7,
-        "connectivity_sync": 2,
         "billing_appstore_subscription": 1
       }
     },
@@ -497,20 +498,20 @@
   "escalation": {
     "agent": {
       "n": 30,
-      "escalate_precision": 1.0,
-      "escalate_recall": 0.091,
-      "escalate_f1": 0.167,
-      "accuracy": 0.667,
-      "auto_rate": 0.967,
-      "missed_escalation_rate": 0.909,
-      "unnecessary_escalation_rate": 0.0,
+      "escalate_precision": 0.875,
+      "escalate_recall": 0.636,
+      "escalate_f1": 0.737,
+      "accuracy": 0.833,
+      "auto_rate": 0.733,
+      "missed_escalation_rate": 0.364,
+      "unnecessary_escalation_rate": 0.053,
       "counts": {
-        "tp": 1,
-        "fp": 0,
-        "fn": 10,
-        "tn": 19
+        "tp": 7,
+        "fp": 1,
+        "fn": 4,
+        "tn": 18
       },
-      "kappa": 0.112
+      "kappa": 0.619
     },
     "baseline_always_auto": {
       "n": 30,
@@ -548,20 +549,20 @@
     },
     "baseline_intent_prior": {
       "n": 30,
-      "escalate_precision": 1.0,
-      "escalate_recall": 0.091,
-      "escalate_f1": 0.167,
-      "accuracy": 0.667,
-      "auto_rate": 0.967,
-      "missed_escalation_rate": 0.909,
-      "unnecessary_escalation_rate": 0.0,
+      "escalate_precision": 0.857,
+      "escalate_recall": 0.545,
+      "escalate_f1": 0.667,
+      "accuracy": 0.8,
+      "auto_rate": 0.767,
+      "missed_escalation_rate": 0.455,
+      "unnecessary_escalation_rate": 0.053,
       "counts": {
-        "tp": 1,
-        "fp": 0,
-        "fn": 10,
-        "tn": 19
+        "tp": 6,
+        "fp": 1,
+        "fn": 5,
+        "tn": 18
       },
-      "kappa": 0.112
+      "kappa": 0.534
     }
   },
   "reply_quality": {
@@ -569,97 +570,97 @@
     "agent": {
       "n": 30,
       "groundedness": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 3.267,
+        "p25": 2.0,
+        "min": 2
       },
       "relevance": {
-        "mean": 4.0,
+        "mean": 4.133,
         "p25": 4.0,
-        "min": 4
+        "min": 1
       },
       "correctness_safety": {
-        "mean": 4.0,
+        "mean": 4.467,
         "p25": 4.0,
-        "min": 4
+        "min": 2
       },
       "tone": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 4.767,
+        "p25": 5.0,
+        "min": 1
       },
       "completeness": {
-        "mean": 3.0,
-        "p25": 3.0,
-        "min": 3
+        "mean": 3.367,
+        "p25": 2.0,
+        "min": 1
       },
-      "pass_rate": 1.0
+      "pass_rate": 0.6
     },
     "baseline_retrieval_only": {
       "n": 30,
       "groundedness": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 2.233,
+        "p25": 2.0,
+        "min": 1
       },
       "relevance": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 3.0,
+        "p25": 1.25,
+        "min": 1
       },
       "correctness_safety": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 3.1,
+        "p25": 2.0,
+        "min": 1
       },
       "tone": {
-        "mean": 4.0,
+        "mean": 4.4,
         "p25": 4.0,
-        "min": 4
-      },
-      "completeness": {
-        "mean": 3.0,
-        "p25": 3.0,
         "min": 3
       },
-      "pass_rate": 1.0
+      "completeness": {
+        "mean": 2.167,
+        "p25": 1.0,
+        "min": 1
+      },
+      "pass_rate": 0.1
     },
     "baseline_canned": {
       "n": 30,
       "groundedness": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 2.033,
+        "p25": 2.0,
+        "min": 2
       },
       "relevance": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 2.533,
+        "p25": 1.0,
+        "min": 1
       },
       "correctness_safety": {
-        "mean": 4.0,
-        "p25": 4.0,
-        "min": 4
+        "mean": 3.933,
+        "p25": 3.25,
+        "min": 2
       },
       "tone": {
-        "mean": 4.0,
+        "mean": 4.6,
         "p25": 4.0,
-        "min": 4
-      },
-      "completeness": {
-        "mean": 3.0,
-        "p25": 3.0,
         "min": 3
       },
-      "pass_rate": 1.0
+      "completeness": {
+        "mean": 1.8,
+        "p25": 1.0,
+        "min": 1
+      },
+      "pass_rate": 0.033
     }
   },
   "headline": {
-    "intent_macro_f1": 0.346,
-    "intent_accuracy": 0.5,
-    "missed_escalation_rate": 0.909,
-    "unnecessary_escalation_rate": 0.0,
-    "auto_rate": 0.967,
-    "reply_pass_rate": 1.0
+    "intent_macro_f1": 0.315,
+    "intent_accuracy": 0.367,
+    "missed_escalation_rate": 0.364,
+    "unnecessary_escalation_rate": 0.053,
+    "auto_rate": 0.733,
+    "reply_pass_rate": 0.6
   }
 }

@@ -1,0 +1,1 @@
+{"content": "{\"intent\": \"complaint_churn_risk\", \"confidence\": 0.8, \"rationale\": \"Customer expresses anger and disappointment, threatens to switch brands\"}", "model": "llama3.1:8b", "provider": "ollama"}

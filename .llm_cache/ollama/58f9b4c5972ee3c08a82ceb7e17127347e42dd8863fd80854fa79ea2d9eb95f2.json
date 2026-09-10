@@ -1,0 +1,1 @@
+{"content": "{\"intent\": \"how_to_feature_question\", \"confidence\": 0.9, \"rationale\": \"Customer is asking for specific steps to resolve keyboard issue.\"}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 4,\n  \"relevance\": 5,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 3,\n  \"overall_pass\": true,\n  \"notes\": \"Generic troubleshooting step, but safe and relevant.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

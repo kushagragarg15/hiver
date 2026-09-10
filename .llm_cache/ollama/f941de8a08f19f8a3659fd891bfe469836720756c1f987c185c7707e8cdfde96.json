@@ -1,0 +1,1 @@
+{"content": "{\"intent\": \"connectivity_sync\", \"confidence\": 0.9, \n\"rationale\": \"Customer describes delay between input and response, likely a sync or connectivity issue.\"}", "model": "llama3.1:8b", "provider": "ollama"}

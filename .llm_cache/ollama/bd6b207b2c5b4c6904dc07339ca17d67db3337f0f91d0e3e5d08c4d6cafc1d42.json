@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":2,\"relevance\":1,\"correctness_safety\":3,\"tone\":4,\"completeness\":5,\"overall_pass\":false,\"notes\":\"Incorrect solution, does not address grouping issue\"}", "model": "llama3.1:8b", "provider": "ollama"}

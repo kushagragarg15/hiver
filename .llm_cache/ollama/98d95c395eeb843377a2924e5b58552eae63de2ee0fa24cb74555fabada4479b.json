@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 3,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"Reply is too generic and doesn't provide a clear next step.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

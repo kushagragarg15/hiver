@@ -1,0 +1,1 @@
+{"content": "{\"intent\": \"device_hardware_battery\", \"confidence\": 0.8, \n\"rationale\": \"Faulty hardware (3rd Gen Apple TV) with WiFi connectivity issues\"}", "model": "llama3.1:8b", "provider": "ollama"}
