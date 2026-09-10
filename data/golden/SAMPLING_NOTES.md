@@ -13,7 +13,17 @@ each hand-labelled with:
 | `gold_action` | `auto` or `escalate` — should this have been handled without a human? |
 | `gold_action_reason` | one line: why |
 | `notes` | anything ambiguous |
-| `label_source` | `human` once reviewed (candidates start as `heuristic_prelabel`) |
+| `label_source` | `human` (labelled/confirmed by a person) · `model_assisted` (drafted by an LLM, awaiting human review) · `heuristic_prelabel` (keyword guess only) |
+
+## Current state (be honest about this)
+233 rows. **30 are `human`** (hand-labelled from scratch, the original seed).
+**203 are `model_assisted`** — I labelled them by applying the protocol below
+and had them checked once, but they have **not yet had an independent human
+review pass**. Run `python -m eval.label_tool --review` to walk the
+`model_assisted` rows and confirm/correct each (it flips them to `human`).
+Every results table in `REPORT.md` notes which mix it was computed on.
+Model-assisted labelling is allowed ("you may use AI coding assistants
+freely") — not disclosing it would not be.
 
 ## Sampling (see `scripts/make_golden_candidates.py`)
 1. **Source = held-out only.** Candidates are drawn exclusively from

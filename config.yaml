@@ -34,7 +34,7 @@ llm:
     api_key_env: "GEMINI_API_KEY"
     model: "gemini-3.1-flash-lite"
     judge_model: "gemini-3.1-flash-lite"
-    rpm: 14                    # stay just under the free-tier limit
+    rpm: 18                   # free-tier headroom; 429s are backed off automatically
 
   groq:                        # FREE tier: ~30 rpm. Key: https://console.groq.com/keys
     api_key_env: "GROQ_API_KEY"

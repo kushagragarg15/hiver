@@ -1,23 +1,25 @@
 """Terminal labelling tool for the golden set.
 
-Reads  data/golden/golden_candidates.jsonl
-Writes data/golden/golden_set.jsonl        (append-only, resumable)
+Two modes:
 
-For each candidate it shows the message, the full thread, what the brand
-actually did, and the heuristic pre-label. You press Enter to accept the
-pre-label or type a correction. Every row you touch is stamped
-label_source="human".
+1. LABEL (default) -- reads data/golden/golden_candidates.jsonl, appends
+   confirmed rows to data/golden/golden_set.jsonl. Resumable.
+       python -m eval.label_tool
 
-    python -m eval.label_tool                 # resume where you left off
-    python -m eval.label_tool --limit 200
-    python -m eval.label_tool --review-actions # 2nd pass: only re-check actions
+2. REVIEW -- walks rows already in golden_set.jsonl whose label_source is not
+   "human" (i.e. heuristic_prelabel / model_assisted), shows the current draft
+   label, and lets you confirm (Enter) or correct it. Confirmed rows are
+   rewritten in place stamped label_source="human". Resumable -- re-running
+   skips rows already marked "human".
+       python -m eval.label_tool --review
+       python -m eval.label_tool --review --limit 40
 
-Keys:
-  intent:  1-8 (menu shown) or the slug; Enter = keep pre-label
+Keys (both modes):
+  intent:  1-8 (menu shown) or the slug; Enter = keep the shown label
   action:  a = auto, e = escalate; Enter = keep
-  reason:  free text (why auto/escalate) -- required when you CHANGE the action
+  reason:  free text; required when you CHANGE the action
   notes:   free text, optional
-  s = skip (don't write), q = save & quit
+  s = skip (don't write this row); q = save & quit
 """
 from __future__ import annotations
 
@@ -89,16 +91,49 @@ def label_one(row: dict) -> dict | None:
             "gold_action_reason": reason, "notes": notes, "label_source": "human"}
 
 
+def _run_review(out_path: Path, limit: int | None) -> None:
+    rows = read_jsonl(out_path)
+    by_id = {r["id"]: r for r in rows}
+    todo = [r for r in rows if r.get("label_source") != "human"]
+    if limit:
+        todo = todo[:limit]
+    done = len(rows) - len(todo)
+    print(f"{done}/{len(rows)} already human-reviewed, {len(todo)} to check")
+    checked = 0
+    for row in todo:
+        res = label_one(row)
+        if res == "quit":
+            break
+        if res is None:
+            continue
+        by_id[res["id"]] = res
+        with open(out_path, "w", encoding="utf-8") as fh:      # rewrite in place, resumable
+            for rid in sorted(by_id):
+                fh.write(json.dumps(by_id[rid], ensure_ascii=False) + "\n")
+        checked += 1
+    n_human = sum(1 for r in read_jsonl(out_path) if r.get("label_source") == "human")
+    print(f"\nreviewed {checked} this session; {n_human}/{len(rows)} rows now label_source=human")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--review", action="store_true",
+                    help="re-check draft (non-human) labels already in the golden set")
     ap.add_argument("--candidates", default=None)
     ap.add_argument("--out", default=None)
     ap.add_argument("--limit", type=int, default=None)
     a = ap.parse_args()
 
     cfg = load_config()
-    cand_path = Path(a.candidates or rel(cfg["paths"]["golden_dir"]) / "golden_candidates.jsonl")
     out_path = Path(a.out or rel(cfg["eval"]["golden_set"]))
+
+    if a.review:
+        if not out_path.exists():
+            raise SystemExit(f"{out_path} missing -- nothing to review")
+        _run_review(out_path, a.limit)
+        return
+
+    cand_path = Path(a.candidates or rel(cfg["paths"]["golden_dir"]) / "golden_candidates.jsonl")
     if not cand_path.exists():
         raise SystemExit(f"{cand_path} missing -- run scripts/make_golden_candidates.py first")
 
@@ -107,7 +142,7 @@ def main() -> None:
     todo = [r for r in cands if r["id"] not in done_ids]
     if a.limit:
         todo = todo[:a.limit]
-    print(f"{len(done_ids)} already labelled, {len(todo)} to go "
+    print(f"{len(done_ids)} already in golden set, {len(todo)} to go "
           f"({len(cands)} candidates total)")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
