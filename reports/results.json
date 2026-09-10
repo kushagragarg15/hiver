@@ -1,13 +1,13 @@
 {
   "meta": {
     "brand": "AppleSupport",
-    "provider": "ollama",
-    "model": "llama3.1:8b",
-    "judge_model": "llama3.1:8b",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-lite",
+    "judge_model": "gemini-3.1-flash-lite",
     "n_golden": 30,
     "limit": null,
-    "timestamp": "2026-09-10T15:36:39.054719+00:00",
-    "seconds": 13.6,
+    "timestamp": "2026-09-10T16:28:12.921685+00:00",
+    "seconds": 22.6,
     "llm_usage_agent": {
       "calls": 0,
       "cache_hits": 60,
@@ -24,20 +24,20 @@
   "intent": {
     "agent": {
       "n": 30,
-      "accuracy": 0.367,
-      "macro_f1": 0.315,
-      "weighted_f1": 0.397,
+      "accuracy": 0.7,
+      "macro_f1": 0.501,
+      "weighted_f1": 0.676,
       "per_class": {
         "software_update_issue": {
-          "precision": 1.0,
-          "recall": 0.278,
-          "f1": 0.435,
+          "precision": 0.778,
+          "recall": 0.778,
+          "f1": 0.778,
           "support": 18
         },
         "device_hardware_battery": {
-          "precision": 0.2,
-          "recall": 0.333,
-          "f1": 0.25,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.667,
           "support": 3
         },
         "account_access_security": {
@@ -53,20 +53,20 @@
           "support": 1
         },
         "connectivity_sync": {
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.667,
           "support": 1
         },
         "how_to_feature_question": {
-          "precision": 0.25,
-          "recall": 0.5,
-          "f1": 0.333,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4,
           "support": 4
         },
         "complaint_churn_risk": {
-          "precision": 0.333,
-          "recall": 1.0,
+          "precision": 0.5,
+          "recall": 0.5,
           "f1": 0.5,
           "support": 2
         },
@@ -90,23 +90,23 @@
         ],
         "matrix": [
           [
-            5,
+            14,
             3,
             0,
             0,
-            2,
-            5,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
             3,
-            0
-          ],
-          [
-            0,
-            1,
             0,
             0,
-            1,
             0,
-            1,
+            0,
+            0,
             0
           ],
           [
@@ -131,52 +131,52 @@
           ],
           [
             0,
+            0,
+            0,
+            0,
             1,
-            0,
-            0,
-            0,
             0,
             0,
             0
           ],
           [
-            0,
-            0,
-            0,
-            0,
-            2,
             2,
             0,
+            0,
+            0,
+            1,
+            1,
+            0,
             0
           ],
           [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            2,
-            0
-          ],
-          [
+            1,
             0,
             0,
             0,
             0,
             0,
             1,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0
           ]
         ]
       },
       "pred_distribution": {
-        "connectivity_sync": 5,
-        "complaint_churn_risk": 6,
-        "software_update_issue": 5,
-        "device_hardware_battery": 5,
-        "how_to_feature_question": 8,
+        "device_hardware_battery": 6,
+        "software_update_issue": 18,
+        "how_to_feature_question": 1,
+        "connectivity_sync": 2,
+        "complaint_churn_risk": 2,
         "billing_appstore_subscription": 1
       }
     },
@@ -498,20 +498,20 @@
   "escalation": {
     "agent": {
       "n": 30,
-      "escalate_precision": 0.875,
-      "escalate_recall": 0.636,
-      "escalate_f1": 0.737,
-      "accuracy": 0.833,
-      "auto_rate": 0.733,
-      "missed_escalation_rate": 0.364,
-      "unnecessary_escalation_rate": 0.053,
+      "escalate_precision": 1.0,
+      "escalate_recall": 0.273,
+      "escalate_f1": 0.429,
+      "accuracy": 0.733,
+      "auto_rate": 0.9,
+      "missed_escalation_rate": 0.727,
+      "unnecessary_escalation_rate": 0.0,
       "counts": {
-        "tp": 7,
-        "fp": 1,
-        "fn": 4,
-        "tn": 18
+        "tp": 3,
+        "fp": 0,
+        "fn": 8,
+        "tn": 19
       },
-      "kappa": 0.619
+      "kappa": 0.322
     },
     "baseline_always_auto": {
       "n": 30,
@@ -549,20 +549,20 @@
     },
     "baseline_intent_prior": {
       "n": 30,
-      "escalate_precision": 0.857,
-      "escalate_recall": 0.545,
-      "escalate_f1": 0.667,
-      "accuracy": 0.8,
-      "auto_rate": 0.767,
-      "missed_escalation_rate": 0.455,
-      "unnecessary_escalation_rate": 0.053,
+      "escalate_precision": 1.0,
+      "escalate_recall": 0.273,
+      "escalate_f1": 0.429,
+      "accuracy": 0.733,
+      "auto_rate": 0.9,
+      "missed_escalation_rate": 0.727,
+      "unnecessary_escalation_rate": 0.0,
       "counts": {
-        "tp": 6,
-        "fp": 1,
-        "fn": 5,
-        "tn": 18
+        "tp": 3,
+        "fp": 0,
+        "fn": 8,
+        "tn": 19
       },
-      "kappa": 0.534
+      "kappa": 0.322
     }
   },
   "reply_quality": {
@@ -570,97 +570,97 @@
     "agent": {
       "n": 30,
       "groundedness": {
-        "mean": 3.267,
-        "p25": 2.0,
+        "mean": 4.8,
+        "p25": 5.0,
         "min": 2
       },
       "relevance": {
-        "mean": 4.133,
-        "p25": 4.0,
-        "min": 1
-      },
-      "correctness_safety": {
-        "mean": 4.467,
+        "mean": 4.533,
         "p25": 4.0,
         "min": 2
       },
-      "tone": {
-        "mean": 4.767,
+      "correctness_safety": {
+        "mean": 4.833,
         "p25": 5.0,
-        "min": 1
+        "min": 2
+      },
+      "tone": {
+        "mean": 4.867,
+        "p25": 5.0,
+        "min": 4
       },
       "completeness": {
-        "mean": 3.367,
-        "p25": 2.0,
-        "min": 1
+        "mean": 4.5,
+        "p25": 4.25,
+        "min": 2
       },
-      "pass_rate": 0.6
+      "pass_rate": 0.9
     },
     "baseline_retrieval_only": {
       "n": 30,
       "groundedness": {
-        "mean": 2.233,
-        "p25": 2.0,
+        "mean": 4.1,
+        "p25": 3.0,
         "min": 1
       },
       "relevance": {
-        "mean": 3.0,
-        "p25": 1.25,
+        "mean": 3.833,
+        "p25": 3.0,
         "min": 1
       },
       "correctness_safety": {
-        "mean": 3.1,
-        "p25": 2.0,
+        "mean": 4.2,
+        "p25": 4.0,
         "min": 1
       },
       "tone": {
-        "mean": 4.4,
+        "mean": 4.5,
         "p25": 4.0,
         "min": 3
       },
       "completeness": {
-        "mean": 2.167,
-        "p25": 1.0,
+        "mean": 3.733,
+        "p25": 3.0,
         "min": 1
       },
-      "pass_rate": 0.1
+      "pass_rate": 0.7
     },
     "baseline_canned": {
       "n": 30,
       "groundedness": {
-        "mean": 2.033,
-        "p25": 2.0,
+        "mean": 4.9,
+        "p25": 5.0,
         "min": 2
       },
       "relevance": {
-        "mean": 2.533,
-        "p25": 1.0,
-        "min": 1
+        "mean": 3.9,
+        "p25": 3.0,
+        "min": 2
       },
       "correctness_safety": {
-        "mean": 3.933,
-        "p25": 3.25,
+        "mean": 4.9,
+        "p25": 5.0,
         "min": 2
       },
       "tone": {
-        "mean": 4.6,
+        "mean": 4.567,
         "p25": 4.0,
-        "min": 3
+        "min": 4
       },
       "completeness": {
-        "mean": 1.8,
-        "p25": 1.0,
-        "min": 1
+        "mean": 3.9,
+        "p25": 3.0,
+        "min": 2
       },
-      "pass_rate": 0.033
+      "pass_rate": 0.933
     }
   },
   "headline": {
-    "intent_macro_f1": 0.315,
-    "intent_accuracy": 0.367,
-    "missed_escalation_rate": 0.364,
-    "unnecessary_escalation_rate": 0.053,
-    "auto_rate": 0.733,
-    "reply_pass_rate": 0.6
+    "intent_macro_f1": 0.501,
+    "intent_accuracy": 0.7,
+    "missed_escalation_rate": 0.727,
+    "unnecessary_escalation_rate": 0.0,
+    "auto_rate": 0.9,
+    "reply_pass_rate": 0.9
   }
 }

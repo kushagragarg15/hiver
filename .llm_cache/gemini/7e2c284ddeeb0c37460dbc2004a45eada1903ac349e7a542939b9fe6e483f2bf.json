@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 1.0,\n  \"rationale\": \"The user reports a performance regression specifically following an iOS software update.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

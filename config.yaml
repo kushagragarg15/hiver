@@ -24,16 +24,16 @@ llm:
   # provider: ollama | openai | gemini | groq | deepseek | xai | openrouter | mock
   # All are OpenAI-compatible; base_url + api_key_env are built in (src/llm.py
   # _PRESETS) and can be overridden per block here.
-  provider: "ollama"
+  provider: "gemini"
 
   ollama:                      # local, free, slow on CPU (~1 min/message)
     model: "llama3.1:8b"
     judge_model: "llama3.1:8b"
 
-  gemini:                      # FREE tier: 15 rpm / 1500 req-day for 2.0-flash. Key: https://aistudio.google.com/apikey
+  gemini:                      # FREE tier. Key: https://aistudio.google.com/apikey
     api_key_env: "GEMINI_API_KEY"
-    model: "gemini-2.0-flash"
-    judge_model: "gemini-2.0-flash"
+    model: "gemini-3.1-flash-lite"
+    judge_model: "gemini-3.1-flash-lite"
     rpm: 14                    # stay just under the free-tier limit
 
   groq:                        # FREE tier: ~30 rpm. Key: https://console.groq.com/keys

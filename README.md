@@ -22,14 +22,20 @@ The point of this repo is the **evaluation**, not the agent. See
 
   | provider | cost | how | notes |
   |---|---|---|---|
-  | `gemini` | **free** | `GEMINI_API_KEY` from <https://aistudio.google.com/apikey> | `gemini-2.0-flash`, 15 rpm / 1500-day free tier — **recommended** |
+  | `gemini` | **free** | `GEMINI_API_KEY` from <https://aistudio.google.com/apikey> | **primary run** used `gemini-3.1-flash-lite`; free tier ~15 rpm. Model IDs churn — see below |
   | `groq` | **free** | `GROQ_API_KEY` from <https://console.groq.com/keys> | `llama-3.3-70b`, ~30 rpm free tier |
-  | `ollama` | free, local | install <https://ollama.com>, `ollama pull llama3.1:8b` | no key; ~1 min/message on CPU (slow) |
+  | `ollama` | free, local | install <https://ollama.com>, `ollama pull llama3.1:8b` | no key; ~1 min/message on CPU (slow). Committed as the local baseline |
   | `openai` | paid | `OPENAI_API_KEY` | `gpt-4o-mini` + `gpt-4o` judge, ~$1–2/run |
   | `deepseek` | ~$0.20/run | `DEEPSEEK_API_KEY` | cheap, not free |
 
-  The committed `reports/results.json` is an `ollama/llama3.1:8b` run; switching
-  provider is one line and the cache misses cleanly (keyed by provider+model).
+  `reports/results.json` is the `gemini-3.1-flash-lite` run; `results_*.{json,md}`
+  keep both backends side by side. `.llm_cache/<provider>/` is committed so
+  `make eval` reproduces each in seconds; the cache misses cleanly on a new
+  provider or model. **Gemini model IDs are unstable** — during development
+  `gemini-2.0-flash` and `gemini-2.5-flash` both became "not available to new
+  users". If `gemini-3.1-flash-lite` is gone, list what your key can see with
+  `curl -s https://generativelanguage.googleapis.com/v1beta/models -H "x-goog-api-key: $GEMINI_API_KEY"`
+  and set `llm.gemini.model` to a current `*-flash*` id.
 
 ```bash
 pip install -r requirements.txt
@@ -117,17 +123,22 @@ account-specific facts. The escalation decision is a transparent rule stack
 escalates**. Every decision carries a human-readable `reason` and a `signals`
 dict for failure analysis.
 
-## Caveats that matter
-- The committed `reports/results.json` is a **real `ollama/llama3.1:8b` run over
-  a 30-row seed golden set** (27 min; `.llm_cache/` is committed so `make eval`
-  reproduces it in seconds). On this brand + model the agent **loses to the
-  keyword baseline on intent macro-F1** and misses 36% of escalations — the
-  grounded drafter's reply quality is the only clear win. See `REPORT.md` §3/§5.
-- The golden set is a **30-row seed**; 233 candidates are staged for labelling
-  (`python -m eval.label_tool`). Single annotator. `data/golden/SAMPLING_NOTES.md`.
-- The LLM judge is also `llama3.1:8b` and its human-agreement κ is **not yet
-  measured** (`make worksheet` → hand-score → `make judge`).
-- The dataset is from 2017; "how the brand resolves things" is frozen there.
+## Caveats that matter (full version: `REPORT.md` §5)
+- Two committed runs over a **30-row seed golden set**: `gemini-3.1-flash-lite`
+  (primary) and `llama3.1:8b` (local baseline).
+  - **Solid result:** Gemini beats the keyword + majority baselines on intent
+    (macro-F1 0.50 vs 0.34 / 0.09); llama does not (0.32).
+  - **Broken:** the escalate/auto rule stack collapses to "escalate the 3
+    sensitive intent categories" — its confidence and BM25 floors never fire, so
+    it misses 73% of the messages that needed a human (Gemini run).
+  - **Confounded:** the canned "please DM us" one-liner *beats* the agent on
+    reply-quality pass-rate (0.93 vs 0.90) — AppleSupport's real replies are
+    deflections, so the metric rewards deflection.
+- Golden set is a **30-row seed**; 233 candidates staged (`python -m eval.label_tool`).
+  Single annotator, hindsight labels.
+- The judge is the **same model it grades**; human-agreement κ **not measured**
+  (`make worksheet` → hand-score → `make judge`).
+- Dataset is 2017; "how the brand resolves things" is frozen there.
 
 ## Attribution
 - Dataset: *Customer Support on Twitter*, thoughtvector, Kaggle (CC0).

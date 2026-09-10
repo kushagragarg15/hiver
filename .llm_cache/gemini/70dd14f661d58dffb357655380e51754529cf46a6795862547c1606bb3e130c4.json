@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.9,\n  \"rationale\": \"User is reporting a functional failure within the iMovie application.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

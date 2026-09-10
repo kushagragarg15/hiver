@@ -86,11 +86,12 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     honest floor for "predict the prior" and the caveat is cheaper than a
     train split on 200 rows. Flagged inline in `run_eval.py`.
 
-14. **On-disk LLM cache keyed by (provider, model, messages, params), and the
-    winning run's cache is committed.** `.llm_cache/` holds the exact
-    `llama3.1:8b` calls behind `reports/results.json` (232 KB), so `make eval`
-    reproduces the headline in seconds instead of 27 minutes. A different
-    backend or model misses cleanly. `rm -rf .llm_cache/` for a true cold run.
+14. **On-disk LLM cache keyed by (provider, model, messages, params); both
+    runs' caches are committed.** `.llm_cache/gemini/` and `.llm_cache/ollama/`
+    hold the exact calls behind `reports/results_*.json`, so `make eval`
+    reproduces either headline in ~15 s instead of 18–27 min. A different
+    backend/model misses cleanly. `rm -rf .llm_cache/` for a true cold run
+    (which, for Gemini, may need a different model id — see #19).
 
 15. **`mock` LLM provider ships in `llm.py`.** Lets `make smoke` and the test
     suite exercise the whole pipeline with no backend and no network — useful
@@ -107,8 +108,23 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     front-loading hours of labelling before the method was settled. Expanding it
     is the top "next week" item, and the report's numbers are all flagged n=30.
 
-18. **Default backend `llama3.1:8b` (local, free) — and it loses to the keyword
-    baseline on intent.** Kept as the committed run because it's honest and
-    reproducible with zero cost/keys. The report treats "hosted model
-    (`gpt-4o-mini`) as worker" as the obvious next comparison, not as the thing
-    that was hidden. Provider is a one-line `config.yaml` switch.
+18. **Ran two backends and committed both: `gemini-3.1-flash-lite` (primary) and
+    `llama3.1:8b` (local baseline).** The pair *is* a finding — Gemini clears
+    the intent baselines, llama doesn't, and swapping them moves
+    missed-escalation the wrong way (safety was leaning on llama's
+    under-confidence). One backend would have hidden that. `src/llm.py` treats
+    every provider as an OpenAI-compatible endpoint (`_PRESETS`), so adding
+    gemini/groq/deepseek/openrouter was a table entry, not a code path.
+
+19. **`gemini-3.1-flash-lite`, not a `-latest` alias or a bigger flash.** During
+    this work `gemini-2.0-flash` and `gemini-2.5-flash` both started returning
+    "no longer available to new users", and `gemini-3.5/3.7/3.8-flash` were
+    intermittently 503 or returned non-standard envelopes. `3.1-flash-lite` was
+    the most reliable id that also emitted clean JSON without burning output
+    tokens on visible reasoning. Pinned (not `flash-latest`) for reproducibility,
+    accepting that a cold re-run may need a different id — the committed cache is
+    the real reproducibility guarantee (#14).
+
+20. **Added a client-side RPM throttle (`llm.<provider>.rpm`) + 429-aware
+    backoff.** Free tiers rate-limit hard (Gemini ~15/min); without the throttle
+    a run trips limits and the retry loop wastes minutes. Set to 14 for Gemini.

@@ -72,7 +72,14 @@ class LLM:
         self.cache_dir = rel(cfg["cache_dir"]) / self.provider
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.usage = Usage()
-        self._client = self._make_client(cfg)
+        self._cfg = cfg
+        self._client = None          # built lazily on first uncached call
+
+    def _get_client(self):
+        """Deferred so a fully-cached `make eval` needs no API key at all."""
+        if self._client is None:
+            self._client = self._make_client(self._cfg)
+        return self._client
 
     def _make_client(self, cfg: dict[str, Any]):
         if self.provider == "mock":
@@ -138,7 +145,7 @@ class LLM:
         for attempt in range(5):
             self._throttle()
             try:
-                resp = self._client.chat.completions.create(**kwargs)
+                resp = self._get_client().chat.completions.create(**kwargs)
                 break
             except Exception as e:                      # noqa: BLE001
                 last_err = e

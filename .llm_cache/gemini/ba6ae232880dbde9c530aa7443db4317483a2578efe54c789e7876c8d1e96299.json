@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"connectivity_sync\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is unable to download apps over cellular data, indicating a connectivity issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}
