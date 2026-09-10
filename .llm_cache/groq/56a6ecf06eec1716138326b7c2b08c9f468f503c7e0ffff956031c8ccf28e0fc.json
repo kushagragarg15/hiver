@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.97,\"rationale\":\"User reports visual glitches after iOS updates, a software bug.\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re aware of the symbol issue when typing “I” or “It.” Please try the temporary workaround here: https://t.co/xXaXeeSRt9. If it persists, DM us with your iOS version so we can investigate further.\",\"grounded_in\":[1,2,4],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

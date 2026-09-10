@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.96,\"rationale\":\"User reports performance bugs after iOS update, seeking resolution\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

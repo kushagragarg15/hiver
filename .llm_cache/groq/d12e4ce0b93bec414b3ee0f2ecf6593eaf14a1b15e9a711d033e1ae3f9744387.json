@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We believe this is a phishing attempt. Please don’t enter your password and avoid clicking the link. If you need further help, DM us so we can investigate safely.\",\"grounded_in\":[2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

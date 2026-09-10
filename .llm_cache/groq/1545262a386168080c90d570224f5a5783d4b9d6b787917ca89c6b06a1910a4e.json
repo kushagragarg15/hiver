@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry you’re experiencing crashes. Let’s investigate further—please DM us with the exact iPad and Mac models, OS versions, and Keynote version so we can pinpoint the cause.\",\"grounded_in\":[2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

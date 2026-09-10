@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry you’re experiencing this. Could you let us know which music app you’re using when the pauses happen? Please DM us with that detail so we can investigate further.\",\"grounded_in\":[1,2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

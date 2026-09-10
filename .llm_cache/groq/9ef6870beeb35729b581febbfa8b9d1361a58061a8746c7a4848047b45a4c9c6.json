@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"account_access_security\",\"confidence\":0.78,\"rationale\":\"User reports inability to set up profile on iTunes Connect, likely account access issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

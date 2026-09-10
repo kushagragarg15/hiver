@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.93,\"rationale\":\"Battery drain after iOS updates, physical hardware concern\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

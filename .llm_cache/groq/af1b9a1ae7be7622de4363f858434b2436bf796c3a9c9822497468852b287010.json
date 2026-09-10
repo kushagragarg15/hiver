@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"billing_appstore_subscription\",\"confidence\":0.97,\"rationale\":\"User reports billing issue preventing purchases despite account credit.\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

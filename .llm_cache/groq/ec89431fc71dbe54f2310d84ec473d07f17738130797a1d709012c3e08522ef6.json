@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.97,\"rationale\":\"Describes physical damage, battery drain, service loss, restarts after drop\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

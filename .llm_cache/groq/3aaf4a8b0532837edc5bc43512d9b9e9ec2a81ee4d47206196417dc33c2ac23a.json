@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.92,\"rationale\":\"User reports bug after iOS 11.1.1 update affecting Wi‑Fi/Bluetooth behavior\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

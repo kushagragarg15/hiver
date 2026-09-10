@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.92,\"rationale\":\"Battery drain after iOS update indicates a software regression\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

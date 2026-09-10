@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry you’re seeing that message. Could you let us know which carrier you’re using and if the prompt appears for all messages? Please DM us with those details so we can investigate further.\",\"grounded_in\":[],\"used_weak_precedent\":true}", "model": "openai/gpt-oss-120b", "provider": "groq"}

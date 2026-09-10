@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"how_to_feature_question\",\"confidence\":0.92,\"rationale\":\"User asks how to export videos to external drive, a usage question\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry you’re experiencing layout changes. Could you let us know the iOS version shown in Settings > General > About? Please DM us with that detail so we can investigate further.\",\"grounded_in\":[2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

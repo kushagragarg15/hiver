@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.94,\"rationale\":\"User reports a typing bug/character display issue, a software problem\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

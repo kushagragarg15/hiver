@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.93,\"rationale\":\"User reports playback bug after iTunes version, a software issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

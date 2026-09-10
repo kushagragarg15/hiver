@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.93,\"rationale\":\"Mail app bug after iOS update, can't delete messages\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

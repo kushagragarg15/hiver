@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":2,\"relevance\":3,\"correctness_safety\":2,\"tone\":4,\"completeness\":3,\"overall_pass\":false,\"notes\":\"Invents a specific link not in reference; reference asked which app instead of giving a generic guide.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry to hear your battery is draining so quickly. Could you DM us with the device model and iOS version you’re using so we can investigate?\",\"grounded_in\":[2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

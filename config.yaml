@@ -24,7 +24,7 @@ llm:
   # provider: ollama | openai | gemini | groq | deepseek | xai | openrouter | mock
   # All are OpenAI-compatible; base_url + api_key_env are built in (src/llm.py
   # _PRESETS) and can be overridden per block here.
-  provider: "gemini"
+  provider: "groq"
 
   ollama:                      # local, free, slow on CPU (~1 min/message)
     model: "llama3.1:8b"
@@ -37,11 +37,12 @@ llm:
     reasoning_effort: "none"   # Gemini 3.x "flash" think by default and truncate JSON without this
     rpm: 15                    # conservative for the 3.x flash models
 
-  groq:                        # FREE tier: ~30 rpm. Key: https://console.groq.com/keys
+  groq:                        # FREE tier: ~1000 req/day, ~30 rpm. Key: https://console.groq.com/keys
     api_key_env: "GROQ_API_KEY"
-    model: "llama-3.3-70b-versatile"
-    judge_model: "llama-3.3-70b-versatile"
-    rpm: 28
+    model: "openai/gpt-oss-120b"       # strong open model; worker
+    judge_model: "qwen/qwen3.8-27b"    # different family -> judge independence
+    reasoning_effort: "low"            # both are reasoning models; without this they blow the token budget
+    rpm: 25
 
   openai:                      # paid. Key: OPENAI_API_KEY
     model: "gpt-4o-mini"

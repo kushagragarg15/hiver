@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry for the inconvenience. In iOS 11 the Wi‑Fi toggle in Control Center behaves differently and may turn back on. Please see this article for details: https://t.co/G7BHuQnDS6. If you need further help, DM us.\",\"grounded_in\":[1],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

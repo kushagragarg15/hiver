@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.96,\"rationale\":\"User reports a calculator bug, a software regression\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

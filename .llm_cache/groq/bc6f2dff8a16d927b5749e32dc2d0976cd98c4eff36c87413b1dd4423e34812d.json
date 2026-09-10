@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry you’re having trouble. Please open Settings → iTunes & App Store and ensure Automatic Downloads for Music is turned on. If it’s already enabled, DM us with your device model so we can investigate further.\",\"grounded_in\":[2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

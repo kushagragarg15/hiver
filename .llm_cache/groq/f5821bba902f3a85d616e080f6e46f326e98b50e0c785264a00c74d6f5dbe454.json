@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.87,\"rationale\":\"User reports device lag, likely due to software issue after use\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

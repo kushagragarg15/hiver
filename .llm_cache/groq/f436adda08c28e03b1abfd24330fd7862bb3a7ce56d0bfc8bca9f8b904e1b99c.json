@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.92,\"rationale\":\"Describes lag/freezes likely due to software bug\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

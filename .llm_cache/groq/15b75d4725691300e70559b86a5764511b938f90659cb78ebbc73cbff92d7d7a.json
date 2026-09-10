@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We can help. Could you let us know which iOS version you’re on? You can check under Settings > General > About > Version. Then try updating to the latest iOS release and see if the Podcast app stabilizes. Please DM us if you need further assistance.\",\"grounded_in\":[2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

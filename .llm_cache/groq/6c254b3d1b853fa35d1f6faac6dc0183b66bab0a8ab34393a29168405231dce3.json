@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.96,\"rationale\":\"Touch ID broke after an OS update\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

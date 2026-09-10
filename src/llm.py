@@ -125,6 +125,12 @@ class LLM:
              use_cache: bool = True) -> str:
         temperature = self.temperature if temperature is None else temperature
         max_tokens = max_tokens or self.max_tokens
+        # Reasoning models (Gemini 3.x flash, gpt-oss, qwen3) spend completion
+        # tokens on hidden thinking before the answer. A tight caller budget
+        # (e.g. 120 for the classifier) then truncates the JSON. Give them room;
+        # the cache key uses the *effective* value so this stays reproducible.
+        if self._reasoning_effort:
+            max_tokens = max(max_tokens, 800)
         ck = self._key(messages, json_mode, temperature, max_tokens)
         cpath = self.cache_dir / f"{ck}.json"
 

@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"billing_appstore_subscription\",\"confidence\":0.97,\"rationale\":\"User reports subscription not working, likely billing/renewal issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

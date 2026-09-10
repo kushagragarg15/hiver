@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"how_to_feature_question\",\"confidence\":0.97,\"rationale\":\"User asks how to make videos full screen and show battery percentage\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

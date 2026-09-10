@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.96,\"rationale\":\"Device restarts after iOS change, a software bug/regression\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

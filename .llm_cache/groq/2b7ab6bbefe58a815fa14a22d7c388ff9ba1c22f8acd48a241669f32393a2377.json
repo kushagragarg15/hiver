@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re sorry you’re hearing dropping noises. Could you check Settings > Bluetooth > AirPods and see if the microphone is set to “Automatically Switch AirPods” or a specific side? Please DM us with a screenshot so we can help further.\",\"grounded_in\":[1],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

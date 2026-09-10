@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.78,\"rationale\":\"User reports data loss likely due to software bug and demands fix\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

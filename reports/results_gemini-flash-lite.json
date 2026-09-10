@@ -6,19 +6,19 @@
     "judge_model": "gemini-3.1-flash-lite",
     "n_golden": 30,
     "limit": null,
-    "timestamp": "2026-09-10T16:12:31.178540+00:00",
-    "seconds": 1083.4,
+    "timestamp": "2026-09-10T16:28:12.921685+00:00",
+    "seconds": 22.6,
     "llm_usage_agent": {
-      "calls": 60,
-      "cache_hits": 0,
-      "prompt_tokens": 40048,
-      "completion_tokens": 3797
+      "calls": 0,
+      "cache_hits": 60,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
     },
     "llm_usage_judge": {
-      "calls": 88,
-      "cache_hits": 2,
-      "prompt_tokens": 36867,
-      "completion_tokens": 7690
+      "calls": 0,
+      "cache_hits": 90,
+      "prompt_tokens": 0,
+      "completion_tokens": 0
     }
   },
   "intent": {

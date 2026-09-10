@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.93,\"rationale\":\"User reports a feature broken after iOS upgrade\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,0 +1,1 @@
+{"content": "{\"reply\":\"We’re aware the “i” in “it” auto‑capitalizes. A temporary fix is to adjust your keyboard settings—see the workaround here: https://t.co/xXaXeeSRt9. If it persists, please DM us for further help.\",\"grounded_in\":[1,2,4],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

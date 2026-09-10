@@ -1,0 +1,1 @@
+{"content": "{\"intent\":\"connectivity_sync\",\"confidence\":0.97,\"rationale\":\"User reports AirDrop and Photos transfer not working between devices\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

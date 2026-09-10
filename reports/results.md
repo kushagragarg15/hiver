@@ -1,42 +1,34 @@
 # Results -- AppleSupport
 
-_gemini/gemini-3.1-flash-lite, judge gemini-3.1-flash-lite, n=30, 22.6s, generated 2026-09-10T16:28:12.921685+00:00_
+_groq/openai/gpt-oss-120b, judge None, n=150, 48.0s, generated 2026-09-10T18:10:49.105245+00:00_
 
 ## Intent classification
 
 | system | accuracy | macro-F1 | weighted-F1 |
 |---|---|---|---|
-| agent (LLM) | 0.7 | 0.501 | 0.676 |
-| baseline: keyword (simple) | 0.5 | 0.341 | 0.574 |
-| baseline: majority (trivial) | 0.6 | 0.094 | 0.45 |
+| agent (LLM) | 0.693 | 0.646 | 0.712 |
+| baseline: keyword (simple) | 0.453 | 0.491 | 0.524 |
+| baseline: majority (trivial) | 0.487 | 0.082 | 0.319 |
 
 ## Escalation decision (positive class = escalate)
 
 | system | esc-precision | esc-recall | esc-F1 | missed-esc-rate | unnec-esc-rate | auto-rate |
 |---|---|---|---|---|---|---|
-| agent | 1.0 | 0.273 | 0.429 | 0.727 | 0.0 | 0.9 |
+| agent | 0.737 | 0.528 | 0.615 | 0.472 | 0.103 | 0.747 |
 | baseline: always-auto | 0.0 | 0.0 | 0.0 | 1.0 | 0.0 | 1.0 |
-| baseline: always-escalate | 0.367 | 1.0 | 0.537 | 0.0 | 1.0 | 0.0 |
-| baseline: intent-prior | 1.0 | 0.273 | 0.429 | 0.727 | 0.0 | 0.9 |
-
-## Reply quality -- LLM-as-judge (n=30)
-
-| system | groundedness | relevance | correctness_safety | tone | completeness | pass-rate |
-|---|---|---|---|---|---|---|
-| agent | 4.8 | 4.533 | 4.833 | 4.867 | 4.5 | 0.9 |
-| baseline: retrieval-only | 4.1 | 3.833 | 4.2 | 4.5 | 3.733 | 0.7 |
-| baseline: canned | 4.9 | 3.9 | 4.9 | 4.567 | 3.9 | 0.933 |
+| baseline: always-escalate | 0.353 | 1.0 | 0.522 | 0.0 | 1.0 | 0.0 |
+| baseline: intent-prior | 0.867 | 0.491 | 0.627 | 0.509 | 0.041 | 0.8 |
 
 ## Headline
 
 ```json
 {
-  "intent_macro_f1": 0.501,
-  "intent_accuracy": 0.7,
-  "missed_escalation_rate": 0.727,
-  "unnecessary_escalation_rate": 0.0,
-  "auto_rate": 0.9,
-  "reply_pass_rate": 0.9
+  "intent_macro_f1": 0.646,
+  "intent_accuracy": 0.693,
+  "missed_escalation_rate": 0.472,
+  "unnecessary_escalation_rate": 0.103,
+  "auto_rate": 0.747,
+  "reply_pass_rate": null
 }
 ```
 

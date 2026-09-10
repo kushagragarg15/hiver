@@ -23,12 +23,15 @@ candidates:
 worksheet:
 	$(PY) scripts/make_judge_worksheet.py --n 12
 
-# Headline numbers. Needs a real backend (ollama or openai) -- see README.
+# Reproduce the committed headline (groq/gpt-oss-120b, n=150, intent+escalation).
+# Runs from the committed .llm_cache in ~1 min, no API key needed.
 eval:
-	$(PY) -m eval.run_eval
+	$(PY) -m eval.run_eval --limit 150 --no-judge
 
-eval-fast:
-	$(PY) -m eval.run_eval --limit 60 --judge-sample 45
+# Full run incl. LLM-as-judge over all 233 rows. Needs a backend with quota
+# left -- every free tier caps out before this finishes (see README).
+eval-full:
+	$(PY) -m eval.run_eval --judge-sample 90
 
 judge:
 	$(PY) -m eval.judge_agreement
