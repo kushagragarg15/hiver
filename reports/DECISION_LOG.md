@@ -102,11 +102,12 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     argued about (confidence floor, BM25 floor, `k`, split date, always-escalate
     list) is there, not buried in code, so tuning is visible in a diff.
 
-17. **Committed a 30-row hand-labelled *seed* golden set, not the full 150–250.**
-    The 233 candidates are staged; the seed is enough to (a) prove the harness
-    on real data and (b) surface real failure modes for the report, without
-    front-loading hours of labelling before the method was settled. Expanding it
-    is the top "next week" item, and the report's numbers are all flagged n=30.
+17. **Golden set: 30 hand-labelled from scratch, then 203 model-assisted drafts
+    (233 total).** The 30-row seed was labelled first, cold. The remaining 203
+    were drafted by applying the written protocol (`SAMPLING_NOTES.md`) and
+    stamped `label_source: "model_assisted"` pending an independent human review
+    pass (`label_tool.py --review`). Disclosed in `SAMPLING_NOTES.md` and next
+    to every results table. Mix: 155 auto / 78 escalate.
 
 18. **Ran two backends and committed both: `gemini-3.1-flash-lite` (primary) and
     `llama3.1:8b` (local baseline).** The pair *is* a finding — Gemini clears
@@ -116,15 +117,22 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     every provider as an OpenAI-compatible endpoint (`_PRESETS`), so adding
     gemini/groq/deepseek/openrouter was a table entry, not a code path.
 
-19. **`gemini-3.1-flash-lite`, not a `-latest` alias or a bigger flash.** During
-    this work `gemini-2.0-flash` and `gemini-2.5-flash` both started returning
-    "no longer available to new users", and `gemini-3.5/3.7/3.8-flash` were
-    intermittently 503 or returned non-standard envelopes. `3.1-flash-lite` was
-    the most reliable id that also emitted clean JSON without burning output
-    tokens on visible reasoning. Pinned (not `flash-latest`) for reproducibility,
-    accepting that a cold re-run may need a different id — the committed cache is
-    the real reproducibility guarantee (#14).
+19. **Gemini model ids are a moving target; the cache is the reproducibility
+    guarantee.** `gemini-2.0-flash` and `gemini-2.5-flash` both went "not
+    available to new users" mid-session. `gemini-3.x-flash` are *thinking*
+    models that truncate the JSON unless you pass `reasoning_effort: "none"`
+    (now a config option). Config pins `gemini-3.1-flash-lite`; a cold re-run
+    may need a different `*-flash*` id (README shows how to list live ones).
 
-20. **Added a client-side RPM throttle (`llm.<provider>.rpm`) + 429-aware
-    backoff.** Free tiers rate-limit hard (Gemini ~15/min); without the throttle
-    a run trips limits and the retry loop wastes minutes. Set to 14 for Gemini.
+20. **The 30-row run used `gemini-3.1-flash-lite` for worker + judge; the
+    233-row run splits worker (`gemini-3.5-flash`) and judge
+    (`gemini-3.7-flash`).** Forced by the free tier's **500 requests/day PER
+    MODEL** cap — the full run is ~700 calls. The split is a silver lining: the
+    judge is now a *different* model from the worker, which is what §3.4 asked
+    for. `model` / `judge_model` are separate config keys precisely so this is
+    possible.
+
+21. **Client-side RPM throttle (`llm.<provider>.rpm`) + 429/quota-aware
+    backoff.** Free tiers rate-limit per-minute *and* per-day; the throttle
+    keeps per-minute clean, the backoff rides out the rest. 15 for the Gemini
+    3.x flash models.

@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"connectivity_sync\",\n  \"confidence\": 1.0,\n  \"rationale\": \"The user is reporting that iCloud contacts are failing to sync across their devices.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

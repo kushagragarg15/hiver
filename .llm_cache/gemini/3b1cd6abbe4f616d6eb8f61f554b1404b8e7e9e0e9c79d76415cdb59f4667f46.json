@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 1.0,\n  \"rationale\": \"The user is reporting a physical charging issue with their device.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

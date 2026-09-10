@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user reports a persistent hardware issue with speaker crackling despite software updates.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

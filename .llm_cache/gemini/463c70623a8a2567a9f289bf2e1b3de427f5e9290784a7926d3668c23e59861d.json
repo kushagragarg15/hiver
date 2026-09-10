@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The device is unresponsive and will not power on, indicating a hardware failure.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

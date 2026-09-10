@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"connectivity_sync\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The primary issue is the Wi-Fi connection dropping, which prevents other tasks.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

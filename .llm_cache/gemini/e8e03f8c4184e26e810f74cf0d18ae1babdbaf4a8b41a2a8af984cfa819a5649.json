@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"complaint_churn_risk\",\n  \"confidence\": 0.95,\n  \"rationale\": \"User is expressing frustration about planned obsolescence without a specific technical issue reported.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

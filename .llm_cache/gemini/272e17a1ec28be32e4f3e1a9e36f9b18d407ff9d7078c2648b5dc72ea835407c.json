@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We'd like to see how we can help. Does this happen while using a specific app, or does it occur randomly? Please send us a DM with those details so we can look into this further.\",\n  \"grounded_in\": [2, 3, 4],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

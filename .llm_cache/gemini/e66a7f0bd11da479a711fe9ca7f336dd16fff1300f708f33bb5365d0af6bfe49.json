@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"praise_or_non_actionable\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user confirms the issue is resolved after the update.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

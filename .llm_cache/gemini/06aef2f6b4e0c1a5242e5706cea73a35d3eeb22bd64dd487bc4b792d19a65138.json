@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"account_access_security\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is unable to authenticate their Apple ID due to password issues.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

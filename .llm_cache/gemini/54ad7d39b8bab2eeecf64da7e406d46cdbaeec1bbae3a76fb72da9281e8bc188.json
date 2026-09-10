@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.95,\n  \"rationale\": \"Customer attributes battery drain specifically to an iOS update bug.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

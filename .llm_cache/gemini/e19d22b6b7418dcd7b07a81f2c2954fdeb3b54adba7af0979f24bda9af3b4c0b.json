@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"billing_appstore_subscription\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The issue concerns a missing order and delivery status, which relates to purchase fulfillment.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

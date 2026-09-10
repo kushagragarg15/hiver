@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"billing_appstore_subscription\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The agent directed the user to iTunes Store support for a music-related issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

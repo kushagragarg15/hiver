@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"account_access_security\",\n  \"confidence\": 1.0,\n  \"rationale\": \"The user is seeking assistance with an ongoing Apple ID account recovery process.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

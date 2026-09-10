@@ -30,11 +30,12 @@ llm:
     model: "llama3.1:8b"
     judge_model: "llama3.1:8b"
 
-  gemini:                      # FREE tier. Key: https://aistudio.google.com/apikey
+  gemini:                      # FREE tier: 500 requests/day PER MODEL. Key: https://aistudio.google.com/apikey
     api_key_env: "GEMINI_API_KEY"
     model: "gemini-3.1-flash-lite"
     judge_model: "gemini-3.1-flash-lite"
-    rpm: 18                   # free-tier headroom; 429s are backed off automatically
+    reasoning_effort: "none"   # Gemini 3.x "flash" think by default and truncate JSON without this
+    rpm: 15                    # conservative for the 3.x flash models
 
   groq:                        # FREE tier: ~30 rpm. Key: https://console.groq.com/keys
     api_key_env: "GROQ_API_KEY"

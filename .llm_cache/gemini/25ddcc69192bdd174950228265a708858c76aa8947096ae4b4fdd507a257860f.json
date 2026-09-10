@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.98,\n  \"rationale\": \"The issue started immediately following a software update to High Sierra.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

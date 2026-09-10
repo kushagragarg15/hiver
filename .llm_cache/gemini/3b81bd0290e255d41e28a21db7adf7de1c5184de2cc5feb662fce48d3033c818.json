@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We'd like to look into this with you. Does this happen in every app or only when viewing specific text? Please send us a DM so we can assist further.\",\n  \"grounded_in\": [1],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

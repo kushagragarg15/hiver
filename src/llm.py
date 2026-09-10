@@ -69,6 +69,9 @@ class LLM:
         self.timeout_s = cfg["timeout_s"]
         self._min_interval = 60.0 / cfg["rpm"] if cfg.get("rpm") else 0.0
         self._last_call = 0.0
+        # Gemini 3.x "flash" are thinking models -- without this they burn the
+        # output budget on hidden reasoning and truncate the JSON.
+        self._reasoning_effort = cfg.get("reasoning_effort")
         self.cache_dir = rel(cfg["cache_dir"]) / self.provider
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.usage = Usage()
@@ -140,6 +143,8 @@ class LLM:
         )
         if json_mode:
             kwargs["response_format"] = {"type": "json_object"}
+        if self._reasoning_effort:
+            kwargs["reasoning_effort"] = self._reasoning_effort
 
         last_err = None
         for attempt in range(5):

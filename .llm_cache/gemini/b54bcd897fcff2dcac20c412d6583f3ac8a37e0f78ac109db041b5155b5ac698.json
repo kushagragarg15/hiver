@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user explicitly links battery issues to the recent iOS 11.2 software update.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

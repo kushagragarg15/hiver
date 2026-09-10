@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We'd like to help with this payment issue. Please visit this page for steps on managing your payment methods: https://t.co/SDIe7UiyJN. If you continue to see an error, please send us a DM so we can look into this further.\",\n  \"grounded_in\": [2],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}
