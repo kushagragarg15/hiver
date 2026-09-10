@@ -17,11 +17,19 @@ The point of this repo is the **evaluation**, not the agent. See
 - `twcs.csv` from the Kaggle dataset. Put it at
   `Primary Customer Support on Twitter Dataset/twcs/twcs.csv`
   (or edit `paths.raw_csv` in `config.yaml`).
-- An LLM backend — **pick one**:
-  - **Ollama** (default, no API cost): install from <https://ollama.com>, then
-    `ollama pull llama3.1:8b` and make sure `ollama serve` is running.
-  - **OpenAI**: set `OPENAI_API_KEY` and change `llm.provider` to `openai` in
-    `config.yaml` (uses `gpt-4o-mini` + `gpt-4o` judge; ~$1–2 for a full run).
+- An LLM backend — set `llm.provider` in `config.yaml` (all are
+  OpenAI-compatible; base URLs are built into `src/llm.py`):
+
+  | provider | cost | how | notes |
+  |---|---|---|---|
+  | `gemini` | **free** | `GEMINI_API_KEY` from <https://aistudio.google.com/apikey> | `gemini-2.0-flash`, 15 rpm / 1500-day free tier — **recommended** |
+  | `groq` | **free** | `GROQ_API_KEY` from <https://console.groq.com/keys> | `llama-3.3-70b`, ~30 rpm free tier |
+  | `ollama` | free, local | install <https://ollama.com>, `ollama pull llama3.1:8b` | no key; ~1 min/message on CPU (slow) |
+  | `openai` | paid | `OPENAI_API_KEY` | `gpt-4o-mini` + `gpt-4o` judge, ~$1–2/run |
+  | `deepseek` | ~$0.20/run | `DEEPSEEK_API_KEY` | cheap, not free |
+
+  The committed `reports/results.json` is an `ollama/llama3.1:8b` run; switching
+  provider is one line and the cache misses cleanly (keyed by provider+model).
 
 ```bash
 pip install -r requirements.txt

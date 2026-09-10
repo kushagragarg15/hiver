@@ -47,6 +47,19 @@ class Usage:
 
 
 class LLM:
+    # Built-in defaults for OpenAI-compatible providers. `config.yaml` can add
+    # more or override these; every one of these speaks /chat/completions.
+    _PRESETS = {
+        "openai": {"base_url": None, "api_key_env": "OPENAI_API_KEY"},
+        "ollama": {"base_url": "http://localhost:11434/v1", "api_key_env": None},
+        "gemini": {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+                   "api_key_env": "GEMINI_API_KEY"},
+        "groq": {"base_url": "https://api.groq.com/openai/v1", "api_key_env": "GROQ_API_KEY"},
+        "deepseek": {"base_url": "https://api.deepseek.com", "api_key_env": "DEEPSEEK_API_KEY"},
+        "xai": {"base_url": "https://api.x.ai/v1", "api_key_env": "XAI_API_KEY"},
+        "openrouter": {"base_url": "https://openrouter.ai/api/v1", "api_key_env": "OPENROUTER_API_KEY"},
+    }
+
     def __init__(self, model: str | None = None, judge: bool = False):
         cfg = llm_cfg()
         self.provider = cfg["provider"]
@@ -54,6 +67,8 @@ class LLM:
         self.temperature = cfg["temperature"]
         self.max_tokens = cfg["max_tokens"]
         self.timeout_s = cfg["timeout_s"]
+        self._min_interval = 60.0 / cfg["rpm"] if cfg.get("rpm") else 0.0
+        self._last_call = 0.0
         self.cache_dir = rel(cfg["cache_dir"]) / self.provider
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.usage = Usage()
@@ -64,14 +79,27 @@ class LLM:
             return None
         from openai import OpenAI
 
-        if self.provider == "ollama":
-            base = (cfg.get("base_url") or "http://localhost:11434").rstrip("/")
-            return OpenAI(base_url=f"{base}/v1", api_key="ollama",
-                          timeout=self.timeout_s)
-        key = os.environ.get("OPENAI_API_KEY")
-        if not key:
-            raise RuntimeError("OPENAI_API_KEY not set (provider=openai)")
-        return OpenAI(api_key=key, timeout=self.timeout_s)
+        preset = self._PRESETS.get(self.provider, {})
+        base_url = cfg.get("base_url") or preset.get("base_url")
+        key_env = cfg.get("api_key_env") or preset.get("api_key_env")
+        if key_env:
+            key = os.environ.get(key_env)
+            if not key:
+                raise RuntimeError(
+                    f"{key_env} not set (provider={self.provider}). "
+                    f"Export it or switch llm.provider in config.yaml.")
+        else:
+            key = "not-needed"        # local / keyless endpoint
+        return OpenAI(base_url=base_url, api_key=key, timeout=self.timeout_s)
+
+    def _throttle(self) -> None:
+        """Client-side RPM cap so free tiers (Gemini 15/min, Groq 30/min) don't 429."""
+        if self._min_interval <= 0:
+            return
+        wait = self._min_interval - (time.time() - self._last_call)
+        if wait > 0:
+            time.sleep(wait)
+        self._last_call = time.time()
 
     # ------------------------------------------------------------------ #
     def _key(self, messages, json_mode, temperature, max_tokens) -> str:
@@ -107,13 +135,18 @@ class LLM:
             kwargs["response_format"] = {"type": "json_object"}
 
         last_err = None
-        for attempt in range(3):
+        for attempt in range(5):
+            self._throttle()
             try:
                 resp = self._client.chat.completions.create(**kwargs)
                 break
             except Exception as e:                      # noqa: BLE001
                 last_err = e
-                time.sleep(1.5 * (attempt + 1))
+                msg = str(e).lower()
+                if "429" in msg or "rate limit" in msg or "quota" in msg or "resource_exhausted" in msg:
+                    time.sleep(min(60, 8 * (attempt + 1)))   # free-tier RPM cool-down
+                else:
+                    time.sleep(1.5 * (attempt + 1))
         else:
             raise RuntimeError(f"LLM call failed after retries: {last_err}")
 

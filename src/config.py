@@ -37,6 +37,8 @@ def llm_cfg() -> dict[str, Any]:
         "model": os.environ.get("LLM_MODEL", prov["model"]),
         "judge_model": os.environ.get("LLM_JUDGE_MODEL", prov.get("judge_model", prov["model"])),
         "base_url": prov.get("base_url"),
+        "api_key_env": prov.get("api_key_env"),   # env var holding the key; None => keyless (local)
+        "rpm": prov.get("rpm"),                    # client-side rate cap for free tiers
         "temperature": c.get("temperature", 0.0),
         "max_tokens": c.get("max_tokens", 512),
         "cache_dir": c.get("cache_dir", ".llm_cache"),

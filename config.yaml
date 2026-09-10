@@ -21,15 +21,36 @@ data_prep:
   random_seed: 13
 
 llm:
-  # provider: "ollama" | "openai"
+  # provider: ollama | openai | gemini | groq | deepseek | xai | openrouter | mock
+  # All are OpenAI-compatible; base_url + api_key_env are built in (src/llm.py
+  # _PRESETS) and can be overridden per block here.
   provider: "ollama"
-  ollama:
-    base_url: "http://localhost:11434"
+
+  ollama:                      # local, free, slow on CPU (~1 min/message)
     model: "llama3.1:8b"
-    judge_model: "llama3.1:8b"     # bump to a bigger local model if you have one
-  openai:
+    judge_model: "llama3.1:8b"
+
+  gemini:                      # FREE tier: 15 rpm / 1500 req-day for 2.0-flash. Key: https://aistudio.google.com/apikey
+    api_key_env: "GEMINI_API_KEY"
+    model: "gemini-2.0-flash"
+    judge_model: "gemini-2.0-flash"
+    rpm: 14                    # stay just under the free-tier limit
+
+  groq:                        # FREE tier: ~30 rpm. Key: https://console.groq.com/keys
+    api_key_env: "GROQ_API_KEY"
+    model: "llama-3.3-70b-versatile"
+    judge_model: "llama-3.3-70b-versatile"
+    rpm: 28
+
+  openai:                      # paid. Key: OPENAI_API_KEY
     model: "gpt-4o-mini"
     judge_model: "gpt-4o"
+
+  deepseek:                    # very cheap (~$0.20 for the whole assignment), not free
+    api_key_env: "DEEPSEEK_API_KEY"
+    model: "deepseek-chat"
+    judge_model: "deepseek-chat"
+
   temperature: 0.0
   max_tokens: 512
   cache_dir: ".llm_cache"
