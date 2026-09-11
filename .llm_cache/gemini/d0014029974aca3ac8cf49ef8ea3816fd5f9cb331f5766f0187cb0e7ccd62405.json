@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 1,\n  \"relevance\": 1,\n  \"correctness_safety\": 2,\n  \"tone\": 3,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the specific spacebar issue and incorrectly asks about battery problems, showing a lack of attention to the customer's message.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

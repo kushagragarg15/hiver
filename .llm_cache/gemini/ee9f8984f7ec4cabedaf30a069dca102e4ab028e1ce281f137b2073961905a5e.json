@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 5,\n  \"correctness_safety\": 3,\n  \"tone\": 5,\n  \"completeness\": 5,\n  \"overall_pass\": false,\n  \"notes\": \"The reply assumes a technical issue and asks for account-specific info, which contradicts the reference stating badges may simply be delayed.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

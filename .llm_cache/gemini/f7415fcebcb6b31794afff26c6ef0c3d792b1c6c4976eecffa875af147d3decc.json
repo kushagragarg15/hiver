@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We'd like to help. Are you seeing a specific error message when you attempt to download over cellular data? Please DM us with those details so we can look into this further.\",\n  \"grounded_in\": [3],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

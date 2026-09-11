@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We understand you'd like to download larger apps over cellular data. To help us look into this, could you let us know which iOS version you are currently using? Please send us a DM so we can assist you further.\",\n  \"grounded_in\": [1, 4],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"That is not expected behavior. We would like to look into this further. Please send us a DM with your country and more details so we can assist you: https://t.co/GDrqU22YpT\",\n  \"grounded_in\": [1, 4],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

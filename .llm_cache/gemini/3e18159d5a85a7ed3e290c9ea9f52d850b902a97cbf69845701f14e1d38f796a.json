@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 3,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is professional and safe, though it lacks a clear call to action like moving to DMs to resolve the sync issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -27,15 +27,25 @@ def rel(path: str | os.PathLike) -> Path:
     return p if p.is_absolute() else ROOT / p
 
 
-def llm_cfg() -> dict[str, Any]:
-    """Flattened view of the active LLM provider's settings."""
+def llm_cfg(judge: bool = False) -> dict[str, Any]:
+    """Flattened view of the active LLM provider's settings.
+
+    judge=True resolves against a *separate* provider when one is configured
+    (LLM_JUDGE_PROVIDER env, else llm.judge_provider in config.yaml) -- lets
+    the judge run on a different model family/vendor than the agent for
+    independence (e.g. agent on groq, judge on gemini) without touching the
+    agent's provider.
+    """
     c = load_config()["llm"]
     provider = os.environ.get("LLM_PROVIDER", c["provider"])
+    if judge:
+        provider = os.environ.get("LLM_JUDGE_PROVIDER", c.get("judge_provider", provider))
     prov = c.get(provider) or {"model": "mock", "judge_model": "mock"}
+    model = prov.get("judge_model", prov["model"]) if judge else prov["model"]
+    model_env = "LLM_JUDGE_MODEL" if judge else "LLM_MODEL"
     return {
         "provider": provider,
-        "model": os.environ.get("LLM_MODEL", prov["model"]),
-        "judge_model": os.environ.get("LLM_JUDGE_MODEL", prov.get("judge_model", prov["model"])),
+        "model": os.environ.get(model_env, model),
         "base_url": prov.get("base_url"),
         "api_key_env": prov.get("api_key_env"),   # env var holding the key; None => keyless (local)
         "rpm": prov.get("rpm"),                    # client-side rate cap for free tiers

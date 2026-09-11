@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The reply incorrectly claims the issue is not yet fixed, contradicting the reference which states it was resolved in iOS 11.1.1.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

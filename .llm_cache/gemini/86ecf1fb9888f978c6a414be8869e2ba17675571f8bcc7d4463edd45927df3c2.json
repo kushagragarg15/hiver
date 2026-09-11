@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 4,\n  \"overall_pass\": false,\n  \"notes\": \"The agent claims they can look into the account, which is false for iTunes billing issues. They should direct the user to Apple support.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply is safe but fails to provide the known solution (iOS update), forcing the customer to wait for a DM response.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

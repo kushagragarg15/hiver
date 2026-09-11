@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 2,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"Incorrectly identifies the device as a new iPhone and suggests irrelevant troubleshooting steps for an iTunes connection issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

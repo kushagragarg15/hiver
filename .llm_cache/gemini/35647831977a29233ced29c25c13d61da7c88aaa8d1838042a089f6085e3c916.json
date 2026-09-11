@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 1,\n  \"correctness_safety\": 2,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply incorrectly assumes the issue is about music, ignoring the customer's explicit mention of account recovery.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -24,7 +24,10 @@ llm:
   # provider: ollama | openai | gemini | groq | deepseek | xai | openrouter | mock
   # All are OpenAI-compatible; base_url + api_key_env are built in (src/llm.py
   # _PRESETS) and can be overridden per block here.
-  provider: "groq"
+  provider: "gemini"
+  # judge_provider: separate provider for the LLM-as-judge role, for
+  # independence from the drafter's family. Overridable with LLM_JUDGE_PROVIDER.
+  # Unset here -- gemini agent + gemini judge, both off the same key pool.
 
   ollama:                      # local, free, slow on CPU (~1 min/message)
     model: "llama3.1:8b"

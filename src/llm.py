@@ -16,6 +16,7 @@ import hashlib
 import json
 import os
 import re
+import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -24,6 +25,69 @@ from typing import Any
 from .config import llm_cfg, rel
 
 _JSON_SPAN = re.compile(r"\{.*\}", re.S)
+
+
+class _KeyPool:
+    """Thread-safe round-robin over N API keys for one provider.
+
+    Multiple free-tier keys (e.g. Gemini's 500 req/day PER KEY cap) are
+    supplied as a comma-separated list in the same env var
+    (GEMINI_API_KEY="key1,key2,key3"). Rotating on every call spreads load
+    across all keys before any one comes back around, and a quota/429 on the
+    key just used marks it exhausted so subsequent calls skip it -- no sleep
+    needed as long as another key is still good. Pools are keyed by env-var
+    name and shared across LLM instances (agent + judge use the same keys).
+    """
+    _pools: dict[str, "_KeyPool"] = {}
+    _registry_lock = threading.Lock()
+
+    def __init__(self, keys: list[str]):
+        self.keys = keys
+        self._idx = 0
+        self._exhausted: set[int] = set()
+        self._last_call: dict[int, float] = {}
+        self._lock = threading.Lock()
+
+    @classmethod
+    def get(cls, cache_key: str, raw: str) -> "_KeyPool":
+        with cls._registry_lock:
+            pool = cls._pools.get(cache_key)
+            if pool is None:
+                keys = [k.strip() for k in raw.split(",") if k.strip()]
+                pool = cls(keys)
+                cls._pools[cache_key] = pool
+            return pool
+
+    def next(self) -> tuple[int, str]:
+        """Pick the next non-exhausted key (round-robin), skipping exhausted ones."""
+        with self._lock:
+            n = len(self.keys)
+            for _ in range(n):
+                i = self._idx
+                self._idx = (self._idx + 1) % n
+                if i not in self._exhausted:
+                    return i, self.keys[i]
+            # every key looked exhausted -- reset so callers get a real error/backoff
+            # instead of a permanent lockout (quotas reset daily; a stale mark
+            # from earlier shouldn't wedge the process).
+            self._exhausted.clear()
+            i = self._idx
+            self._idx = (self._idx + 1) % n
+            return i, self.keys[i]
+
+    def mark_exhausted(self, i: int) -> None:
+        with self._lock:
+            self._exhausted.add(i)
+
+    def throttle(self, i: int, min_interval: float) -> None:
+        if min_interval <= 0:
+            return
+        with self._lock:
+            last = self._last_call.get(i, 0.0)
+            wait = min_interval - (time.time() - last)
+            if wait > 0:
+                time.sleep(wait)
+            self._last_call[i] = time.time()
 
 
 @dataclass
@@ -61,14 +125,13 @@ class LLM:
     }
 
     def __init__(self, model: str | None = None, judge: bool = False):
-        cfg = llm_cfg()
+        cfg = llm_cfg(judge=judge)
         self.provider = cfg["provider"]
-        self.model = model or (cfg["judge_model"] if judge else cfg["model"])
+        self.model = model or cfg["model"]
         self.temperature = cfg["temperature"]
         self.max_tokens = cfg["max_tokens"]
         self.timeout_s = cfg["timeout_s"]
         self._min_interval = 60.0 / cfg["rpm"] if cfg.get("rpm") else 0.0
-        self._last_call = 0.0
         # Gemini 3.x "flash" are thinking models -- without this they burn the
         # output budget on hidden reasoning and truncate the JSON.
         self._reasoning_effort = cfg.get("reasoning_effort")
@@ -76,40 +139,35 @@ class LLM:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.usage = Usage()
         self._cfg = cfg
-        self._client = None          # built lazily on first uncached call
+        self._base_url: str | None = None
+        self._key_pool: _KeyPool | None = None
+        self._clients: dict[int, Any] = {}   # key-index -> OpenAI client, built lazily
 
-    def _get_client(self):
+    def _ensure_pool(self) -> None:
         """Deferred so a fully-cached `make eval` needs no API key at all."""
-        if self._client is None:
-            self._client = self._make_client(self._cfg)
-        return self._client
-
-    def _make_client(self, cfg: dict[str, Any]):
-        if self.provider == "mock":
-            return None
-        from openai import OpenAI
-
+        if self._key_pool is not None:
+            return
         preset = self._PRESETS.get(self.provider, {})
-        base_url = cfg.get("base_url") or preset.get("base_url")
-        key_env = cfg.get("api_key_env") or preset.get("api_key_env")
+        self._base_url = self._cfg.get("base_url") or preset.get("base_url")
+        key_env = self._cfg.get("api_key_env") or preset.get("api_key_env")
         if key_env:
-            key = os.environ.get(key_env)
-            if not key:
+            raw = os.environ.get(key_env)
+            if not raw:
                 raise RuntimeError(
                     f"{key_env} not set (provider={self.provider}). "
-                    f"Export it or switch llm.provider in config.yaml.")
+                    f"Export it or switch llm.provider in config.yaml. "
+                    f"(Multiple keys: set {key_env} to a comma-separated list.)")
+            self._key_pool = _KeyPool.get(key_env, raw)
         else:
-            key = "not-needed"        # local / keyless endpoint
-        return OpenAI(base_url=base_url, api_key=key, timeout=self.timeout_s)
+            self._key_pool = _KeyPool.get(f"__keyless__{self.provider}", "not-needed")
 
-    def _throttle(self) -> None:
-        """Client-side RPM cap so free tiers (Gemini 15/min, Groq 30/min) don't 429."""
-        if self._min_interval <= 0:
-            return
-        wait = self._min_interval - (time.time() - self._last_call)
-        if wait > 0:
-            time.sleep(wait)
-        self._last_call = time.time()
+    def _client_for(self, idx: int, key: str):
+        client = self._clients.get(idx)
+        if client is None:
+            from openai import OpenAI
+            client = OpenAI(base_url=self._base_url, api_key=key, timeout=self.timeout_s)
+            self._clients[idx] = client
+        return client
 
     # ------------------------------------------------------------------ #
     def _key(self, messages, json_mode, temperature, max_tokens) -> str:
@@ -152,17 +210,26 @@ class LLM:
         if self._reasoning_effort:
             kwargs["reasoning_effort"] = self._reasoning_effort
 
+        self._ensure_pool()
+        n_keys = len(self._key_pool.keys)
+        # With several keys, try every one at least once before giving up.
+        max_attempts = max(5, n_keys + 2)
+
         last_err = None
-        for attempt in range(5):
-            self._throttle()
+        for attempt in range(max_attempts):
+            idx, key = self._key_pool.next()
+            self._key_pool.throttle(idx, self._min_interval)
             try:
-                resp = self._get_client().chat.completions.create(**kwargs)
+                resp = self._client_for(idx, key).chat.completions.create(**kwargs)
                 break
             except Exception as e:                      # noqa: BLE001
                 last_err = e
                 msg = str(e).lower()
                 if "429" in msg or "rate limit" in msg or "quota" in msg or "resource_exhausted" in msg:
-                    time.sleep(min(60, 8 * (attempt + 1)))   # free-tier RPM cool-down
+                    self._key_pool.mark_exhausted(idx)
+                    if n_keys > 1:
+                        continue      # another key is likely still good -- no sleep
+                    time.sleep(min(60, 8 * (attempt + 1)))   # single-key: free-tier cool-down
                 else:
                     time.sleep(1.5 * (attempt + 1))
         else:

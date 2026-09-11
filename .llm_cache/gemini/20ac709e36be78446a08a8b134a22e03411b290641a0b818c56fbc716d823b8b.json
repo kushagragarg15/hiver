@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 2,\n  \"correctness_safety\": 3,\n  \"tone\": 4,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the specific UI issue described and suggests an update instead of the direct troubleshooting steps provided in the reference.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

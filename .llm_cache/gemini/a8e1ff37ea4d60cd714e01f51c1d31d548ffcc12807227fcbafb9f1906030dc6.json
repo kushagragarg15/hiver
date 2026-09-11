@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We understand wanting to look into these charges. To request a refund for an in-app purchase, please visit: https://reportaproblem.apple.com. If you need further assistance, please reach out to us in DM.\",\n  \"grounded_in\": [3, 4],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

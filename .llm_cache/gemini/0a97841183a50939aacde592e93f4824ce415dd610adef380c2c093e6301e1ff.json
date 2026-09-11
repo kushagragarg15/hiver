@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 5,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 5,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is professional, helpful, and provides a clear actionable step without making unsupported claims.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

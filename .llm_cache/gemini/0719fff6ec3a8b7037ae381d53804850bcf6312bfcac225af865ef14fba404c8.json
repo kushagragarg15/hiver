@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the specific 'low memory' error mentioned by the customer, asking for information already provided in the initial message.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

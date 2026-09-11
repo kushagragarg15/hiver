@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.9,\n  \"rationale\": \"The user explicitly mentions that a recent update is causing crashes and sync issues.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 4,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is safe and professional. It correctly directs the user to a private channel to gather necessary troubleshooting details.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

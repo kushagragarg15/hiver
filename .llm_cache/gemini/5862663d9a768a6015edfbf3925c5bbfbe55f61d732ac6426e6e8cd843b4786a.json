@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 1,\n  \"relevance\": 1,\n  \"correctness_safety\": 2,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the positive sentiment, incorrectly apologizes for a successful resolution, and asks for details that are unnecessary.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

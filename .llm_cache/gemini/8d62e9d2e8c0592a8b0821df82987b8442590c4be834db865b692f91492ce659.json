@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.98,\n  \"rationale\": \"Customer explicitly links Siri malfunction to recent software updates.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

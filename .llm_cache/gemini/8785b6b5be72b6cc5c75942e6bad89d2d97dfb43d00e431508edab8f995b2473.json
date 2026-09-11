@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the specific technical details provided by the customer and fails to offer a clear next step or resource.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

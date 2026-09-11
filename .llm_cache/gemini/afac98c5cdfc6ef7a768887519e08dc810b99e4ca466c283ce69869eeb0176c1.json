@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.98,\n  \"rationale\": \"The user is reporting erratic battery behavior and unexpected shutdowns related to temperature.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 2,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The reply assumes the customer is using an iPhone without evidence and treats a positive fan post as a technical support issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

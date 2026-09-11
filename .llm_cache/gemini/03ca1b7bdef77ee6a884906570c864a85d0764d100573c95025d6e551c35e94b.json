@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 3,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 3,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is safe and professional, though it deflects to DMs rather than asking clarifying questions publicly as the reference did.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

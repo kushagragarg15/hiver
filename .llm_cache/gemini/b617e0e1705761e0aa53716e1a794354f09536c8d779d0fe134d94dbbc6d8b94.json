@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"complaint_churn_risk\",\n  \"confidence\": 0.85,\n  \"rationale\": \"Vague expression of anger without a specific technical issue identified for troubleshooting.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

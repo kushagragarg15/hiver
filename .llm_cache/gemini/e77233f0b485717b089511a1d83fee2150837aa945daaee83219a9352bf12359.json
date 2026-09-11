@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply provides support links but fails to address the specific iPhone 7 issue or offer direct assistance as the reference did.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

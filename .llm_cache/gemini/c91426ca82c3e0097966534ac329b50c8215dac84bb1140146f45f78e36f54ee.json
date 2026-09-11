@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the specific bug report and deflects the user to other channels without acknowledging the issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

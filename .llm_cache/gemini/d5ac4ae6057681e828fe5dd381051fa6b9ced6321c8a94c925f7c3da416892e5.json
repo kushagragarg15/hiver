@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 3,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The reply is dismissive of the customer's positive feedback and emotional context, failing to acknowledge the successful resolution mentioned.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

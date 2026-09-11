@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 5,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 4,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is helpful and safe. It asks a relevant diagnostic question to narrow down the issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

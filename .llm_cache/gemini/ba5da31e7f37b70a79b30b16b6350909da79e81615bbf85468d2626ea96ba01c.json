@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is reporting rapid battery drain, which is a physical device performance issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

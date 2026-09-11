@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":1,\"relevance\":1,\"correctness_safety\":1,\"tone\":3,\"completeness\":1,\"overall_pass\":false,\"notes\":\"The reply is completely irrelevant, hallucinates about glasses instead of gloves, and fails to address the user's actual technical issue.\"}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

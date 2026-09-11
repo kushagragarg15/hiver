@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"billing_appstore_subscription\",\n  \"confidence\": 0.85,\n  \"rationale\": \"The user is complaining about a shipping delay regarding an order purchase.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"account_access_security\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is locked out of their device and requires passcode/account verification to proceed.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

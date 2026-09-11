@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 2,\n  \"correctness_safety\": 2,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply makes an unsupported assumption about the user's iOS version and fails to address the core issue of battery drain.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

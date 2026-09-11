@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 4,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is safe and accurate. It could be improved by asking for the user's location as the reference did to expedite the support process.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

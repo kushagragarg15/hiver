@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply is too generic and deflects to DMs instead of providing the troubleshooting steps or feedback link found in the reference.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

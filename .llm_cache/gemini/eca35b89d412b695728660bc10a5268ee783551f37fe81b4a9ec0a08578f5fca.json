@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.98,\n  \"rationale\": \"User reports performance issues and lag specifically following an iOS update.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 3,\n  \"relevance\": 4,\n  \"correctness_safety\": 4,\n  \"tone\": 4,\n  \"completeness\": 4,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is concise and provides a relevant link. It avoids over-promising and maintains a professional tone.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

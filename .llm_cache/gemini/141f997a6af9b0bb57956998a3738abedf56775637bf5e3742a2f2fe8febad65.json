@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 1,\n  \"relevance\": 1,\n  \"correctness_safety\": 1,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply incorrectly labels a standard password issue as phishing, which is dangerous and unhelpful.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

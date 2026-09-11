@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply is safe but unhelpful. It deflects to a general contact page instead of troubleshooting the specific pre-order download issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 1,\n  \"relevance\": 1,\n  \"correctness_safety\": 2,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply is completely irrelevant to the customer's audio issue, discussing an unrelated autocorrect fix instead.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

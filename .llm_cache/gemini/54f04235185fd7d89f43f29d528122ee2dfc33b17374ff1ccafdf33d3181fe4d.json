@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 1,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"The reply is irrelevant and fails to answer the customer's specific question about the SIM card, instead asking for unnecessary information.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

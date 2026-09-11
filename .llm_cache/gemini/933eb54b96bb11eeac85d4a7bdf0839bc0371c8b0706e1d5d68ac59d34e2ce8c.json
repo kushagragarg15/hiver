@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":5,\"relevance\":4,\"correctness_safety\":5,\"tone\":4,\"completeness\":3,\"overall_pass\":true,\"notes\":\"The reply is safe and grounded, though slightly less helpful than the reference by not asking for device details upfront.\"}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

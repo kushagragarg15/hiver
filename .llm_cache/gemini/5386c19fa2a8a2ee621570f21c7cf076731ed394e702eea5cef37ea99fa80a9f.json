@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"connectivity_sync\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is reporting a specific technical issue with Wi-Fi and Bluetooth functionality.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

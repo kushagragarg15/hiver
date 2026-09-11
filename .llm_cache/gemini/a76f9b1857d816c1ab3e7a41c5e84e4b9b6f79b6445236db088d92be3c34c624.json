@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"how_to_feature_question\",\n  \"confidence\": 0.95,\n  \"rationale\": \"User is asking about the availability and location of a specific feature.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.95,\n  \"rationale\": \"User reports camera settings resetting specifically following a recent software update.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

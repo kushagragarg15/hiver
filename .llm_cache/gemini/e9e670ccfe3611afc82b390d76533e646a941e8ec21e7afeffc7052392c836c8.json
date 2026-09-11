@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 2,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the primary complaint about battery issues and focuses only on the secondary app download issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

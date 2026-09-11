@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 3,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The reply promises help via DM, which contradicts the brand's actual policy of redirecting Spanish-language support to specific links.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

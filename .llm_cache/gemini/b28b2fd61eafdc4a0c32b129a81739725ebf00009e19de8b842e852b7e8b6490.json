@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 3,\n  \"relevance\": 4,\n  \"correctness_safety\": 4,\n  \"tone\": 4,\n  \"completeness\": 3,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is safe and relevant, though it lacks the brand's specific advice regarding iOS updates and backups.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

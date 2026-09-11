@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 4,\n  \"relevance\": 5,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 5,\n  \"overall_pass\": true,\n  \"notes\": \"The reply correctly identifies the need for a DM. It mislabels the issue as 'freezing' instead of 'crackling', but remains safe and actionable.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

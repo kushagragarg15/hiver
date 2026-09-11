@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"how_to_feature_question\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is frustrated by intended OS behavior explained by the agent.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

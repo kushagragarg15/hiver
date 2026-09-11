@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We are here to help. To better understand what you are seeing, could you please tell us which error message or screen is appearing? Once we have that detail, we can look into this further with you in DMs.\",\n  \"grounded_in\": [2, 3],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

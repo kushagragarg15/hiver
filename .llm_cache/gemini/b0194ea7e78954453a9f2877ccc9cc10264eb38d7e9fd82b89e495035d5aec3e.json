@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"We would like to help with your balance issue. Could you please let us know which device you are currently using? Once we have that, we can continue this in DM.\",\n  \"grounded_in\": [1, 4],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

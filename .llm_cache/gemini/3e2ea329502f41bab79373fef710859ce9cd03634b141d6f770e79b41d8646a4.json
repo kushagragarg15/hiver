@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"how_to_feature_question\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is asking for the correct channel to report software issues.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

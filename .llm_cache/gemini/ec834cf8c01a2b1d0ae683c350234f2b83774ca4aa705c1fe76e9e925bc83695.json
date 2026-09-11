@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 3,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply incorrectly states the issue is not yet fixed, contradicting the reference which confirms a fix is already available.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

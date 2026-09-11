@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 3,\n  \"tone\": 4,\n  \"completeness\": 4,\n  \"overall_pass\": false,\n  \"notes\": \"The reply assumes a software update is the fix without evidence from the reference, which is a hallucination of policy/timeline.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

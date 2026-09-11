@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 5,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 5,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is helpful and safe. It includes a link, which is acceptable, but the tone is professional and the next step is clear.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

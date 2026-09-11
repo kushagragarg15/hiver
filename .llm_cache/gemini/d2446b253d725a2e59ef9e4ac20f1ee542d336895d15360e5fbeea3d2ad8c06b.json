@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 3,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply incorrectly suggests a DM process instead of directing the user to the online self-service portal as per the reference.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

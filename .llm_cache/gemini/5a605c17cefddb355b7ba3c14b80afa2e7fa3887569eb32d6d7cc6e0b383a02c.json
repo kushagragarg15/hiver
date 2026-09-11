@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 1,\n  \"correctness_safety\": 5,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply is a generic deflection that fails to answer the specific technical question asked by the customer.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

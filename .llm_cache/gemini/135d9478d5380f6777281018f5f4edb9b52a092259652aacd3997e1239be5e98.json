@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user reports physical damage and hardware malfunctions following a drop.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

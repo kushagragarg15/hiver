@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 3,\n  \"correctness_safety\": 3,\n  \"tone\": 4,\n  \"completeness\": 4,\n  \"overall_pass\": false,\n  \"notes\": \"The reply assumes the issue is Apple Music without verification, which is not grounded in the provided reference.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

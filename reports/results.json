@@ -1,74 +1,81 @@
 {
   "meta": {
     "brand": "AppleSupport",
-    "provider": "groq",
-    "model": "openai/gpt-oss-120b",
-    "judge_model": null,
-    "n_golden": 150,
-    "limit": 150,
-    "timestamp": "2026-09-10T18:10:49.105245+00:00",
-    "seconds": 48.0,
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-lite",
+    "judge_provider": "gemini",
+    "judge_model": "gemini-3.1-flash-lite",
+    "n_golden": 233,
+    "limit": null,
+    "timestamp": "2026-09-11T11:06:39.423698+00:00",
+    "seconds": 3158.3,
     "llm_usage_agent": {
-      "calls": 0,
-      "cache_hits": 300,
-      "prompt_tokens": 0,
-      "completion_tokens": 0
+      "calls": 454,
+      "cache_hits": 12,
+      "prompt_tokens": 306395,
+      "completion_tokens": 29118
+    },
+    "llm_usage_judge": {
+      "calls": 678,
+      "cache_hits": 21,
+      "prompt_tokens": 284426,
+      "completion_tokens": 59365
     }
   },
   "intent": {
     "agent": {
-      "n": 150,
-      "accuracy": 0.693,
-      "macro_f1": 0.646,
-      "weighted_f1": 0.712,
+      "n": 233,
+      "accuracy": 0.691,
+      "macro_f1": 0.628,
+      "weighted_f1": 0.711,
       "per_class": {
         "software_update_issue": {
-          "precision": 0.883,
-          "recall": 0.726,
-          "f1": 0.797,
-          "support": 73
+          "precision": 0.833,
+          "recall": 0.727,
+          "f1": 0.777,
+          "support": 110
         },
         "device_hardware_battery": {
-          "precision": 0.481,
-          "recall": 0.765,
-          "f1": 0.591,
-          "support": 17
+          "precision": 0.688,
+          "recall": 0.846,
+          "f1": 0.759,
+          "support": 26
         },
         "account_access_security": {
-          "precision": 0.875,
-          "recall": 0.7,
-          "f1": 0.778,
-          "support": 10
+          "precision": 0.889,
+          "recall": 0.667,
+          "f1": 0.762,
+          "support": 12
         },
         "billing_appstore_subscription": {
-          "precision": 0.833,
-          "recall": 0.625,
-          "f1": 0.714,
-          "support": 8
+          "precision": 0.923,
+          "recall": 0.667,
+          "f1": 0.774,
+          "support": 18
         },
         "connectivity_sync": {
-          "precision": 0.333,
-          "recall": 0.8,
-          "f1": 0.471,
-          "support": 5
+          "precision": 0.579,
+          "recall": 0.786,
+          "f1": 0.667,
+          "support": 14
         },
         "how_to_feature_question": {
-          "precision": 0.765,
-          "recall": 0.52,
-          "f1": 0.619,
-          "support": 25
+          "precision": 0.76,
+          "recall": 0.487,
+          "f1": 0.594,
+          "support": 39
         },
         "complaint_churn_risk": {
-          "precision": 0.429,
-          "recall": 1.0,
-          "f1": 0.6,
-          "support": 6
+          "precision": 0.25,
+          "recall": 0.714,
+          "f1": 0.37,
+          "support": 7
         },
         "praise_or_non_actionable": {
-          "precision": 0.75,
-          "recall": 0.5,
-          "f1": 0.6,
-          "support": 6
+          "precision": 0.222,
+          "recall": 0.571,
+          "f1": 0.32,
+          "support": 7
         }
       },
       "confusion_matrix": {
@@ -84,152 +91,152 @@
         ],
         "matrix": [
           [
-            53,
-            11,
-            0,
-            1,
-            3,
-            3,
-            2,
-            0
-          ],
-          [
-            0,
-            13,
-            0,
-            0,
+            80,
+            8,
             1,
             0,
             2,
-            0
-          ],
-          [
-            0,
-            1,
+            3,
             7,
-            0,
-            1,
-            0,
-            0,
-            1
+            9
           ],
           [
             0,
-            0,
-            1,
-            5,
-            0,
-            1,
-            1,
-            0
-          ],
-          [
+            22,
             0,
             0,
             0,
             0,
             4,
-            0,
-            1,
             0
           ],
           [
-            6,
+            0,
+            0,
+            8,
+            0,
+            3,
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            0,
+            12,
+            0,
+            3,
+            0,
+            1
+          ],
+          [
             1,
+            0,
+            0,
+            0,
+            11,
+            0,
+            1,
+            1
+          ],
+          [
+            11,
+            0,
             0,
             0,
             3,
-            13,
-            1,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            6,
-            0
+            19,
+            3,
+            2
           ],
           [
             1,
-            1,
-            0,
-            0,
             0,
             0,
             1,
-            3
+            0,
+            0,
+            5,
+            0
+          ],
+          [
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4
           ]
         ]
       },
       "pred_distribution": {
-        "connectivity_sync": 12,
-        "device_hardware_battery": 27,
-        "software_update_issue": 60,
-        "how_to_feature_question": 17,
-        "billing_appstore_subscription": 6,
-        "complaint_churn_risk": 14,
-        "account_access_security": 8,
-        "praise_or_non_actionable": 4,
-        "other": 2
+        "device_hardware_battery": 32,
+        "software_update_issue": 96,
+        "how_to_feature_question": 25,
+        "connectivity_sync": 19,
+        "complaint_churn_risk": 20,
+        "billing_appstore_subscription": 13,
+        "praise_or_non_actionable": 18,
+        "account_access_security": 9,
+        "other": 1
       }
     },
     "baseline_majority_trivial": {
-      "n": 150,
-      "accuracy": 0.487,
-      "macro_f1": 0.082,
-      "weighted_f1": 0.319,
+      "n": 233,
+      "accuracy": 0.472,
+      "macro_f1": 0.08,
+      "weighted_f1": 0.303,
       "per_class": {
         "software_update_issue": {
-          "precision": 0.487,
+          "precision": 0.472,
           "recall": 1.0,
-          "f1": 0.655,
-          "support": 73
+          "f1": 0.641,
+          "support": 110
         },
         "device_hardware_battery": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 17
+          "support": 26
         },
         "account_access_security": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 10
+          "support": 12
         },
         "billing_appstore_subscription": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 8
+          "support": 18
         },
         "connectivity_sync": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 5
+          "support": 14
         },
         "how_to_feature_question": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 25
+          "support": 39
         },
         "complaint_churn_risk": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 6
+          "support": 7
         },
         "praise_or_non_actionable": {
           "precision": 0.0,
           "recall": 0.0,
           "f1": 0.0,
-          "support": 6
+          "support": 7
         }
       },
       "confusion_matrix": {
@@ -245,7 +252,7 @@
         ],
         "matrix": [
           [
-            73,
+            110,
             0,
             0,
             0,
@@ -255,7 +262,7 @@
             0
           ],
           [
-            17,
+            26,
             0,
             0,
             0,
@@ -265,7 +272,7 @@
             0
           ],
           [
-            10,
+            12,
             0,
             0,
             0,
@@ -275,7 +282,7 @@
             0
           ],
           [
-            8,
+            18,
             0,
             0,
             0,
@@ -285,7 +292,7 @@
             0
           ],
           [
-            5,
+            14,
             0,
             0,
             0,
@@ -295,7 +302,7 @@
             0
           ],
           [
-            25,
+            39,
             0,
             0,
             0,
@@ -305,7 +312,7 @@
             0
           ],
           [
-            6,
+            7,
             0,
             0,
             0,
@@ -315,7 +322,7 @@
             0
           ],
           [
-            6,
+            7,
             0,
             0,
             0,
@@ -327,62 +334,62 @@
         ]
       },
       "pred_distribution": {
-        "software_update_issue": 150
+        "software_update_issue": 233
       }
     },
     "baseline_keyword_simple": {
-      "n": 150,
-      "accuracy": 0.453,
-      "macro_f1": 0.491,
-      "weighted_f1": 0.524,
+      "n": 233,
+      "accuracy": 0.433,
+      "macro_f1": 0.462,
+      "weighted_f1": 0.512,
       "per_class": {
         "software_update_issue": {
-          "precision": 0.872,
-          "recall": 0.466,
-          "f1": 0.607,
-          "support": 73
+          "precision": 0.852,
+          "recall": 0.473,
+          "f1": 0.608,
+          "support": 110
         },
         "device_hardware_battery": {
-          "precision": 0.353,
-          "recall": 0.353,
-          "f1": 0.353,
-          "support": 17
+          "precision": 0.375,
+          "recall": 0.346,
+          "f1": 0.36,
+          "support": 26
         },
         "account_access_security": {
           "precision": 0.667,
-          "recall": 0.8,
-          "f1": 0.727,
-          "support": 10
+          "recall": 0.667,
+          "f1": 0.667,
+          "support": 12
         },
         "billing_appstore_subscription": {
-          "precision": 0.5,
-          "recall": 0.625,
-          "f1": 0.556,
-          "support": 8
+          "precision": 0.474,
+          "recall": 0.5,
+          "f1": 0.486,
+          "support": 18
         },
         "connectivity_sync": {
-          "precision": 0.429,
-          "recall": 0.6,
+          "precision": 0.5,
+          "recall": 0.5,
           "f1": 0.5,
-          "support": 5
+          "support": 14
         },
         "how_to_feature_question": {
-          "precision": 0.75,
-          "recall": 0.24,
-          "f1": 0.364,
-          "support": 25
+          "precision": 0.667,
+          "recall": 0.256,
+          "f1": 0.37,
+          "support": 39
         },
         "complaint_churn_risk": {
-          "precision": 0.444,
-          "recall": 0.667,
-          "f1": 0.533,
-          "support": 6
+          "precision": 0.4,
+          "recall": 0.571,
+          "f1": 0.471,
+          "support": 7
         },
         "praise_or_non_actionable": {
-          "precision": 0.25,
-          "recall": 0.333,
-          "f1": 0.286,
-          "support": 6
+          "precision": 0.2,
+          "recall": 0.286,
+          "f1": 0.235,
+          "support": 7
         }
       },
       "confusion_matrix": {
@@ -398,31 +405,31 @@
         ],
         "matrix": [
           [
-            34,
-            10,
+            52,
+            12,
             0,
-            3,
+            4,
             0,
-            1,
+            2,
             4,
             5
           ],
           [
+            2,
+            9,
+            0,
+            2,
             1,
-            6,
             0,
             1,
-            1,
-            0,
-            0,
             1
           ],
           [
             0,
             0,
             8,
+            2,
             1,
-            0,
             0,
             0,
             0
@@ -431,31 +438,31 @@
             0,
             0,
             2,
-            5,
+            9,
             0,
+            1,
             0,
-            0,
-            0
+            1
           ],
           [
-            0,
-            0,
-            0,
-            0,
             3,
+            0,
+            0,
             1,
+            7,
+            2,
             0,
             0
           ],
           [
             4,
-            1,
-            2,
-            0,
             3,
-            6,
+            2,
+            1,
+            5,
+            10,
             0,
-            0
+            1
           ],
           [
             0,
@@ -480,94 +487,184 @@
         ]
       },
       "pred_distribution": {
-        "other": 40,
-        "software_update_issue": 39,
-        "device_hardware_battery": 17,
-        "connectivity_sync": 7,
-        "praise_or_non_actionable": 8,
-        "complaint_churn_risk": 9,
-        "how_to_feature_question": 8,
-        "billing_appstore_subscription": 10,
+        "other": 68,
+        "software_update_issue": 61,
+        "device_hardware_battery": 24,
+        "connectivity_sync": 14,
+        "praise_or_non_actionable": 10,
+        "complaint_churn_risk": 10,
+        "how_to_feature_question": 15,
+        "billing_appstore_subscription": 19,
         "account_access_security": 12
       }
     }
   },
   "escalation": {
     "agent": {
-      "n": 150,
-      "escalate_precision": 0.737,
-      "escalate_recall": 0.528,
-      "escalate_f1": 0.615,
-      "accuracy": 0.767,
-      "auto_rate": 0.747,
-      "missed_escalation_rate": 0.472,
-      "unnecessary_escalation_rate": 0.103,
+      "n": 233,
+      "escalate_precision": 0.787,
+      "escalate_recall": 0.474,
+      "escalate_f1": 0.592,
+      "accuracy": 0.781,
+      "auto_rate": 0.798,
+      "missed_escalation_rate": 0.526,
+      "unnecessary_escalation_rate": 0.065,
       "counts": {
-        "tp": 28,
+        "tp": 37,
         "fp": 10,
-        "fn": 25,
-        "tn": 87
+        "fn": 41,
+        "tn": 145
       },
-      "kappa": 0.454
+      "kappa": 0.455
     },
     "baseline_always_auto": {
-      "n": 150,
+      "n": 233,
       "escalate_precision": 0.0,
       "escalate_recall": 0.0,
       "escalate_f1": 0.0,
-      "accuracy": 0.647,
+      "accuracy": 0.665,
       "auto_rate": 1.0,
       "missed_escalation_rate": 1.0,
       "unnecessary_escalation_rate": 0.0,
       "counts": {
         "tp": 0,
         "fp": 0,
-        "fn": 53,
-        "tn": 97
+        "fn": 78,
+        "tn": 155
       },
       "kappa": 0.0
     },
     "baseline_always_escalate": {
-      "n": 150,
-      "escalate_precision": 0.353,
+      "n": 233,
+      "escalate_precision": 0.335,
       "escalate_recall": 1.0,
-      "escalate_f1": 0.522,
-      "accuracy": 0.353,
+      "escalate_f1": 0.502,
+      "accuracy": 0.335,
       "auto_rate": 0.0,
       "missed_escalation_rate": 0.0,
       "unnecessary_escalation_rate": 1.0,
       "counts": {
-        "tp": 53,
-        "fp": 97,
+        "tp": 78,
+        "fp": 155,
         "fn": 0,
         "tn": 0
       },
       "kappa": 0.0
     },
     "baseline_intent_prior": {
-      "n": 150,
-      "escalate_precision": 0.867,
-      "escalate_recall": 0.491,
-      "escalate_f1": 0.627,
-      "accuracy": 0.793,
-      "auto_rate": 0.8,
-      "missed_escalation_rate": 0.509,
-      "unnecessary_escalation_rate": 0.041,
+      "n": 233,
+      "escalate_precision": 0.837,
+      "escalate_recall": 0.462,
+      "escalate_f1": 0.595,
+      "accuracy": 0.79,
+      "auto_rate": 0.815,
+      "missed_escalation_rate": 0.538,
+      "unnecessary_escalation_rate": 0.045,
       "counts": {
-        "tp": 26,
-        "fp": 4,
-        "fn": 27,
-        "tn": 93
+        "tp": 36,
+        "fp": 7,
+        "fn": 42,
+        "tn": 148
       },
-      "kappa": 0.498
+      "kappa": 0.469
+    }
+  },
+  "reply_quality": {
+    "judge_n": 233,
+    "agent": {
+      "n": 233,
+      "groundedness": {
+        "mean": 4.798,
+        "p25": 5.0,
+        "min": 2
+      },
+      "relevance": {
+        "mean": 4.567,
+        "p25": 4.0,
+        "min": 2
+      },
+      "correctness_safety": {
+        "mean": 4.841,
+        "p25": 5.0,
+        "min": 2
+      },
+      "tone": {
+        "mean": 4.918,
+        "p25": 5.0,
+        "min": 3
+      },
+      "completeness": {
+        "mean": 4.562,
+        "p25": 4.0,
+        "min": 2
+      },
+      "pass_rate": 0.906
+    },
+    "baseline_retrieval_only": {
+      "n": 233,
+      "groundedness": {
+        "mean": 4.099,
+        "p25": 2.0,
+        "min": 1
+      },
+      "relevance": {
+        "mean": 3.524,
+        "p25": 2.0,
+        "min": 1
+      },
+      "correctness_safety": {
+        "mean": 4.236,
+        "p25": 3.0,
+        "min": 1
+      },
+      "tone": {
+        "mean": 4.442,
+        "p25": 4.0,
+        "min": 2
+      },
+      "completeness": {
+        "mean": 3.545,
+        "p25": 2.0,
+        "min": 1
+      },
+      "pass_rate": 0.635
+    },
+    "baseline_canned": {
+      "n": 233,
+      "groundedness": {
+        "mean": 4.798,
+        "p25": 5.0,
+        "min": 1
+      },
+      "relevance": {
+        "mean": 3.678,
+        "p25": 3.0,
+        "min": 1
+      },
+      "correctness_safety": {
+        "mean": 4.811,
+        "p25": 5.0,
+        "min": 1
+      },
+      "tone": {
+        "mean": 4.416,
+        "p25": 4.0,
+        "min": 3
+      },
+      "completeness": {
+        "mean": 3.682,
+        "p25": 3.0,
+        "min": 1
+      },
+      "pass_rate": 0.811
     }
   },
   "headline": {
-    "intent_macro_f1": 0.646,
-    "intent_accuracy": 0.693,
-    "missed_escalation_rate": 0.472,
-    "unnecessary_escalation_rate": 0.103,
-    "auto_rate": 0.747,
-    "reply_pass_rate": null
+    "intent_macro_f1": 0.628,
+    "intent_accuracy": 0.691,
+    "missed_escalation_rate": 0.526,
+    "unnecessary_escalation_rate": 0.065,
+    "auto_rate": 0.798,
+    "reply_pass_rate": 0.906
   }
 }

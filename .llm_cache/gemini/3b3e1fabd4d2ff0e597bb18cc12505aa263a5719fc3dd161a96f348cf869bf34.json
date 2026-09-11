@@ -1,0 +1,1 @@
+{"content": "{\n  \"reply\": \"You can manage these preferences in Settings > Camera > Preserve Settings. This allows you to keep your chosen camera settings active. If you are still having trouble, please send us a DM so we can look into this further.\",\n  \"grounded_in\": [1, 2],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

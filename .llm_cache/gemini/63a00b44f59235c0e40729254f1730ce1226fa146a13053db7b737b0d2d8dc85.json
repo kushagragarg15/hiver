@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 5,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 4,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is accurate and concise. It could be slightly improved by explicitly confirming the user's specific $15 balance scenario.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

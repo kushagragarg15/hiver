@@ -1,0 +1,1 @@
+{"content": "{\n  \"intent\": \"billing_appstore_subscription\",\n  \"confidence\": 1.0,\n  \"rationale\": \"The customer is disputing an unexpected charge related to a subscription free trial.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

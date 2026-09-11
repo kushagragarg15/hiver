@@ -1,0 +1,1 @@
+{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 3,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 3,\n  \"overall_pass\": false,\n  \"notes\": \"The agent asks about iOS 11.0.3 when the customer explicitly stated they are on 11.1.2, showing a lack of attention to the provided information.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}
