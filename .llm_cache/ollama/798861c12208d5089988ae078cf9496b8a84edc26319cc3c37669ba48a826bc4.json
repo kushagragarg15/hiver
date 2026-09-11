@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"how_to_feature_question\", \"confidence\": 0.9, \"rationale\": \"Customer asks how to configure auto-correct on their device.\"}", "model": "llama3.1:8b", "provider": "ollama"}

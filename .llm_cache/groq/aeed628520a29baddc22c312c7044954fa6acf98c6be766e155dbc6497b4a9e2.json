@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.92,\"rationale\":\"User complains about visual defects on device screen, a hardware issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

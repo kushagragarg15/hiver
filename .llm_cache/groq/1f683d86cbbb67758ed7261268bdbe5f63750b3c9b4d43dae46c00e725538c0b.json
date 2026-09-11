@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.92,\"rationale\":\"App stopped working after upgrade, user can't access data\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

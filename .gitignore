@@ -11,9 +11,10 @@ data/processed/*
 !data/processed/AppleSupport_eval_pool.jsonl
 !data/processed/AppleSupport_stats.json
 
-# LLM response cache. The committed entries are the exact llama3.1:8b run behind
-# reports/results.json, so `make eval` reproduces it in seconds. Delete
-# .llm_cache/ for a real cold run. New backends/models miss cleanly (keyed by
+# LLM response cache (.llm_cache/) IS committed: the 1,153 entries under
+# .llm_cache/gemini/ are exactly the calls behind reports/results.json, so
+# `make eval` reproduces the headline keyless in ~2 min. Delete .llm_cache/ for
+# a real cold run. Other backends/models miss cleanly (keyed by
 # provider+model+prompt).
 .cache/
 
@@ -34,5 +35,6 @@ Thumbs.db
 # assignment brief (kept out of the public repo)
 Hiver SDE Intern Assignment.docx
 
-# transient prediction dumps from ad-hoc pipeline runs
+# transient prediction dumps from ad-hoc pipeline runs / the mock smoke test
 reports/preds_*.jsonl
+reports/smoke/

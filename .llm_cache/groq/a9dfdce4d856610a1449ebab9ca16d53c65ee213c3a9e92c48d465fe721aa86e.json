@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.88,\"rationale\":\"User angry about deleted music, seeks fix; primary need is software bug resolution\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.97,\"rationale\":\"Bug after iOS11 update, feature stopped working\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

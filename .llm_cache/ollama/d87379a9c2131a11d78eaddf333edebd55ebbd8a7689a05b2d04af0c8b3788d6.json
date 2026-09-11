@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"connectivity_sync\", \"confidence\": 0.9, \"rationale\": \"Customer reports connection issues between AirPods and device.\"}", "model": "llama3.1:8b", "provider": "ollama"}

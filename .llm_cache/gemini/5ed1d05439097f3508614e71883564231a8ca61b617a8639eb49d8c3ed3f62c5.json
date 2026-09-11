@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 1,\n  \"correctness_safety\": 5,\n  \"tone\": 4,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"The reply ignores the customer's technical question entirely and assumes a DM conversation that may not have happened yet.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

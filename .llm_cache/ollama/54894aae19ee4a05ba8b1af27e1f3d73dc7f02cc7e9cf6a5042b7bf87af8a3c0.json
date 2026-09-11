@@ -1,1 +1,0 @@
-{"content": "{\n\"groundedness\": 3,\n\"relevance\": 4,\n\"correctness_safety\": 2,\n\"tone\": 5,\n\"completeness\": 1,\n\"overall_pass\": false,\n\"notes\": \"Workaround link provided, but no clear next step from the brand\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

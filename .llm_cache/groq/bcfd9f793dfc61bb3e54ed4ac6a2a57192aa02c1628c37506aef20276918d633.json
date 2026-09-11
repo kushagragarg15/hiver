@@ -1,1 +1,0 @@
-{"content": "{\"reply\":\"We’re sorry you’re experiencing overheating, notification drops, and slow charging. Please DM us with details on your charging setup and iOS version so we can investigate further.\",\"grounded_in\":[2,3],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

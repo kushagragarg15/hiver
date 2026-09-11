@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.88,\"rationale\":\"Phone disabled and can't connect to iTunes after hardware repair\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

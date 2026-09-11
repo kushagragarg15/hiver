@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 4,\n  \"overall_pass\": true,\n  \"notes\": \"The reply is safe, professional, and provides a clear next step. It avoids over-promising while addressing the customer's frustration.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

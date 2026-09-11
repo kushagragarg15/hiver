@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"software_update_issue\", \"confidence\": 0.8, \"rationale\": \"Freezing issue after new iPhone release suggests software update problem.\"}", "model": "llama3.1:8b", "provider": "ollama"}

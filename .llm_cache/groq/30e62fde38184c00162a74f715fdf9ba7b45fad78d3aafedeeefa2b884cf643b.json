@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.88,\"rationale\":\"Complaint about device breaking after new phone release, indicating software regression\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

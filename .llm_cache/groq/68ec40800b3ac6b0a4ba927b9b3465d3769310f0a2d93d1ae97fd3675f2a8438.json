@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.92,\"rationale\":\"Multiple hardware-related complaints (overheating, charging speed)\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

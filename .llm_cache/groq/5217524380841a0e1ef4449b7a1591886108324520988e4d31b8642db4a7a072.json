@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.97,\"rationale\":\"App crashes after recent update, primary need is fixing software bug\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

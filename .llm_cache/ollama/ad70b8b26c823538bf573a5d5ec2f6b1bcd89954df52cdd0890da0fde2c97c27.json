@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 5,\n  \"overall_pass\": true,\n  \"notes\": \"Safe and clear next step, but doesn't directly address the customer's question.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

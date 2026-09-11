@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"complaint_churn_risk\",\"confidence\":0.92,\"rationale\":\"Expresses anger about hardware quality, seeks escalation, no specific technical ask\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

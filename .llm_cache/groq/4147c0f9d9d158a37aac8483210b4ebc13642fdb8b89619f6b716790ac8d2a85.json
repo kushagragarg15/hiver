@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.88,\"rationale\":\"User reports black screen bug during calls, likely software regression\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

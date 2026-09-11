@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"device_hardware_battery\", \"confidence\": 0.8, \"rationale\": \"Customer reports physical-device problems with iPhone X\"}", "model": "llama3.1:8b", "provider": "ollama"}

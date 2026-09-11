@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user explicitly states their phone broke following an iOS 11 update.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

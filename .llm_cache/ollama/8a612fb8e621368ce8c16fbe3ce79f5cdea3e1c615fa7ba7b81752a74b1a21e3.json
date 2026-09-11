@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 5,\n  \"relevance\": 5,\n  \"correctness_safety\": 4,\n  \"tone\": 5,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"Lacks clear actionable next step. Should provide a direct link to the support page or ask for more specific details.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

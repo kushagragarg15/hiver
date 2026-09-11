@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.88,\"rationale\":\"Device freezing and slow performance suggest a software bug/regression\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"software_update_issue\", \"confidence\": 0.95, \"rationale\": \"Customer reports issue after software update, apps stuck on loading/waiting.\"}", "model": "llama3.1:8b", "provider": "ollama"}

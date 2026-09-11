@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"how_to_feature_question\",\"confidence\":0.97,\"rationale\":\"User asks why autocorrect capitalizes 'i' and wants it fixed\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

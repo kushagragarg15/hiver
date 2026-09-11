@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We're here to help. Could you tell us more about the specific issues you're experiencing with your phone after the restore? Please send us a DM so we can look into this further.\",\n  \"grounded_in\": [1, 2],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,1 +1,0 @@
-{"content": "{\"groundedness\":2,\"relevance\":4,\"correctness_safety\":3,\"tone\":5,\"completeness\":1,\"overall_pass\":false,\"notes\":\"DM link is the same as in reference, but no further details given\"}", "model": "llama3.1:8b", "provider": "ollama"}

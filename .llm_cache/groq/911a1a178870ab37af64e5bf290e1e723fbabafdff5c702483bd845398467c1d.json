@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.97,\"rationale\":\"User complains about frequent charging, a hardware battery problem\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

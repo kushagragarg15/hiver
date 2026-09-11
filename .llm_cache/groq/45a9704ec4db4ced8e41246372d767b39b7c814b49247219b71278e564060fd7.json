@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"connectivity_sync\",\"confidence\":0.97,\"rationale\":\"User reports Wi‑Fi toggling unexpectedly, a connectivity issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

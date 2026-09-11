@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"connectivity_sync\",\"confidence\":0.97,\"rationale\":\"Bluetooth pairing problem with AirPods\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

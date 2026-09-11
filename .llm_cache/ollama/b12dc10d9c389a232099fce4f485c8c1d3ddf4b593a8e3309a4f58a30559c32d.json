@@ -1,1 +1,0 @@
-{"content": "{\"groundedness\":2,\"relevance\":4,\"correctness_safety\":5,\"tone\":5,\n \"completeness\":3,\"overall_pass\":true,\"notes\":\"Safe response, but could be more direct.\"}", "model": "llama3.1:8b", "provider": "ollama"}

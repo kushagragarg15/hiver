@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"billing_appstore_subscription\",\"confidence\":0.92,\"rationale\":\"User reports unexpected iMessage charge notices, a billing concern\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

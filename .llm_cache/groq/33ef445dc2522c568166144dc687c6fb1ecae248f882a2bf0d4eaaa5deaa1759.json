@@ -1,1 +1,0 @@
-{"content": "{\"reply\":\"We’re sorry you’re stuck with iTunes Connect. Could you let us know which device and iOS version you’re using? Please DM us that info so we can investigate further.\",\"grounded_in\":[2,3],\"used_weak_precedent\":true}", "model": "openai/gpt-oss-120b", "provider": "groq"}

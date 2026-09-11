@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"device_hardware_battery\", \"confidence\": 0.8, \"rationale\": \"Customer reports battery drain issue not related to software update.\"}", "model": "llama3.1:8b", "provider": "ollama"}

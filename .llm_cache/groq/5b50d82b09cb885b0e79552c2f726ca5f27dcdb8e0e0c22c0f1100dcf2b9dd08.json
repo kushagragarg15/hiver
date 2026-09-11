@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.92,\"rationale\":\"Accidental 911 call due to button press, a hardware interaction issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

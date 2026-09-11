@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.95,\n  \"rationale\": \"System performance lag and keyboard freezing indicates a software-related functional issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

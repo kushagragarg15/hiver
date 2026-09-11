@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 2,\n  \"tone\": 3,\n  \"completeness\": 4,\n  \"overall_pass\": false,\n  \"notes\": \"The candidate suggests updating iOS when the user is already on the latest version, which is potentially misleading and technically incorrect.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

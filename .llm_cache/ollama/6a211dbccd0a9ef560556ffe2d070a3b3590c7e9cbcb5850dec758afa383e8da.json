@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We're here to help. Can you tell us more about what's not working as expected with your phone?\",\n  \"grounded_in\": [1, 2],\n  \"used_weak_precedent\": false\n}", "model": "llama3.1:8b", "provider": "ollama"}

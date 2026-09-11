@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.93,\"rationale\":\"User reports multiple glitches after iOS 11 update\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.85,\n  \"rationale\": \"The user is experiencing a persistent startup error on their MacBook.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

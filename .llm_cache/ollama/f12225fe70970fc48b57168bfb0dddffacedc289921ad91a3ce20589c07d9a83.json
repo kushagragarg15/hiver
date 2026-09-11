@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 5,\n  \"tone\": 5,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"Lack of clear next step. Should provide a specific action or escalation process.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"complaint_churn_risk\",\n  \"confidence\": 0.95,\n  \"rationale\": \"Customer is threatening to switch brands due to frustration with iOS feature behavior.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

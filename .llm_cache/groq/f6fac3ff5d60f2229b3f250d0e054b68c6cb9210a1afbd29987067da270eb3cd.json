@@ -1,1 +1,0 @@
-{"content": "{\"reply\":\"We’re sorry you’re having trouble. Could you DM us the device model and iOS version you’re using? We’ll investigate why cellular isn’t working for downloads.\",\"grounded_in\":[1,3],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

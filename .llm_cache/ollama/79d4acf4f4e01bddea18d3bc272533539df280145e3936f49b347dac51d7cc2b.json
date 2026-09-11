@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"how_to_feature_question\", \"confidence\": 0.95, \"rationale\": \"Customer is asking how to use a specific feature (group messages) that used to work as expected.\"}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -4,36 +4,34 @@
 thoughtvector), Oct–Dec 2017 slice · Agent: intent → retrieval → grounded draft
 → escalate/auto.
 
-> **Status of the numbers.** Golden set: **233 rows** (30 hand-labelled seed +
-> 203 model-assisted drafts pending a human review pass — `SAMPLING_NOTES.md`).
-> Runs, all committed with warm caches:
+> **Status of the numbers.** One run, committed with its warm cache
+> (`make eval` replays it keyless in ~2 min):
 >
-> | run | worker | judge | n | what it gives |
-> |---|---|---|---|---|
-> | **primary** | groq `gpt-oss-120b` | qwen3.8-27b | **150** | intent + escalation |
-> | reply-quality | gemini `3.1-flash-lite` | (self) | 30 | LLM-as-judge table |
-> | local baseline | ollama `llama3.1:8b` | (self) | 30 | model-capacity contrast |
+> | worker | judge | n | gives |
+> |---|---|---|---|
+> | gemini `3.1-flash-lite` | gemini `3.1-flash-lite` (self) | **233** — the full golden set | intent + escalation + LLM-as-judge |
 >
-> Every free LLM tier (Gemini 500 req/day, Groq 200k tok/day) capped a full
-> 233-row + judged run; n=150 is where the primary run landed before the token
-> cap, and the reply-quality judge numbers are from the earlier 30-row Gemini
-> run. The judge's agreement with a human (κ) is **not yet measured**
-> (`make judge`).
+> Golden set: **233 rows** (30 hand-labelled seed + 203 model-assisted drafts
+> pending a human review pass — `SAMPLING_NOTES.md`). The judge's agreement
+> with a human (κ) is **not yet measured** (`make judge`). Five free-tier API
+> keys were pooled to get past Gemini's 500-requests/day cap (§5.8).
 >
-> **What the runs show:**
-> 1. **A capable classifier clears the baselines.** `gpt-oss-120b` intent
->    macro-F1 **0.65** (n=150) vs keyword **0.49** and majority **0.08**;
->    `llama3.1:8b` managed only **0.32** on the seed — *below* keyword. Model
->    capacity is the deciding variable, not the method.
-> 2. **The escalate/auto decision is the weak point.** `gpt-oss-120b`
->    missed-escalation **0.47** (n=150) — better than Gemini's 0.73 on the seed,
->    and the rule stack now measurably beats the intent-prior baseline (0.47 vs
->    0.51 missed) instead of collapsing onto it — but **47% of messages that
->    needed a human were auto-handled.** Not deployable (§4 F1/F2).
-> 3. **The reply-quality "win" is a brand artefact.** On the 30-row Gemini run
->    the agent's judge pass-rate was 0.90 — but the canned "please DM us"
->    one-liner scored **0.93**. AppleSupport's real replies *are* deflections,
->    so the rubric rewards deflection (§3.3, §5).
+> **What the run shows:**
+> 1. **The classifier clears both baselines.** Intent macro-F1 **0.63** /
+>    accuracy **0.69** vs keyword **0.46** and majority **0.08**. Two 7-row
+>    classes (`complaint_churn_risk` F1 0.37, `praise_or_non_actionable` 0.32)
+>    drag the macro; the head classes are 0.67–0.78.
+> 2. **The escalate/auto decision is not deployable.** Missed-escalation
+>    **0.53** — 41 of the 78 messages that needed a human were auto-handled —
+>    and the rule stack is one row away from the intent-prior baseline (0.53 vs
+>    0.54). The confidence and retrieval floors never fire (§4 F1); 15 of the 41
+>    misses are physical hardware faults the taxonomy routes to *auto* (F2).
+> 3. **The reply-quality "win" is thinner than it looks.** Agent judge
+>    pass-rate **0.91** vs canned "please DM us" **0.81** — but 88% of agent
+>    replies *are* a DM redirect, groundedness is identical to canned (4.80),
+>    and the whole gap is the relevance dimension: the agent appends a
+>    diagnostic question. 15 of its 22 fails are fabricated capability (§3.3,
+>    §4 F5, §5).
 
 ---
 
@@ -110,9 +108,9 @@ a **rule stack** decides auto/escalate (hard regex → always-escalate intents �
 confidence floor 0.60 → BM25-score floor 3.0 → weak-precedent flag → optional
 LLM veto); **anything uncertain escalates**. Full rationale in `DECISION_LOG.md`.
 *Result: §4 F1 shows the confidence and BM25 floors never fire in practice
-(models are uniformly over-confident, BM25 always clears), so only the intent
-categories, the regexes and the weak-precedent flag do any work — and the stack
-misses 36–73% of true escalations depending on the worker model.*
+(the model reports 0.85–1.0 on every row, BM25 never drops below 18), so only
+the intent categories, the regexes and the weak-precedent flag do any work —
+and the stack misses 53% of true escalations.*
 
 Golden set: **233 rows** (30 hand-labelled seed + 203 model-assisted drafts,
 review pending — `SAMPLING_NOTES.md`). `gold_action` = *should a good bot have
@@ -122,259 +120,318 @@ handled this unsupervised* — deliberately not "what Apple did".
 
 ## 3. Results vs baselines
 
-Primary run: **`groq/gpt-oss-120b`, n = 150** (`results_groq-gptoss120b_n150.md`;
-89 auto / 61 escalate on this slice). `gemini-3.1-flash-lite` (n=30) and
-`llama3.1:8b` (n=30) shown for contrast (`results_*_n30`-equivalents).
+Run: **`gemini-3.1-flash-lite`, n = 233** (all of `golden_set.jsonl`; 155
+`auto` / 78 `escalate`). Tables: `results.md`; per-row output:
+`agent_golden_preds.jsonl`.
 
 ### 3.1 Intent classification
-| system (run) | accuracy | macro-F1 |
-|---|---|---|
-| **agent — gpt-oss-120b (n=150)** | **0.69** | **0.65** |
-| agent — gemini-3.1-flash-lite (n=30) | 0.70 | 0.50 |
-| agent — llama3.1:8b (n=30) | 0.37 | 0.32 |
-| simple baseline — keyword weak-labeller (n=150) | 0.45 | 0.49 |
-| trivial baseline — majority intent (n=150) | 0.49 | 0.08 |
+| system | accuracy | macro-F1 | weighted-F1 |
+|---|---|---|---|
+| **agent — LLM classifier** | **0.69** | **0.63** | **0.71** |
+| simple baseline — keyword weak-labeller | 0.43 | 0.46 | 0.51 |
+| trivial baseline — majority intent | 0.47 | 0.08 | 0.30 |
 
-Both capable models (`gpt-oss-120b`, `gemini`) clear the keyword and majority
-baselines; `llama3.1:8b` does not. `gpt-oss-120b`'s 46/150 errors are
-dominated by the genuinely fuzzy **software-vs-hardware fault** boundary
-(`software_update_issue`↔`device_hardware_battery`, 11 cases — §4 F5) and
-how-to↔fault confusion (9). Only 4 errors are the tone-driven
-`→ complaint_churn_risk` slip that sank the weaker models. Same method — model
-capacity is the deciding variable.
+Per class (F1 / support): `software_update_issue` 0.78 / 110 ·
+`billing_appstore_subscription` 0.77 / 18 · `account_access_security` 0.76 / 12 ·
+`device_hardware_battery` 0.76 / 26 · `connectivity_sync` 0.67 / 14 ·
+`how_to_feature_question` 0.59 / 39 · `complaint_churn_risk` **0.37** / 7 ·
+`praise_or_non_actionable` **0.32** / 7.
 
-### 3.2 Escalate vs auto (positive class = escalate) — n=150
+72 errors. The three clusters that matter: **how-to → software fault** (11;
+"Keynote crashes when I reorder slides", "lost the hashtag key" — is that a
+question or a bug?); **software fault → praise/non-actionable** (9; terse or
+sarcastic bug reports — "Updated and still seeing boxes 🤬", "will 11.2 fix
+black screen?" — land in the *praise* bucket, precision 0.22); and **anything
+angry → `complaint_churn_risk`** (15 of 20 predictions are wrong, precision
+0.25 — §4 F4). The software↔hardware boundary accounts for 8 more (§4 F5).
+
+### 3.2 Escalate vs auto (positive class = escalate)
 | system | esc-recall | **missed-esc ↓** | unnec-esc ↓ | auto-rate | esc-F1 |
 |---|---|---|---|---|---|
-| **agent — rule stack (gpt-oss-120b)** | 0.53 | **0.47** | 0.10 | 0.75 | 0.62 |
-| simple — escalate by intent prior | 0.49 | 0.51 | 0.04 | 0.80 | 0.63 |
+| **agent — rule stack** | 0.47 | **0.53** | 0.07 | 0.80 | 0.59 |
+| simple — escalate by intent prior | 0.46 | 0.54 | 0.05 | 0.82 | 0.60 |
 | trivial — always-auto | 0.00 | 1.00 | 0.00 | 1.00 | 0.00 |
-| trivial — always-escalate | 1.00 | **0.00** | 1.00 | 0.00 | 0.52 |
+| trivial — always-escalate | 1.00 | **0.00** | 1.00 | 0.00 | 0.50 |
 
-**The escalate/auto decision is the weak point of the system.** Two things to
-read here:
-- The rule stack **does** beat the intent-prior baseline now (missed-esc 0.47 vs
-  0.51) — the hard-regex patterns and the drafter's weak-precedent flag fire on
-  ~10% of cases beyond the intent categories, trading a little unnecessary
-  escalation (0.10 vs 0.04) for a little more caught. On the weaker Gemini run
-  the stack collapsed *exactly* onto the prior (§ note below); a
-  better-calibrated model lets the other rules matter.
-- But **47% of the messages that needed a human were auto-handled anyway.** Every
-  missed escalation (25 of them) was predicted at confidence 0.78–0.97, so the
-  `min_intent_confidence: 0.60` floor never fires, and BM25 scores (21–61)
-  always clear the `min_retrieval_score: 3.0` floor. The misses are
-  systematically the categories no rule covers: hardware safety
-  (`gold_0015` overheating, `gold_0082` bent phone, `gold_0057` logic board),
-  recalls (`gold_0013`), pro-app routing (`gold_0022`/`0033` iMovie),
-  disabled-device recovery (`gold_0068`), phishing (`gold_0108`), and
-  distress/hostility over a real issue (`gold_0009`, `gold_0023`). See §4 F1/F2.
+**This is the broken part of the system.** Three readings:
+- **The stack is the intent prior plus five rows.** Of 47 agent escalations,
+  42 come from the three always-escalate intents, 4 from the weak-precedent
+  flag and 1 from a hard regex. Missed-escalation 0.53 vs the prior's 0.54 is a
+  one-row difference. Everything downstream of the classifier is dead weight.
+- **The floors never fire.** Confidence is 0.85–1.00 on every one of 233 rows
+  (median 0.95); BM25 top score is 18–112 (median 38). `min_intent_confidence:
+  0.60` and `min_retrieval_score: 3.0` triggered zero times. §4 F1.
+- **41 of 78 true escalations were auto-handled, every one at confidence
+  ≥ 0.85.** They fall into nameable groups: 15 physical hardware faults
+  correctly labelled `device_hardware_battery` and auto'd *by design* (F2);
+  8 sensitive cases (account/billing) the classifier put in a benign bucket
+  (F3); 5 image/video-only openings (F5); 4 pro-app / specialist routing
+  (`gold_0022`/`0033` iMovie, `0099` Apple TV, `0224` Developer Portal); 5
+  distress or churn riding a real technical issue (`gold_0023`, `0026`, `0109`,
+  `0147`, `0198`); 3 "prior support already failed" (`gold_0013`, `0119`,
+  `0151`); and one safety case, `gold_0140` (iPhone dialled 911 by itself).
 
-_Gemini n=30 for reference: missed-esc 0.73, bit-identical to the intent-prior
-baseline — the safety was leaning entirely on the 3 always-escalate intent
-categories. llama n=30: missed-esc 0.36, but only because its noisier confidence
-tripped the 0.60 floor by luck._
+The 10 unnecessary escalations are 7 tone-driven `complaint_churn_risk`
+mislabels (F4) and 3 weak-precedent flags, two of them on thank-you notes
+(`gold_0041`, `0075`).
 
-### 3.3 Reply quality — LLM-as-judge (1–5)  *(gemini n=30 run only)*
-The n=150 judge pass hit the free-tier token cap before completing; these are
-from the earlier `gemini-3.1-flash-lite` run (n=30, judge = same model):
+### 3.3 Reply quality — LLM-as-judge (1–5), n=233, judge = worker model
+| system | groundedness | corr./safety | relevance | tone | completeness | pass-rate |
+|---|---|---|---|---|---|---|
+| **agent (retrieval-grounded)** | 4.80 | **4.84** | **4.57** | 4.92 | **4.56** | **0.91** |
+| trivial — canned "please DM us" | 4.80 | 4.81 | 3.68 | 4.42 | 3.68 | 0.81 |
+| simple — retrieval-only (echo top precedent) | 4.10 | 4.24 | 3.52 | 4.44 | 3.55 | 0.64 |
 
-| system | groundedness | corr./safety | relevance | completeness | pass-rate |
-|---|---|---|---|---|---|
-| agent (retrieval-grounded) | 4.80 | 4.83 | 4.53 | 4.50 | 0.90 |
-| trivial — canned "please DM us" | **4.90** | **4.90** | 3.90 | 3.90 | **0.93** |
-| simple — retrieval-only (echo top precedent) | 4.10 | 4.20 | 3.83 | 3.73 | 0.70 |
-
-**The canned one-liner beats the agent on groundedness, safety and pass-rate.**
-Every agent reply in the run is a variant of *"we'd like to help — please DM us
-your iOS version"*, because that's what ~65% of the retrieved precedents say. A
-fixed string is the purest safe deflection, and the rubric rewards deflection.
-The agent edges ahead only on *relevance* / *completeness*. **On AppleSupport the
-retrieval + drafting pipeline is close to dead weight over a constant string** —
-a fact about the brand's 2017 channel strategy, measured directly by the
-baseline. (The n=150 `gpt-oss-120b` replies inspected by hand look the same —
-all DM redirects.)
+The agent passes 0.91 to canned 0.81 — a 22-row gap. Read it carefully:
+- **Groundedness is identical (4.80) and safety within 0.03.** The judge treats
+  "please DM us" as maximally grounded and safe, and **204 of 233 agent replies
+  (88%) are a DM redirect** too — median 31 words, typically *acknowledge → one
+  diagnostic question → DM link*. The agent isn't more grounded than a constant
+  string; it's the same deflection with a question attached.
+- **The entire gap is relevance.** Canned fails 44 rows, 37 of them on
+  `relevance < 3`: a fixed line reads as irrelevant on how-tos, on praise, and
+  on account-security cases where the judge notes "offering DM is unsafe". The
+  agent's appended question buys back those rows.
+- **The agent's 22 fails are mostly fabricated capability, not deflection.** 15
+  score `groundedness < 3`: "send us a DM with *your location*" on the 911 case
+  (`gold_0140`); "confirm the Apple ID you used" for a 4-year-old invoice the
+  reference says can't be retrieved (`gold_0208`); "it will be fixed in a
+  future update" contradicting a reference that says it was already fixed
+  (`gold_0105`); "please DM us" as the answer to a phishing report
+  (`gold_0108`). The other 7 are pure deflections on simple how-tos
+  (`gold_0005`, `0073`, `0182`) and the four non-English messages, which get
+  the "we support in English" precedent verbatim (`gold_0032`, `0079`, `0166`,
+  `0201`).
+- **An earlier 30-row run had canned *ahead* (0.93 vs 0.90).** That was one
+  row. At n=233 the ordering flips and the gap is real — but it is a gap in
+  *relevance-of-deflection*, not in resolution. On this brand the pipeline's
+  contribution over a constant string is "ask which iOS version".
 
 ### 3.4 Is the judge trustworthy?  *(open — and load-bearing)*
 Not measured. `make worksheet` → hand-score 36 rows → `make judge` →
 per-dimension exact/within-1/Spearman + **Cohen's κ on `overall_pass`**. Bar:
-**κ ≥ 0.6 and safety within-1 ≥ 0.8**. The n=30 judge above graded its own
-model's output; the n=150 primary run at least uses a *different* judge model
-(`qwen3.8-27b` vs worker `gpt-oss-120b`), but with no human anchor yet, §3.3 is
-directional only.
+**κ ≥ 0.6 and safety within-1 ≥ 0.8**. Two specific reasons to distrust §3.3
+until then: the judge is the **same model that wrote the replies**
+(`judge_provider` in `config.yaml` exists precisely so a second vendor can
+grade — it was not used because only Gemini keys were available); and the
+judge's own notes show it grading against `reference_resolution` — i.e. it
+rewards *imitating Apple*, while `gold_action` was labelled against *what a
+good bot should do* (`SAMPLING_NOTES.md`). Those two targets disagree by
+construction on this brand.
 
 ---
 
 ## 4. Top 5 failure modes
 
-From `reports/agent_golden_preds_groq-gptoss120b.jsonl` (n=150, worker
-`gpt-oss-120b`), with the Gemini/llama seed runs cited where they diverge.
+From `reports/agent_golden_preds.jsonl` (n=233). Ordered by how much of the
+missed-escalation rate each explains.
 
-### F1 — the confidence and BM25 floors never fire, so the escalation stack barely reaches past its intent-category rules
+### F1 — the escalation stack is the intent prior wearing a costume
 - **Mechanism.** Auto-handle needs confidence ≥ 0.60 **and** BM25 ≥ 3.0 **and**
-  intent ∉ always-escalate. Across all three models the classifier reports
-  confidence **0.78–0.99** on essentially everything, and AppleSupport's shared
-  filler ("@115858", "fix this", "ever since the update") keeps BM25 at
-  **21–61** — so neither floor ever triggers. What actually escalates: the 3
-  always-escalate intents, five hard-regex patterns, and the drafter's
-  weak-precedent flag.
-- **Evidence (n=150).** 25 missed escalations, **every one** at confidence
-  0.78–0.97. On the weaker Gemini seed run the stack was *bit-identical* to the
-  intent-prior baseline; `gpt-oss-120b` only escapes that because its
-  calibration lets the regex/weak-precedent rules matter at all (missed-esc
-  0.47 vs prior 0.51).
-- **Fix.** Escalation must not gate on a raw confidence scalar. Calibrate it
-  against held-out labels first; or replace the whole stack with a learned
-  P(escalate) head (§6); or make the LLM escalation-veto (`use_llm_check`,
-  currently off) mandatory, with the precedents in context so it can judge "is
-  there actually a safe answer here".
+  intent ∉ always-escalate **and** no hard-regex hit **and** no weak-precedent
+  flag. The classifier reports **0.85–1.00 on all 233 rows** (median 0.95,
+  zero below 0.60), and AppleSupport's shared filler ("@115858", "fix this",
+  "since the update") keeps the BM25 top score at **18–112** (zero below 3.0).
+  So of five gates, two are inert; what fires is: always-escalate intents 42×,
+  weak-precedent 4×, hard regex 1× (`emergency`).
+- **Evidence.** Agent missed-escalation 0.53 vs the intent-prior baseline's
+  0.54 — one row. Every one of the 41 misses was predicted at ≥ 0.85.
+- **Fix.** Stop gating on the raw confidence scalar — it carries no
+  information here. Either calibrate it against held-out labels (it would need
+  ~200 escalate rows to fit a reliability curve) or drop it and make the LLM
+  escalation veto (`use_llm_check`, off in this run) mandatory, with the
+  retrieved precedents in context so it can answer "is there a safe public
+  answer to this". Longer term: a learned P(escalate) head (§6).
 
-### F2 — no rule for hardware-safety / recall / prior-support-failed / image-only
-- **Mechanism.** Even with a working gate, nothing in the stack encodes these
-  "needs a human regardless of confidence" cases.
-- **Evidence (n=150 misses).**
-  `gold_0015` iPhone X **overheating** + slow charge → auto (conf 0.93);
-  `gold_0082` "iPhone 7 Plus appears to have **bent**" → auto (conf 0.97);
-  `gold_0057` MacBook **logic-board** repair → auto (conf 0.97);
-  `gold_0013` Apple TV **under recall**, prior support failed → auto (conf 0.88);
-  `gold_0022`/`gold_0033` **iMovie** workflow (specialist-routed) → auto;
-  `gold_0068` **disabled** iPhone recovery → auto;
-  `gold_0108` suspected **phishing** email → auto;
-  `gold_0014`/`gold_0067` "how can I fix this? [image only]" → auto.
-- **Fix.** A short forced-escalate lexicon:
-  `overheat|swollen|burning|smoke|bent`; `recall`;
-  `already (called|contacted|emailed)|case ?number`;
-  `replace(d|ment)`; `logic board|water damage`; and "opening < 8 words AND
-  contains a media URL".
+### F2 — physical hardware faults are auto-handled *by design*
+- **Mechanism.** `device_hardware_battery` was defined as a triage bucket
+  (battery drain, AirPods pairing → "which iOS version?") with
+  `default_action: auto`. But the same bucket is where the model — correctly —
+  puts things that need inspection, warranty or a service appointment.
+  Nothing downstream distinguishes them.
+- **Evidence.** **15 of the 41 misses**, all correctly classified, all auto'd
+  at 0.95–1.00: `gold_0082` "iPhone 7 Plus appears to have **bent**";
+  `gold_0219` "fell into the **pool** for 30 seconds"; `gold_0057` MacBook
+  **logic board**; `gold_0015` iPhone X **overheating**; `gold_0191` rear
+  **camera dead** after troubleshooting; `gold_0107` **spacebar** failing;
+  `gold_0110` **lines and discoloration** on screen; `gold_0180` "battery needs
+  **service**" on a 6-month-old phone; `gold_0184` cold-shutdown *after* the
+  recall battery replacement; `gold_0127` broken charging port + AppleCare
+  question; `gold_0147` dead after a drop; `gold_0002` warranty claim.
+- **Fix.** Split the bucket: `device_fault_physical` (default escalate) vs
+  `device_triage` (default auto). Until relabelling, a forced-escalate lexicon
+  covers most of this list: `bent|swollen|overheat|burning|water|pool|drop|
+  cracked|lines on|logic board|camera (won't|doesn't|not) work|needs? (to be
+  )?serviced|warranty|AppleCare`.
 
-### F3 — churn risk rides along with a real technical intent and gets auto-handled
-- **Mechanism.** A capable model (correctly, vs my labels) keeps the *technical*
-  intent for angry-but-concrete messages — but then `software_update_issue` +
-  high confidence → auto and the churn signal is lost. (The weaker models did
-  the opposite: mislabelled these `complaint_churn_risk` and over-escalated.)
-- **Evidence.** `gold_0009` "FIX MY PHONE … YOU SUCK SO MUCH … I PAY MY MONEY"
-  → `software_update_issue` / auto (conf 0.88). `gold_0023` "SICK AND TIRED …
-  **DONE WITH YOU** … switch to Samsung" → `software_update_issue` / auto.
-- **Fix.** Emit `churn_risk` as a separate boolean beside the intent and force
-  escalate on it — so recognising the battery issue and recognising the
-  relationship risk aren't in tension.
+### F3 — the always-escalate guard has a single point of failure: the classifier
+- **Mechanism.** Account, billing and churn are escalated *only if the
+  classifier says so*. Recall on the two sensitive classes is 0.67 each; the
+  misses go to benign buckets and straight to auto.
+- **Evidence.** `gold_0108` "I assume it's a **scam**?" (a phishing report) →
+  `praise_or_non_actionable`, confidence **1.00**, auto, reply "please DM us".
+  `gold_0116` "my Apple account has been **broken for 10 weeks**, family
+  sharing doesn't work" → `connectivity_sync`, auto. `gold_0151` botched
+  number transfer, case number, stranded abroad → `connectivity_sync`, auto.
+  `gold_0113` locked iPhone 6 → `connectivity_sync`, auto. Billing:
+  `gold_0054` "subscribed to Apple Music and it doesn't work" →
+  `software_update_issue`; `gold_0039`/`0224` Developer Portal / iTunes
+  Connect → software/how-to; `gold_0218` week-old pre-order → praise. **8 of
+  the 41 misses.**
+- **Fix.** Sensitive-category detection must not depend on argmax intent. Ask
+  the classifier for a separate `sensitive: {account, payment, security,
+  none}` field scored independently of intent, and escalate on *either*. Add
+  `scam|phishing|fraud|hacked` to the hard regex (only `fraud|hacked` are there
+  now).
 
-### F4 — the "weak precedent → escalate" rule mostly fires on trivial messages
-- **Mechanism.** When BM25 finds nothing strong the drafter flags
-  `used_weak_precedent` and the stack escalates. But the messages with no good
-  precedent are disproportionately *thanks / opinions / niche how-tos* —
-  exactly the ones a bot should close cheaply, not escalate.
-- **Evidence (n=150).** 6 of the 10 unnecessary escalations are this rule on
-  `gold_0041` (a thank-you), `gold_0075` (a thank-you), `gold_0056`
-  (off-topic), `gold_0076` (an opinion), `gold_0035` (gloves + Touch ID
-  how-to), `gold_0093` (AppleCare transfer — a documented self-serve process).
-- **Fix.** Don't escalate on weak precedent alone; require it to co-occur with a
-  non-trivial intent. For `praise_or_non_actionable`, auto-acknowledge
-  regardless.
+### F4 — tone drives `complaint_churn_risk`, in both directions
+- **Mechanism.** The model reads profanity/caps as the *intent*. 20
+  `complaint_churn_risk` predictions, 5 correct (precision 0.25). Because it's
+  an always-escalate class, this is the main source of unnecessary escalation —
+  and, by luck, of caught escalations too.
+- **Evidence.** 7 of the 10 unnecessary escalations: `gold_0065` "really
+  annoyed with this I.T bullshit"; `gold_0066` "anyone else's battery terrible
+  since the X launch!!??"; `gold_0145` "why my shit start fucking up when a
+  new phone drops"; `gold_0176` "how can I get support today?
+  #unhappycustomer"; `gold_0209` "why is it so hard to get somebody on the
+  phone?". Meanwhile 9 of the 15 mislabels were `gold_action: escalate` for a
+  *different* reason (`gold_0009` deleted music, `gold_0149` rep dropped the
+  chat) — the right action for the wrong reason, which inflates recall.
+  The mirror image: sarcastic bug reports land in `praise_or_non_actionable`
+  (precision 0.22) — `gold_0110` "Thanks apple for the lines and the
+  decoloration 😱", `gold_0084` "Updated and still seeing boxes 🤬".
+- **Fix.** Separate *what* from *how*: intent = the concrete need; `tone:
+  {neutral, frustrated, hostile, churn_threat}` as a second field. Escalate on
+  `churn_threat` or `hostile` regardless of intent (this also catches
+  `gold_0023`/`0026`/`0198`, distress riding a technical issue, which are among
+  the misses). Delete `complaint_churn_risk` as an intent.
 
-### F5 — the software-vs-hardware fault boundary is genuinely underdetermined
-- **Evidence.** The single biggest intent-error cluster at n=150:
-  `software_update_issue` ↔ `device_hardware_battery`, **11 cases**.
-  Battery-drain / slowdown / black-screen messages with no explicit "since the
-  update" get split unpredictably — and often *my* label is a hindsight guess
-  (2017 context = "it was the iOS 11 bug") the live text doesn't support.
-- **Fix.** Merge the two fault buckets for v1 — their `default_action` is
-  identical (auto + triage) — and only re-split if a downstream routing target
-  needs it. Part of the intent macro-F1 gap is penalising a distinction the
-  data doesn't carry.
+### F5 — the agent answers messages it cannot actually read
+- **Mechanism.** Five openings are an image or video plus ≤ 8 words. The
+  classifier assigns a confident intent from the words alone, the drafter
+  produces a fluent "we'd like to help — DM us", the stack auto-handles. Four
+  more are not in English; BM25 retrieves the brand's "we support in English,
+  see this link" precedent and the drafter echoes it.
+- **Evidence.** `gold_0014` "how can I fix this? [link]" → `software_update`
+  0.95, auto. `gold_0124` "What's this? [link]" → 0.95, auto. `gold_0161`
+  "every minute this happens [video]" → 0.85, auto. `gold_0174` "WHAT IS THIS?
+  I just want to use my MacBook [image]" → 0.85, auto. `gold_0128` "how do I
+  get rid of this pop up? [image]" → auto. Non-English: `gold_0032` (pt),
+  `0079` (tr), `0166`/`0201` (es) — all pass the escalation stack, all fail
+  the judge on relevance (score 2). Also in this group, a **groundedness
+  failure the anti-fabrication prompt didn't stop**: `gold_0140` "iPhone
+  dialled 911 by itself" → reply asks the customer to "DM us with your
+  location".
+- **Fix.** Two pre-classifier checks, no LLM needed: `has_media and n_words <
+  10 → escalate ("cannot see attachment")`; `langdetect != en → escalate
+  ("route to localised support")`. For the fabrication: add "never ask for
+  location, ID, or payment details" to the drafter's suppression list and
+  make the judge's `correctness_safety` a hard fail on it.
 
 ---
 
 ## 5. What is misleading about my headline number? *(mandatory)*
 
-The line that looks like a win is **"`gpt-oss-120b` agent: intent macro-F1 0.65,
-beats every baseline; missed-escalation 0.47, better than the intent-prior
-baseline."** Why not to trust it:
+The line that looks like a win is **"intent macro-F1 0.63 beats every baseline;
+auto-rate 0.80; reply pass-rate 0.91, ahead of the canned baseline."** Why not
+to trust it:
 
-1. **"Better than the intent-prior baseline" is a low bar, and "auto-rate 0.75"
-   is not automation — it's a rubber stamp.** The same run auto-handles **47%
-   of the messages that needed a human** (§3.2, §4 F1). The only genuinely safe
-   system in the table is always-escalate, which automates nothing. A number
-   like "auto-rate 0.75" quoted without the missed-escalation rate next to it is
-   the misleading framing.
-2. **The escalation result is not portable across models.** Same code, same
-   golden protocol: `gpt-oss-120b` misses 47%, Gemini misses 73%, llama misses
-   36%. llama "wins" only because its noisier confidence trips a threshold by
-   luck (§4 F1). Any missed-escalation rate is meaningless without the exact
-   worker model and its calibration.
-3. **Reply quality is confounded by the brand, and beaten by a constant
-   string.** Canned "please DM us" scores judge pass-rate **0.93** vs the
-   agent's 0.90 (§3.3). AppleSupport's real replies are deflections, so the
-   rubric rewards deflection. The retrieval + drafting pipeline is near
-   dead-weight on this brand — I should have run the canned baseline first and
-   seen that immediately.
-4. **The judge has no human anchor.** κ is unmeasured (§3.4). The n=150 primary
-   run at least uses a different judge model from the worker; the reply-quality
-   table is still from the n=30 run where they were the same model.
-5. **n = 150, one annotator, and 203 of the 233 labels are model-assisted
-   drafts** not yet human-reviewed (`SAMPLING_NOTES.md`). 95% CI on the
-   missed-escalation rate at n=150 (53 positives) is roughly ±0.13. `gold_action`
-   is *my* call on what's automatable, made with hindsight (`reference_resolution`
-   visible) the live agent never has.
-6. **The intent macro-F1 is partly penalising a bad taxonomy.** ~1/4 of the
-   errors are the `software_update_issue`↔`device_hardware_battery` boundary
-   (§4 F5), which the text often genuinely doesn't determine. Merging those two
-   buckets would move macro-F1 up without the model getting any better.
-7. **Majority-intent baseline is fit on the golden label distribution** (peeks
-   at test priors), so "agent beats majority" understates the gap — the
-   baseline column isn't a clean floor.
-8. **Free-tier caps shaped the evidence.** Gemini (500 req/day) and Groq
-   (200k tok/day) each capped a full 233-row judged run; n=150 is where the
-   primary run stopped, not a chosen sample size, and there is no n=150 judge
-   pass. Reproducing the exact numbers depends on the committed `.llm_cache/`;
-   Gemini model ids also churned mid-session.
+1. **"Auto-rate 0.80" is not automation — it's a rubber stamp.** The same run
+   auto-handles **53% of the messages that needed a human** (41 of 78), every
+   one at confidence ≥ 0.85. The only safe system in §3.2 is always-escalate,
+   which automates nothing. Quoting auto-rate without missed-escalation next
+   to it is the misleading framing.
+2. **The agent's escalation logic adds one row over a lookup table.** Missed
+   0.53 vs the intent-prior baseline's 0.54 (§4 F1). Everything in the stack
+   except "which intent is it" is inert on this data. The result is really
+   "intent classification, with three classes hard-wired to escalate".
+3. **Reply pass-rate 0.91 vs canned 0.81 is a gap in relevance, not in
+   help.** Groundedness is identical (4.80), 88% of agent replies are DM
+   redirects, and the agent's edge is the diagnostic question it appends
+   (§3.3). AppleSupport's real replies *are* deflections, so a rubric anchored
+   on `reference_resolution` rewards deflection — and the agent's 22 fails are
+   mostly it *inventing* capability ("DM us your location") rather than
+   deflecting. On an earlier 30-row slice canned was *ahead*; the ordering at
+   n=233 is real but the effect it measures is small.
+4. **The judge graded its own model and has no human anchor.** Worker and
+   judge are both `gemini-3.1-flash-lite`; κ vs a human is unmeasured (§3.4).
+   The judge also scores against what Apple *did*, while `gold_action` was
+   labelled against what a good bot *should* do — two different targets.
+5. **One annotator; 203 of 233 labels are model-assisted drafts** not yet
+   human-reviewed (`SAMPLING_NOTES.md`). 95% CI on missed-escalation at n=78
+   positives is **±0.11**; on the 7-row classes it's meaningless.
+   `gold_action` is *my* call on what's automatable, made with hindsight
+   (`reference_resolution` visible) the live agent never has.
+6. **Macro-F1 is dragged by two 7-row classes that shouldn't be intents.**
+   `complaint_churn_risk` (F1 0.37) and `praise_or_non_actionable` (0.32) are
+   *tone* labels; the head classes are 0.67–0.78 (§4 F4). Deleting those two
+   buckets would raise macro-F1 without the model improving — and the taxonomy
+   also conflates triageable and physical hardware faults (F2).
+7. **The majority-intent baseline is fit on the golden labels** (peeks at
+   test priors), so "beats majority" understates the gap — that column isn't a
+   clean floor.
+8. **Five free-tier keys pooled to reach n=233.** Gemini's cap is 500
+   requests/day per key; this run is 1,132 live calls. `src/llm.py` rotates a
+   comma-separated key list. Reproducing the exact numbers depends on the
+   committed `.llm_cache/`; Gemini model ids churned mid-project
+   (`gemini-2.x-flash` went "not available to new users").
 9. **Frozen 2017 world + opening-message only.** Grounding is in iOS-11-era
    precedent; real resolution takes the whole thread. Both inflate any
    "helpfulness" read.
 
-**Bottom line.** The one solid, portable result is narrow: **a capable
-classifier beats the keyword and majority baselines on intent (macro-F1 ~0.5–0.65
-vs 0.49 / 0.08), and a weak local model does not.** The escalate/auto decision as
-built is not deployable — it misses 36–73% of true escalations depending on the
-model, because it gates on an uncalibrated confidence scalar and has no rules for
-the categories that actually need a human. Reply quality can't be judged
-meaningfully on this brand until there's a non-deflecting baseline and a
-human-anchored judge.
+**Bottom line.** The one solid result is narrow: **the LLM classifier beats the
+keyword and majority baselines on intent (macro-F1 0.63 vs 0.46 / 0.08), and the
+head classes are usable (F1 0.67–0.78).** The escalate/auto decision as built is
+not deployable — it misses 53% of true escalations because it reduces to intent
+routing and the taxonomy sends physical hardware faults to auto. Reply quality
+can't be judged meaningfully on this brand until there's a non-deflecting
+baseline and a human-anchored judge from a different model family.
 
 ---
 
 ## 6. One more week (in priority order)
-1. **Redesign the escalation decision** (the actual broken thing). Stop gating
-   on the raw confidence scalar. Minimum: (a) forced-escalate lexicon from §4 F2;
-   (b) churn-risk boolean beside the intent (F3); (c) turn on the LLM
-   escalation-veto with precedents in context and make it mandatory. Then a
-   learned P(escalate) head — logistic regression on [intent one-hot,
-   *calibrated* confidence, BM25 top-k, msg length, sentiment, lexicon hits] —
-   once labels allow. Target missed-escalation < 0.05 at auto-rate ≥ 0.5.
-2. **Finish the golden set** — label all 233 candidates (currently 30); second
-   annotator on 100 rows for a real κ. Per-class F1 and the escalation slices
-   are anecdotes until then.
-3. **Judge trust** — `make judge` on a hand-scored worksheet; if κ < 0.6,
-   2-shot the rubric with a worked pass + fail, use a *different* model family
-   as judge (not the one being graded), add an adversarial "confident
-   fabrication" probe (F4).
-4. **Re-baseline reply quality honestly** — the current baselines are too weak
-   for this brand. Add: (a) "same model, summarise the precedent, no
-   anti-fabrication rules"; (b) "always send the canned line" as the *primary*
-   comparison, since it already wins. If the agent can't clearly beat the canned
-   line on a brand-appropriate metric, RAG isn't earning its place here.
-5. **Collapse the fuzzy intents** (F5): merge software/hardware fault into one
-   bucket (identical `default_action`); split `billing` into dispute-vs-howto.
+1. **Redesign the escalation decision** (the actual broken thing). Day 1–2,
+   no relabelling needed: (a) split `device_hardware_battery` by a
+   physical-fault lexicon and default the physical half to escalate (F2 — 15
+   rows); (b) media-only and non-English pre-checks (F5 — 9 rows); (c) add
+   `scam|phishing` to the hard regex (F3). Day 3: ask the classifier for two
+   extra fields — `sensitive` and `tone` — scored independently of intent, and
+   escalate on either (F3/F4). Drop the confidence floor; it's inert. Turn the
+   LLM veto on with precedents in context. Re-run: target missed-escalation
+   < 0.15 at auto-rate ≥ 0.6, then chase 0.05.
+2. **Human-review the 203 model-assisted labels** (`label_tool.py --review`)
+   and get a second annotator on 100 rows for inter-annotator κ. The F2/F4
+   fixes are worthless if the hardware/tone labels themselves are hindsight
+   guesses.
+3. **Judge trust** — `make worksheet` → hand-score → `make judge`. Then switch
+   the judge to a second vendor (`judge_provider: groq`, already wired) so it
+   isn't grading its own output. If κ < 0.6: 2-shot the rubric, and add an
+   explicit "asks for location / ID / payment" hard-fail on
+   `correctness_safety` — the fabrication pattern in §3.3 slipped through at
+   scores of 2–3.
+4. **Re-baseline reply quality honestly.** Make the canned line the *primary*
+   comparison and report the agent as a delta on *relevance* and
+   *completeness* only — the two dimensions where it can differ from a
+   constant string on this brand. Add a "same model, no anti-fabrication
+   rules" baseline to measure what the suppression prompt actually buys.
+5. **Fix the taxonomy** (F4/F5): delete `complaint_churn_risk` and
+   `praise_or_non_actionable` as intents (they become `tone`), split
+   `device_hardware_battery` into physical vs triage, and merge
+   software/hardware *triage* into one bucket (identical `default_action`).
+   Relabel; re-run.
 6. **Second brand (SpotifyCares)** — 56% in-channel resolution vs Apple's ~35%,
-   so the reply task isn't all "DM us". This is the real test of whether the
-   pipeline adds value, or just this brand doesn't suit it.
+   so the reply task isn't all "DM us". This is the real test of whether
+   retrieval + drafting adds value, or this brand just doesn't suit it.
 7. **Retrieval A/B** — BM25 vs MiniLM vs BM25+cross-encoder + a brand-filler
-   stoplist, scored by "did the drafter cite a precedent with the right intent".
-8. **Cost/latency table** per backend (gemini-flash-lite / llama3.1:8b /
-   gpt-4o-mini) at the chosen operating point.
+   stoplist ("@115858", "fix this"), scored by "did the drafter cite a
+   precedent with the right intent". Today BM25 scores 18–112 on everything,
+   which means it's matching filler.
 
 ---
 
 ## Appendix — reproduce
-`README.md`. `make smoke` (no backend) → `make prep` → `make eval` →
-`make worksheet` (hand-score) → `make judge`. All thresholds in `config.yaml`;
-the non-obvious calls in `DECISION_LOG.md`.
+`README.md`. `make smoke` (no backend, 30 s) → `make eval` (replays the
+committed cache, no key, ~2 min; `data/processed/` is committed so `make prep`
+and the raw CSV are not needed) → `make worksheet` (hand-score) → `make judge`.
+`make eval-cold` re-runs live (needs `GEMINI_API_KEY`). All thresholds in
+`config.yaml`; the non-obvious calls in `DECISION_LOG.md`.

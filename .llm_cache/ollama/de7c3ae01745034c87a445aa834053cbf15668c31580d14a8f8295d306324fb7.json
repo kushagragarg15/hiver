@@ -1,1 +1,0 @@
-{"content": "{\"groundedness\":2,\"relevance\":3,\"correctness_safety\":1,\"tone\":4,\"completeness\":2,\"overall_pass\":false,\"notes\":\"Redirects to DM without acknowledging customer's issue or apologizing for the previous experience.\"}", "model": "llama3.1:8b", "provider": "ollama"}

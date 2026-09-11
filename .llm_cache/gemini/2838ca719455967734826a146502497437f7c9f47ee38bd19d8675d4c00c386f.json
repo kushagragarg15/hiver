@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We would like to look into this with you. Which macOS version are you currently running, and what do you see when you check for updates in the App Store? Please send us a DM so we can assist further.\",\n  \"grounded_in\": [3],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

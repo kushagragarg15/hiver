@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"device_hardware_battery\",\"confidence\":0.96,\"rationale\":\"Battery performance issue after device upgrade\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.95,\n  \"rationale\": \"Customer wants a replacement for a device screen that spontaneously shattered.\"\n}", "model": "gemini-3.5-flash", "provider": "gemini"}

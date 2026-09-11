@@ -1,1 +1,0 @@
-{"content": "{\"groundedness\":4,\"relevance\":4,\"correctness_safety\":5,\"tone\":5,\"completeness\":4,\"overall_pass\":true,\"notes\":\"Safe, concise, actionable. Adds 'iPad model' beyond reference but reasonable. No over-promising.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

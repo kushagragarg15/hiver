@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"connectivity_sync\", \"confidence\": 0.9, \n\"rationale\": \"Customer reports search issue on WiFi, agent investigates connectivity\"}", "model": "llama3.1:8b", "provider": "ollama"}

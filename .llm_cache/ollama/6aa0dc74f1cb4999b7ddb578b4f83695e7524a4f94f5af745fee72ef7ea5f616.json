@@ -1,1 +1,0 @@
-{"content": "{\"groundedness\": 4, \"relevance\": 5, \"correctness_safety\": 5, \"tone\": 5, \"completeness\": 5, \"overall_pass\": true, \"notes\": \"Good troubleshooting steps, but doesn't address the root cause or provide a clear next step for submitting feedback.\"}", "model": "llama3.1:8b", "provider": "ollama"}

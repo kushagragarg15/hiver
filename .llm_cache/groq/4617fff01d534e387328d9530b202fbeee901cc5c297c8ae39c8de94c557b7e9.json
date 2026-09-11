@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"connectivity_sync\",\"confidence\":0.96,\"rationale\":\"User can't download apps over cellular, a network connectivity problem\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

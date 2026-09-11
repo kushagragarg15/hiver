@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"billing_appstore_subscription\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is expressing frustration regarding a subscription or access restriction to music services.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

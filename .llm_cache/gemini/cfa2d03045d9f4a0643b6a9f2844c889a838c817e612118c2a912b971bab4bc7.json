@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"complaint_churn_risk\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is primarily complaining about poor service and being dropped by an agent.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is reporting a recurring system crash specifically linked to an iOS version.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

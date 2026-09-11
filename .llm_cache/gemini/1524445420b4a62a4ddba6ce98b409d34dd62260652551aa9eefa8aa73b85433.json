@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.9,\n  \"rationale\": \"The user is reporting persistent software freezing and UI glitches across multiple apps.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

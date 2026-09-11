@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"complaint_churn_risk\", \"confidence\": 0.9, \"rationale\": \"Threatens to switch brands due to iOS update issue.\"}", "model": "llama3.1:8b", "provider": "ollama"}

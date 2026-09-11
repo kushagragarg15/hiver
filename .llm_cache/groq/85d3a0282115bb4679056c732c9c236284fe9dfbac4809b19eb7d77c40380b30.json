@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"device_hardware_battery\", \"confidence\": 0.95, \"rationale\": \"Battery drain issue on physical device.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

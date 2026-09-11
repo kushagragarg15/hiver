@@ -1,1 +1,0 @@
-{"content": "{\"reply\":\"We’re sorry you’re experiencing freezes. Please back up your device and install the latest iOS update, which includes a fix for this issue. If the problem persists, DM us so we can investigate further.\",\"grounded_in\":[4],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

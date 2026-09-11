@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.85,\n  \"rationale\": \"Customer is complaining about poor camera quality, implying a potential hardware issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

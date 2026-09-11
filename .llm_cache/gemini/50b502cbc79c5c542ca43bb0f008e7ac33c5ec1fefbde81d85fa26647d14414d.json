@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"how_to_feature_question\",\n  \"confidence\": 1.0,\n  \"rationale\": \"Customer is asking for information about product contents and SIM card requirements.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,15 +1,16 @@
 # Convenience targets. Windows users without `make`: see run.ps1 / README.
 PY ?= python
 
-.PHONY: setup smoke prep pick candidates worksheet eval eval-fast judge test clean
+.PHONY: setup smoke prep pick candidates worksheet eval eval-cold judge test clean
 
 setup:
 	$(PY) -m pip install -r requirements.txt
 
-# End-to-end on the offline mock backend -- no dataset pass, no LLM. Proves wiring.
+# End-to-end on the offline mock backend -- no dataset pass, no LLM. Proves
+# wiring. Writes to reports/smoke/ so the committed headline is untouched.
 smoke:
 	LLM_PROVIDER=mock $(PY) -m pytest -q
-	LLM_PROVIDER=mock $(PY) -m eval.run_eval --limit 12 --judge-sample 8
+	LLM_PROVIDER=mock $(PY) -m eval.run_eval --limit 12 --judge-sample 8 --out-dir reports/smoke
 
 pick:
 	$(PY) scripts/pick_brand.py --top 12 --write
@@ -23,15 +24,17 @@ candidates:
 worksheet:
 	$(PY) scripts/make_judge_worksheet.py --n 12
 
-# Reproduce the committed headline (groq/gpt-oss-120b, n=150, intent+escalation).
-# Runs from the committed .llm_cache in ~1 min, no API key needed.
+# Reproduce the committed headline: gemini-3.1-flash-lite, all 233 rows,
+# intent + escalation + LLM-as-judge. Replays the committed .llm_cache in
+# ~2 min with NO API key.
 eval:
-	$(PY) -m eval.run_eval --limit 150 --no-judge
+	$(PY) -m eval.run_eval
 
-# Full run incl. LLM-as-judge over all 233 rows. Needs a backend with quota
-# left -- every free tier caps out before this finishes (see README).
-eval-full:
-	$(PY) -m eval.run_eval --judge-sample 90
+# Same run, cold: ~1,150 live calls. Needs GEMINI_API_KEY (comma-separate
+# several keys to pool their free-tier quota; see README).
+eval-cold:
+	rm -rf .llm_cache/gemini
+	$(PY) -m eval.run_eval
 
 judge:
 	$(PY) -m eval.judge_agreement
@@ -40,4 +43,4 @@ test:
 	LLM_PROVIDER=mock $(PY) -m pytest -q
 
 clean:
-	rm -rf .llm_cache data/processed reports/agent_golden_preds.jsonl
+	rm -rf .pytest_cache __pycache__ */__pycache__

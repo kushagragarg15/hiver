@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.97,\"rationale\":\"User reports persistent text glitch after iOS updates\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

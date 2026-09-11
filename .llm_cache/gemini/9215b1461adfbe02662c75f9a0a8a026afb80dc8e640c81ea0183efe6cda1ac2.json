@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The app update caused a loss of access and functionality for the user.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

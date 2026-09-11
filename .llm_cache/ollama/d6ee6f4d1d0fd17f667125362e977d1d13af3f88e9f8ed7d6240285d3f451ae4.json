@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 1,\n  \"correctness_safety\": 2,\n  \"tone\": 4,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"Lacks specific guidance and asks for DM, which may not be safe.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"how_to_feature_question\",\n  \"confidence\": 0.98,\n  \"rationale\": \"User is asking how to use features (full screen video, battery percentage) on a new device.\"\n}", "model": "gemini-3.5-flash", "provider": "gemini"}

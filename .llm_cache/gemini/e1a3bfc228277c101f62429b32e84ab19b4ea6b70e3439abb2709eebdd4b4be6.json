@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 1.0,\n  \"rationale\": \"The user explicitly links the performance issues to a recent software update.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

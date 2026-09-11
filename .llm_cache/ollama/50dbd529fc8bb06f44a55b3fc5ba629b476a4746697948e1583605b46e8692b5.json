@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"software_update_issue\", \"confidence\": 0.9, \"rationale\": \"Black screen after call suggests regression or bug introduced by iOS update.\"}", "model": "llama3.1:8b", "provider": "ollama"}

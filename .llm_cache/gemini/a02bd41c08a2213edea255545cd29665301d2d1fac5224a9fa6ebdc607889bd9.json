@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 1,\n  \"relevance\": 1,\n  \"correctness_safety\": 1,\n  \"tone\": 3,\n  \"completeness\": 2,\n  \"overall_pass\": false,\n  \"notes\": \"The reply incorrectly identifies the device as a Mac instead of an iPhone 8, making it irrelevant and factually incorrect.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

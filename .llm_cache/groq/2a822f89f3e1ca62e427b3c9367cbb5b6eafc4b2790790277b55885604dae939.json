@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"connectivity_sync\",\"confidence\":0.78,\"rationale\":\"User can't access iPhone via iTunes, indicating sync/connection issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

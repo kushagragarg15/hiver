@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"Hi! For full-screen videos, try going to Settings > Video, then toggle on 'Optimized for' under 'Video Size'. As for battery percentage, go to Settings > Battery and turn it on. If you need more help, feel free to DM us.\",\n  \"grounded_in\": [1],\n  \"used_weak_precedent\": false\n}", "model": "llama3.1:8b", "provider": "ollama"}

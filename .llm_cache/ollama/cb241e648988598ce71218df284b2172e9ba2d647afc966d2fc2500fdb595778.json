@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 2,\n  \"relevance\": 4,\n  \"correctness_safety\": 3,\n  \"tone\": 5,\n  \"completeness\": 1,\n  \"overall_pass\": false,\n  \"notes\": \"Lacks clear actionable next step, but is otherwise safe and relevant.\"\n}", "model": "llama3.1:8b", "provider": "ollama"}

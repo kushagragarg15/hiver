@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.93,\"rationale\":\"User asks if OS update will fix black screen, a software bug\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"complaint_churn_risk\",\n  \"confidence\": 0.95,\n  \"rationale\": \"User is expressing extreme frustration and demanding compensation without a clear technical support request.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

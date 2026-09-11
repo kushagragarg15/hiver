@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We'd love to help! Can you send us a DM letting us know more about your device and iOS version so we can explore this together?\",\n  \"grounded_in\": [1, 2],\n  \"used_weak_precedent\": false\n}", "model": "llama3.1:8b", "provider": "ollama"}

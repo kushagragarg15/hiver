@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We want to help. Are you experiencing this with any particular apps, and which iOS version is currently installed on your device? Please let us know so we can assist further.\",\n  \"grounded_in\": [1, 2],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

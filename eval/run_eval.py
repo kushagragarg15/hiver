@@ -45,7 +45,7 @@ def _load_golden() -> list[dict]:
 
 
 def run(limit: int | None = None, do_judge: bool = True,
-        judge_sample: int | None = None) -> dict:
+        judge_sample: int | None = None, out_dir: Path | None = None) -> dict:
     cfg = load_config()
     lc = llm_cfg()
     golden = _load_golden()
@@ -140,18 +140,21 @@ def run(limit: int | None = None, do_judge: bool = True,
     }
 
     out_json = rel(cfg["eval"]["results_json"])
+    out_md = rel(cfg["eval"]["results_md"])
+    dbg = rel(cfg["paths"]["reports_dir"]) / "agent_golden_preds.jsonl"
+    if out_dir is not None:
+        out_json, out_md, dbg = (out_dir / p.name for p in (out_json, out_md, dbg))
     out_json.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(result, indent=2, ensure_ascii=False))
-    _write_md(result, rel(cfg["eval"]["results_md"]))
+    _write_md(result, out_md)
 
     # dump per-example agent output for failure analysis
-    dbg = rel(cfg["paths"]["reports_dir"]) / "agent_golden_preds.jsonl"
     with open(dbg, "w", encoding="utf-8") as fh:
         for g, r in zip(golden, agent_rows):
             fh.write(json.dumps({**g, "pred": r.to_dict()}, ensure_ascii=False) + "\n")
 
     print(json.dumps(result["headline"], indent=2))
-    print(f"\n-> {out_json}\n-> {rel(cfg['eval']['results_md'])}\n-> {dbg}")
+    print(f"\n-> {out_json}\n-> {out_md}\n-> {dbg}")
     return result
 
 
@@ -162,8 +165,8 @@ def _row(name, m):
 
 def _write_md(r: dict, path: Path) -> None:
     warn = ([f"> ⚠️ **provider = `{r['meta']['provider']}` — these numbers are a "
-             f"wiring check, not a quality signal.** Run `make eval` on a real "
-             f"backend (ollama/openai) to replace them.", ""]
+             f"wiring check, not a quality signal.** `make eval` replays the "
+             f"committed gemini run.", ""]
             if r["meta"]["provider"] == "mock" else [])
     L = warn + [f"# Results -- {r['meta']['brand']}", "",
          f"_{r['meta']['provider']}/{r['meta']['model']}, judge "
@@ -207,8 +210,11 @@ def main() -> None:
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--no-judge", action="store_true")
     ap.add_argument("--judge-sample", type=int, default=None)
+    ap.add_argument("--out-dir", type=Path, default=None,
+                    help="write results here instead of the committed reports/ paths")
     a = ap.parse_args()
-    run(limit=a.limit, do_judge=not a.no_judge, judge_sample=a.judge_sample)
+    run(limit=a.limit, do_judge=not a.no_judge, judge_sample=a.judge_sample,
+        out_dir=a.out_dir)
 
 
 if __name__ == "__main__":

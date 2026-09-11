@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"device_hardware_battery\",\n  \"confidence\": 0.95,\n  \"rationale\": \"Display lines and discoloration are physical hardware issues with the screen.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"connectivity_sync\",\"confidence\":0.93,\"rationale\":\"User reports photos not downloading, likely iCloud sync issue\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

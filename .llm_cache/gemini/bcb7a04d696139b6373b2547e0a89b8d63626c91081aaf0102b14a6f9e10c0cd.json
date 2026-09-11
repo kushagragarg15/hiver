@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We're sorry to hear you're having trouble with the podcast app. To help us look into this, could you please let us know which version of iOS you are currently running? You can find this in Settings > General > About.\",\n  \"grounded_in\": [1, 2],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

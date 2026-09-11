@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"connectivity_sync\",\n  \"confidence\": 0.95,\n  \"rationale\": \"AirPods pairing and connection dropping issues fall under connectivity_sync.\"\n}", "model": "gemini-3.5-flash", "provider": "gemini"}

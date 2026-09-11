@@ -86,17 +86,18 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     honest floor for "predict the prior" and the caveat is cheaper than a
     train split on 200 rows. Flagged inline in `run_eval.py`.
 
-14. **On-disk LLM cache keyed by (provider, model, messages, params); both
-    runs' caches are committed.** `.llm_cache/gemini/` and `.llm_cache/ollama/`
-    hold the exact calls behind `reports/results_*.json`, so `make eval`
-    reproduces either headline in ~15 s instead of 18–27 min. A different
-    backend/model misses cleanly. `rm -rf .llm_cache/` for a true cold run
-    (which, for Gemini, may need a different model id — see #19).
+14. **The LLM cache is committed; it is the reproducibility guarantee.**
+    Keyed by (provider, model, messages, params). `.llm_cache/gemini/` holds
+    exactly the 1,153 calls behind `reports/results.json` — nothing else — so
+    `make eval` replays the headline keyless in ~2 min instead of ~50 min and
+    ~1,150 live calls. A different backend/model misses cleanly. Gemini model
+    ids are a moving target (`gemini-2.0/2.5-flash` went "not available to new
+    users" mid-project), so a cold re-run may need a different id; the cache
+    means the committed numbers don't depend on that.
 
 15. **`mock` LLM provider ships in `llm.py`.** Lets `make smoke` and the test
-    suite exercise the whole pipeline with no backend and no network — useful
-    for CI and for a reviewer who wants to see the wiring before installing
-    Ollama. Its outputs are canned; never reported.
+    suite exercise the whole pipeline with no backend and no network. Its
+    outputs are canned; never reported.
 
 16. **Config is one `config.yaml`, read once.** Every threshold that could be
     argued about (confidence floor, BM25 floor, `k`, split date, always-escalate
@@ -109,30 +110,35 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     pass (`label_tool.py --review`). Disclosed in `SAMPLING_NOTES.md` and next
     to every results table. Mix: 155 auto / 78 escalate.
 
-18. **Ran two backends and committed both: `gemini-3.1-flash-lite` (primary) and
-    `llama3.1:8b` (local baseline).** The pair *is* a finding — Gemini clears
-    the intent baselines, llama doesn't, and swapping them moves
-    missed-escalation the wrong way (safety was leaning on llama's
-    under-confidence). One backend would have hidden that. `src/llm.py` treats
-    every provider as an OpenAI-compatible endpoint (`_PRESETS`), so adding
-    gemini/groq/deepseek/openrouter was a table entry, not a code path.
+18. **One committed run, on the full golden set, rather than several partial
+    ones.** Earlier iterations had three backends at n=30/n=150 with no
+    complete judge pass, because every free tier (Gemini 500 req/day per key,
+    Groq 200k tok/day) capped out first. Three half-runs invited
+    cross-model comparisons the sample sizes couldn't support. The repo now
+    carries exactly one run — `gemini-3.1-flash-lite`, n=233, judged — and
+    the report is written around it. `src/llm.py` still treats every
+    provider as an OpenAI-compatible endpoint (`_PRESETS`), so switching is a
+    config line.
 
-19. **Gemini model ids are a moving target; the cache is the reproducibility
-    guarantee.** `gemini-2.0-flash` and `gemini-2.5-flash` both went "not
-    available to new users" mid-session. `gemini-3.x-flash` are *thinking*
-    models that truncate the JSON unless you pass `reasoning_effort: "none"`
-    (now a config option). Config pins `gemini-3.1-flash-lite`; a cold re-run
-    may need a different `*-flash*` id (README shows how to list live ones).
+19. **Multiple API keys pooled in one env var.** `GEMINI_API_KEY="k1,k2,..."`;
+    `src/llm.py` round-robins across the list, throttles RPM per key, and on a
+    429/quota error marks that key exhausted and retries immediately on the
+    next one instead of sleeping. This is what made n=233 with a judge pass
+    reachable on the free tier (5 keys × 500/day > 1,132 calls). Chosen over
+    concurrency: the eval loop is sequential and latency-bound (~2.7 s/call),
+    and the binding constraint was the *daily* cap, not RPM.
 
-20. **The 30-row run used `gemini-3.1-flash-lite` for worker + judge; the
-    233-row run splits worker (`gemini-3.5-flash`) and judge
-    (`gemini-3.7-flash`).** Forced by the free tier's **500 requests/day PER
-    MODEL** cap — the full run is ~700 calls. The split is a silver lining: the
-    judge is now a *different* model from the worker, which is what §3.4 asked
-    for. `model` / `judge_model` are separate config keys precisely so this is
-    possible.
+20. **Gemini 3.x flash models are thinking models; `reasoning_effort: "none"`
+    is in config.** Without it they spend the completion budget on hidden
+    reasoning and truncate the JSON. Reasoning models also get a floor of 800
+    completion tokens regardless of the caller's budget (the classifier asks
+    for 120) — the cache key uses the effective value so this stays
+    reproducible.
 
-21. **Client-side RPM throttle (`llm.<provider>.rpm`) + 429/quota-aware
-    backoff.** Free tiers rate-limit per-minute *and* per-day; the throttle
-    keeps per-minute clean, the backoff rides out the rest. 15 for the Gemini
-    3.x flash models.
+21. **Judge provider is a separate config key (`llm.judge_provider`) — and it
+    was deliberately left unset for the committed run.** The wiring exists so
+    the judge can be a different vendor from the worker (§3.4's ask). Only
+    Gemini keys were available, so worker and judge are the same model and
+    the report says so in three places rather than pretending otherwise. The
+    honest version of "judge independence" is a config line away, not a
+    claim.

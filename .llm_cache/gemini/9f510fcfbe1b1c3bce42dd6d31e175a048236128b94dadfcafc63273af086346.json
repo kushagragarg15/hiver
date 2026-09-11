@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"connectivity_sync\",\n  \"confidence\": 0.95,\n  \"rationale\": \"The user is reporting persistent issues with AirDrop and device connectivity between phone and laptop.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

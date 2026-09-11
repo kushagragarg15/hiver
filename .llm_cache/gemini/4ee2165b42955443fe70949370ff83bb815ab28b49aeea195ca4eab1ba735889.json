@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"software_update_issue\", \"confidence\": 0.95, \"rationale\": \"Battery drain issue specifically triggered after an iOS update.\"}", "model": "gemini-flash-latest", "provider": "gemini"}

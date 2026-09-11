@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"software_update_issue\",\n  \"confidence\": 1.0,\n  \"rationale\": \"The user is reporting a persistent software bug occurring after iOS updates.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

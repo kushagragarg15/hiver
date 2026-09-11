@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"billing_appstore_subscription\", \"confidence\": 0.95, \"rationale\": \"Customer mentions billing information and inability to make purchases.\"}", "model": "llama3.1:8b", "provider": "ollama"}

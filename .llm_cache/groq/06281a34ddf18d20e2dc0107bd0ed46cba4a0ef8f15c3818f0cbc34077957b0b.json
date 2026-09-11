@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.96,\"rationale\":\"Keyboard shortcut stopped after macOS update\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

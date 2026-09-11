@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"software_update_issue\", \"confidence\": 0.9, \"rationale\": \"Customer blames iOS update for phone malfunction.\"}", "model": "llama3.1:8b", "provider": "ollama"}

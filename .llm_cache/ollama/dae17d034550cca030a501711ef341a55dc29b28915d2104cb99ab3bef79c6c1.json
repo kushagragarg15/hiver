@@ -1,1 +1,0 @@
-{"content": "{\"groundedness\":2,\"relevance\":1,\"correctness_safety\":3,\"tone\":4,\"completeness\":2,\"overall_pass\":false,\"notes\":\"Generic deflection, no attempt to address the specific issue\"}", "model": "llama3.1:8b", "provider": "ollama"}

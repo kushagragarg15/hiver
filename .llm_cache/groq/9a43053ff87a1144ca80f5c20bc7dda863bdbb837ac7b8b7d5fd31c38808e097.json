@@ -1,1 +1,0 @@
-{"content": "{\"reply\":\"We’re sorry the calculator isn’t adding correctly. Could you DM us a short video showing the steps you take and the result you see? We’ll investigate right away.\",\"grounded_in\":[2],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.88,\"rationale\":\"User seeks fix for Bluetooth static, a software bug\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

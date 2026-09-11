@@ -1,1 +1,0 @@
-{"content": "{\"intent\": \"complaint_churn_risk\", \"confidence\": 0.8, \"rationale\": \"Customer expresses frustration with iOS 11 voicemail issues, threatening to ignore them.\"}", "model": "llama3.1:8b", "provider": "ollama"}

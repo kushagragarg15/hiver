@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We're sorry you're experiencing an issue with your device. Can you please send us a DM with more details about what happened? We'd like to help.\",\n  \"grounded_in\": [1, 4],\n  \"used_weak_precedent\": false\n}", "model": "llama3.1:8b", "provider": "ollama"}

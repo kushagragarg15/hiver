@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"praise_or_non_actionable\",\"confidence\":0.97,\"rationale\":\"User expresses gratitude and thanks, no actionable request\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

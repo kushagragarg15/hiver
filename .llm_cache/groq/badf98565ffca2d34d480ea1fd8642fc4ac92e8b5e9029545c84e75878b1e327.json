@@ -1,1 +1,0 @@
-{"content": "{\"groundedness\":2,\"relevance\":3,\"correctness_safety\":3,\"tone\":4,\"completeness\":3,\"overall_pass\":false,\"notes\":\"Invents specific troubleshooting step not in reference; mic setting is tangential to pairing issue.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

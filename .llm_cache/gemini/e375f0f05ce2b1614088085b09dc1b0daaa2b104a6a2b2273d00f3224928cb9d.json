@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"We'd like to look into this with you. To start, what iOS version is your iPhone currently running? Please send us a DM so we can assist further.\",\n  \"grounded_in\": [1, 2, 3],\n  \"used_weak_precedent\": false\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

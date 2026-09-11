@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.92,\"rationale\":\"User seeks fix for a problem likely due to iOS version, a software bug\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

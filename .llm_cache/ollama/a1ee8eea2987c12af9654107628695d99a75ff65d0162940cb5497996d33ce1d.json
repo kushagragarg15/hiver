@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"Sorry to hear that your iPhone is running slowly after updating to iOS 11. Let's assist you with this one. Try restarting your device and testing it: https://support.apple.com/en-us/HT201542 If the issue persists, DM us here.\",\n  \"grounded_in\": [1],\n  \"used_weak_precedent\": false\n}", "model": "llama3.1:8b", "provider": "ollama"}

@@ -1,1 +1,0 @@
-{"content": "{\n  \"groundedness\": 3,\n  \"relevance\": 4,\n  \"correctness_safety\": 4,\n  \"tone\": 5,\n  \"completeness\": 3,\n  \"overall_pass\": true,\n  \"notes\": \"The reply provides a relevant troubleshooting step, though it lacks a clear next step if the issue persists.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}

@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.78,\"rationale\":\"Device restarting after update, seeking fix\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

@@ -1,1 +1,0 @@
-{"content": "{\"reply\":\"We’re sorry this is happening. Could you DM us with your iPhone model and iOS version (Settings > General > About > Version) so we can investigate further?\",\"grounded_in\":[1],\"used_weak_precedent\":false}", "model": "openai/gpt-oss-120b", "provider": "groq"}

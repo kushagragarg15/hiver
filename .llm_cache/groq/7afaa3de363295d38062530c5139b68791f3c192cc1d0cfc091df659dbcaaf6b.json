@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"software_update_issue\",\"confidence\":0.96,\"rationale\":\"User reports voicemail problems after iOS 11 update, a regression issue.\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

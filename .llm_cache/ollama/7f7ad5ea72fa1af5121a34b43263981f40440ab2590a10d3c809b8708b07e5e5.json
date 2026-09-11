@@ -1,1 +1,0 @@
-{"content": "{\n  \"reply\": \"Here's what you can do to work around the issue until it's fixed in a future software update: https://t.co/xXaXeeSRt9. Please meet us in a DM so we can share some information with you there.\",\n  \"grounded_in\": [1, 2, 4],\n  \"used_weak_precedent\": false\n}", "model": "llama3.1:8b", "provider": "ollama"}

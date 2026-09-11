@@ -1,1 +1,0 @@
-{"content": "{\"intent\":\"how_to_feature_question\",\"confidence\":0.96,\"rationale\":\"User asks why a song appears red, a usage question\"}", "model": "openai/gpt-oss-120b", "provider": "groq"}

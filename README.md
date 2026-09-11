@@ -12,70 +12,52 @@ The point of this repo is the **evaluation**, not the agent. See
 
 ## Reproduce the headline results in <15 minutes
 
-### 0. Prereqs
-- Python 3.10+ (developed on 3.13)
-- `twcs.csv` from the Kaggle dataset. Put it at
-  `Primary Customer Support on Twitter Dataset/twcs/twcs.csv`
-  (or edit `paths.raw_csv` in `config.yaml`).
-- An LLM backend — set `llm.provider` in `config.yaml` (all are
-  OpenAI-compatible; base URLs are built into `src/llm.py`):
-
-  | provider | cost | how | notes |
-  |---|---|---|---|
-  | `groq` | **free** | `GROQ_API_KEY` from <https://console.groq.com/keys> | **primary run** used `openai/gpt-oss-120b` (worker) + `qwen/qwen3.8-27b` (judge). 200k tokens/day cap |
-  | `gemini` | **free** | `GEMINI_API_KEY` from <https://aistudio.google.com/apikey> | reply-quality run used `gemini-3.1-flash-lite`. 500 req/day cap; model IDs churn — see below |
-  | `ollama` | free, local | install <https://ollama.com>, `ollama pull llama3.1:8b` | no key; ~1 min/message on CPU (slow). Committed as the local baseline |
-  | `openai` | paid | `OPENAI_API_KEY` | `gpt-4o-mini` + `gpt-4o` judge, ~$1–2/run |
-  | `deepseek` | ~$0.20/run | `DEEPSEEK_API_KEY` | cheap, not free |
-
-  `reports/results.json` is the `groq/gpt-oss-120b` run (n=150); `results_*`
-  keep every backend side by side. `.llm_cache/<provider>/` is committed so
-  `make eval` reproduces each in seconds; the cache misses cleanly on a new
-  provider or model. Reasoning models (Gemini 3.x flash, gpt-oss, qwen3) need
-  `llm.<provider>.reasoning_effort` set (already configured) or they truncate
-  the JSON. **Every free tier has a daily cap** (Groq 200k tok, Gemini 500 req)
-  that a full 233-row judged run exceeds — hence n=150. **Gemini model IDs are
-  unstable** (`gemini-2.0-flash` / `gemini-2.5-flash` went "not available to new
-  users" mid-project); list live ones with
-  `curl -s https://generativelanguage.googleapis.com/v1beta/models -H "x-goog-api-key: $GEMINI_API_KEY"`.
+The committed headline is **one run: `gemini-3.1-flash-lite` as worker and
+judge, all 233 golden rows** (`reports/results.json`). Its LLM cache is
+committed, so reproducing it needs **no API key and no raw dataset**:
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt      # Python 3.10+ (developed on 3.13)
+make smoke                           # 30 s  — tests + mock-backend wiring check (numbers meaningless)
+make eval                            # ~2 min — replays the committed cache -> reports/results.{json,md}
 ```
+Windows without `make`: `.\run.ps1 smoke`, `.\run.ps1 eval`.
 
-### 1. Smoke test — no dataset, no LLM (30 s)
-Proves the pipeline and eval harness are wired correctly using an offline mock
-backend. **These numbers are meaningless** — it's a wiring check.
+`make eval` writes `reports/results.json` + `results.md` (the tables in
+`REPORT.md` §3) + `reports/agent_golden_preds.jsonl` (per-row output behind
+§4). `data/processed/AppleSupport_*.jsonl` (the BM25 memory + eval pool) is
+committed for the same reason.
 
+### Re-running live (optional)
 ```bash
-make smoke            # Windows: .\run.ps1 smoke
+export GEMINI_API_KEY="key1,key2,key3"   # comma-separate several keys to pool quota
+make eval-cold                           # deletes .llm_cache/gemini, ~1,150 calls, ~50 min
 ```
+Gemini's free tier is **500 requests/day per key**; a full judged run is
+~1,150 calls, so `src/llm.py` round-robins across every key in the list and
+skips a key for the rest of the run when it returns a quota error. Five keys
+were used for the committed run. Other OpenAI-compatible backends are one
+`config.yaml` line away (`llm.provider`: `groq` / `openai` / `deepseek` /
+`ollama` / `mock`; base URLs in `src/llm.py::_PRESETS`); `llm.judge_provider`
+lets the judge run on a different vendor than the worker. Reasoning models
+need `reasoning_effort` set (already configured for gemini/groq) or they
+truncate the JSON. **Gemini model IDs churn** — if `gemini-3.1-flash-lite`
+disappears, list live ones with
+`curl -s https://generativelanguage.googleapis.com/v1beta/models -H "x-goog-api-key: $GEMINI_API_KEY"`.
 
-### 2. Build the brand's data + golden set (one-time, ~5 min)
+### Rebuilding the data from the raw CSV (optional, ~5 min)
+Only needed to change brand or re-sample the golden set. Put `twcs.csv` from
+the Kaggle dataset at `Primary Customer Support on Twitter Dataset/twcs/twcs.csv`
+(or edit `paths.raw_csv`).
 ```bash
+make pick             # data-driven brand choice -> reports/brand_selection.json (AppleSupport)
 make prep             # twcs.csv -> data/processed/<brand>_{history,eval_pool}.jsonl
-```
-`config.yaml` ships with `data_prep.brand: <BRAND>` already chosen by
-`scripts/pick_brand.py` (rationale + table in `reports/brand_selection.json`).
-The hand-labelled golden set is committed at `data/golden/golden_set.jsonl`
-(150–250 rows). To rebuild candidates and re-label from scratch:
-```bash
 make candidates       # stratified sample -> data/golden/golden_candidates.jsonl
-python -m eval.label_tool     # interactive; writes data/golden/golden_set.jsonl
+python -m eval.label_tool            # interactive labeller -> data/golden/golden_set.jsonl
+python -m eval.label_tool --review   # review the 203 model-assisted rows (flips them to `human`)
 ```
 
-### 3. Headline numbers
-```bash
-make eval             # full golden set; reuses the committed .llm_cache -> seconds
-make eval-fast        # --limit 60 --judge-sample 45 (for a bigger golden set)
-```
-Writes `reports/results.json` (committed) + `reports/results.md` (tables) +
-`reports/agent_golden_preds.jsonl` (per-example, for failure analysis).
-A cold run (`rm -rf .llm_cache/`) on `llama3.1:8b` CPU is ~1 min/row; on
-`gpt-4o-mini` the full seed set is ~1 min. Switch backend in `config.yaml`
-(`llm.provider`).
-
-### 4. Is the LLM judge trustworthy?
+### Is the LLM judge trustworthy?
 ```bash
 make worksheet        # -> data/golden/judge_worksheet.csv  (score it by hand)
 # save your scores as data/golden/judge_human_scores.csv
@@ -90,7 +72,7 @@ make judge            # -> reports/judge_agreement.json  (Cohen's kappa vs you)
 src/
   data_prep.py   twcs.csv -> per-brand reconstructed threads, chronological split
   intents.py     the 8-intent taxonomy (defined from data) + keyword weak-labeller
-  llm.py         provider abstraction (ollama | openai | mock) + on-disk cache
+  llm.py         OpenAI-compatible client for any provider, multi-key rotation, on-disk cache, mock backend
   retrieve.py    BM25 over the brand's pre-split resolved threads
   classify.py    LLM intent classifier + majority/keyword baselines
   draft.py       grounded reply drafting (+ retrieval-only baseline)
@@ -125,26 +107,27 @@ account-specific facts. The escalation decision is a transparent rule stack
 escalates**. Every decision carries a human-readable `reason` and a `signals`
 dict for failure analysis.
 
-## Caveats that matter (full version: `REPORT.md` §5)
-- Runs, all committed with warm caches:
-  | run | worker | judge | n | gives |
-  |---|---|---|---|---|
-  | primary | groq `gpt-oss-120b` | qwen3.8-27b | 150 | intent + escalation |
-  | reply-quality | gemini `3.1-flash-lite` | self | 30 | LLM-as-judge table |
-  | local baseline | ollama `llama3.1:8b` | self | 30 | model-capacity contrast |
-- **Solid:** capable models beat the keyword + majority intent baselines
-  (macro-F1 ~0.5–0.65 vs 0.49 / 0.08); `llama3.1:8b` doesn't (0.32).
-- **Not deployable:** the escalate/auto stack misses **36–73%** of true
-  escalations depending on the worker model — it gates on an uncalibrated
-  confidence scalar and has no rule for hardware-safety / recall / image-only
-  cases (`REPORT.md` §4 F1/F2).
-- **Confounded:** canned "please DM us" *beats* the agent on reply-quality
-  pass-rate (0.93 vs 0.90) — AppleSupport's real replies are deflections.
-- Golden set: **233 rows**, but 203 are model-assisted drafts pending review
+## Headline (n=233, `gemini-3.1-flash-lite`) and what it hides
+| | agent | simple baseline | trivial baseline |
+|---|---|---|---|
+| intent macro-F1 / accuracy | **0.63 / 0.69** | keyword 0.46 / 0.43 | majority 0.08 / 0.47 |
+| missed-escalation rate ↓ | **0.53** | intent-prior 0.54 | always-escalate 0.00 |
+| reply judge pass-rate | **0.91** | retrieval-only 0.64 | canned "DM us" 0.81 |
+
+Full version: `REPORT.md` §5.
+- **Solid:** the classifier beats the keyword + majority baselines; head
+  classes F1 0.67–0.78.
+- **Not deployable:** the escalate/auto stack auto-handles **53% of messages
+  that needed a human** and is one row away from the intent-prior lookup —
+  the confidence and retrieval floors never fire, and the taxonomy routes
+  physical hardware faults (bent, water, logic board) to *auto*
+  (`REPORT.md` §4 F1/F2).
+- **Thin:** the agent beats canned on judge pass-rate only on *relevance*;
+  groundedness is identical and 88% of agent replies are DM redirects.
+- Golden set: **233 rows**, 203 of them model-assisted drafts pending review
   (`python -m eval.label_tool --review`). Single annotator, hindsight labels.
-- Judge has **no human anchor** yet (`make worksheet` → hand-score → `make judge`).
-- Free-tier token/request caps (Gemini 500/day, Groq 200k tok/day) stopped the
-  primary run at n=150 and blocked its judge pass.
+- Judge = worker model, and **no human anchor** yet (`make worksheet` →
+  hand-score → `make judge`).
 - Dataset is 2017; "how the brand resolves things" is frozen there.
 
 ## Attribution

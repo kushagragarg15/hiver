@@ -1,1 +1,0 @@
-{"content": "{\n  \"intent\": \"connectivity_sync\",\n  \"confidence\": 0.95,\n  \"rationale\": \"iMessage failing to activate or sync with phone number is a connectivity issue.\"\n}", "model": "gemini-3.1-flash-lite", "provider": "gemini"}
