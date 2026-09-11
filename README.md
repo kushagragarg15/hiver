@@ -50,7 +50,7 @@ Only needed to change brand or re-sample the golden set. Put `twcs.csv` from
 the Kaggle dataset at `Primary Customer Support on Twitter Dataset/twcs/twcs.csv`
 (or edit `paths.raw_csv`).
 ```bash
-make pick             # data-driven brand choice -> reports/brand_selection.json (AppleSupport)
+make pick             # brand ranking -> reports/brand_selection.json (won't overwrite the set brand; see DECISION_LOG #1)
 make prep             # twcs.csv -> data/processed/<brand>_{history,eval_pool}.jsonl
 make candidates       # stratified sample -> data/golden/golden_candidates.jsonl
 python -m eval.label_tool            # interactive labeller -> data/golden/golden_set.jsonl

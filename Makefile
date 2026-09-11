@@ -33,6 +33,7 @@ eval:
 # Same run, cold: ~1,150 live calls. Needs GEMINI_API_KEY (comma-separate
 # several keys to pool their free-tier quota; see README).
 eval-cold:
+	@test -n "$$GEMINI_API_KEY" || { echo "eval-cold: GEMINI_API_KEY is not set -- refusing to delete the committed cache"; exit 1; }
 	rm -rf .llm_cache/gemini
 	$(PY) -m eval.run_eval
 

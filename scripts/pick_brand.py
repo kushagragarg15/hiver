@@ -55,7 +55,11 @@ def _entropy(counts: Counter) -> float:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--top", type=int, default=12)
-    ap.add_argument("--write", action="store_true")
+    ap.add_argument("--write", action="store_true",
+                    help="set data_prep.brand in config.yaml -- only if it is currently null")
+    ap.add_argument("--force", action="store_true",
+                    help="with --write: overwrite an already-set brand (breaks the committed "
+                         "AppleSupport eval until you re-run prep/candidates/labelling)")
     args = ap.parse_args()
 
     cfg = load_config()
@@ -159,10 +163,17 @@ def main() -> None:
 
     winner = metrics[0]["brand"]
     print(f"\n[pick_brand] winner: {winner}")
-    if args.write:
+    current = cfg["data_prep"].get("brand")
+    if args.write and current and not args.force:
+        # The committed repo is built around one brand (data, golden set, cache).
+        # Silently switching it makes every downstream target fail, so refuse.
+        print(f"[pick_brand] config.yaml already has data_prep.brand = {current!r}; "
+              f"NOT overwriting (pass --force to switch brand -- then re-run prep, "
+              f"candidates and labelling).")
+    elif args.write:
         p = rel("config.yaml")
         txt = p.read_text(encoding="utf-8")
-        txt = re.sub(r'(\n\s*brand:\s*)"[^"]*"', rf'\g<1>"{winner}"', txt, count=1)
+        txt = re.sub(r'(\n\s*brand:\s*)(?:"[^"]*"|null|~)', rf'\g<1>"{winner}"', txt, count=1)
         p.write_text(txt, encoding="utf-8")
         print(f"[pick_brand] wrote data_prep.brand = {winner} to config.yaml")
     # dump full table for the report
