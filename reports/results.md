@@ -1,23 +1,23 @@
 # Results -- AppleSupport
 
-_gemini/gemini-3.1-flash-lite, judge gemini-3.1-flash-lite, n=233, 3158.3s, generated 2026-09-11T11:06:39.423698+00:00_
+_gemini/gemini-3.1-flash-lite, judge gemini-3.1-flash-lite, n=233, 132.5s, generated 2026-09-14T21:16:00.879764+00:00_
 
 ## Intent classification
 
 | system | accuracy | macro-F1 | weighted-F1 |
 |---|---|---|---|
-| agent (LLM) | 0.691 | 0.628 | 0.711 |
-| baseline: keyword (simple) | 0.433 | 0.462 | 0.512 |
-| baseline: majority (trivial) | 0.472 | 0.08 | 0.303 |
+| agent (LLM) | 0.674 | 0.602 | 0.693 |
+| baseline: keyword (simple) | 0.416 | 0.429 | 0.493 |
+| baseline: majority (trivial) | 0.464 | 0.079 | 0.294 |
 
 ## Escalation decision (positive class = escalate)
 
 | system | esc-precision | esc-recall | esc-F1 | missed-esc-rate | unnec-esc-rate | auto-rate |
 |---|---|---|---|---|---|---|
-| agent | 0.787 | 0.474 | 0.592 | 0.526 | 0.065 | 0.798 |
+| agent | 0.745 | 0.449 | 0.56 | 0.551 | 0.077 | 0.798 |
 | baseline: always-auto | 0.0 | 0.0 | 0.0 | 1.0 | 0.0 | 1.0 |
 | baseline: always-escalate | 0.335 | 1.0 | 0.502 | 0.0 | 1.0 | 0.0 |
-| baseline: intent-prior | 0.837 | 0.462 | 0.595 | 0.538 | 0.045 | 0.815 |
+| baseline: intent-prior | 0.791 | 0.436 | 0.562 | 0.564 | 0.058 | 0.815 |
 
 ## Reply quality -- LLM-as-judge (n=233)
 
@@ -31,10 +31,10 @@ _gemini/gemini-3.1-flash-lite, judge gemini-3.1-flash-lite, n=233, 3158.3s, gene
 
 ```json
 {
-  "intent_macro_f1": 0.628,
-  "intent_accuracy": 0.691,
-  "missed_escalation_rate": 0.526,
-  "unnecessary_escalation_rate": 0.065,
+  "intent_macro_f1": 0.602,
+  "intent_accuracy": 0.674,
+  "missed_escalation_rate": 0.551,
+  "unnecessary_escalation_rate": 0.077,
   "auto_rate": 0.798,
   "reply_pass_rate": 0.906
 }

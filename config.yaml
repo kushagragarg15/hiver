@@ -27,7 +27,10 @@ llm:
   provider: "gemini"
   # judge_provider: separate provider for the LLM-as-judge role, for
   # independence from the drafter's family. Overridable with LLM_JUDGE_PROVIDER.
-  # Unset here -- gemini agent + gemini judge, both off the same key pool.
+  # Left unset so the committed `make eval` headline (n=233, gemini self-judge)
+  # keeps replaying keyless from .llm_cache/gemini. The judge-agreement check
+  # (`make judge`) was additionally re-run cross-vendor with
+  # LLM_JUDGE_PROVIDER=groq -- see REPORT.md §3.4 -- without touching this default.
 
   ollama:                      # local, free, slow on CPU (~1 min/message)
     model: "llama3.1:8b"

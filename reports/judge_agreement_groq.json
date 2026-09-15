@@ -1,0 +1,738 @@
+{
+  "n": 36,
+  "per_dimension": {
+    "groundedness": {
+      "exact_agreement": 0.111,
+      "within_1": 0.389,
+      "mae": 1.694,
+      "spearman_rho": 0.443,
+      "human_mean": 4.75,
+      "model_mean": 3.06
+    },
+    "relevance": {
+      "exact_agreement": 0.111,
+      "within_1": 0.5,
+      "mae": 1.528,
+      "spearman_rho": 0.459,
+      "human_mean": 4.08,
+      "model_mean": 2.61
+    },
+    "correctness_safety": {
+      "exact_agreement": 0.083,
+      "within_1": 0.722,
+      "mae": 1.25,
+      "spearman_rho": 0.449,
+      "human_mean": 4.86,
+      "model_mean": 3.61
+    },
+    "tone": {
+      "exact_agreement": 0.139,
+      "within_1": 0.806,
+      "mae": 1.083,
+      "spearman_rho": null,
+      "human_mean": 5.0,
+      "model_mean": 3.92
+    },
+    "completeness": {
+      "exact_agreement": 0.389,
+      "within_1": 0.806,
+      "mae": 0.806,
+      "spearman_rho": 0.614,
+      "human_mean": 3.33,
+      "model_mean": 2.75
+    }
+  },
+  "overall_pass": {
+    "accuracy": 0.778,
+    "cohen_kappa": 0.566,
+    "human_pass_rate": 0.556,
+    "model_pass_rate": 0.389
+  },
+  "verdict": "judge is directional only (pass kappa=0.566); report with a caveat",
+  "detail": [
+    {
+      "id": "gold_0191",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": true,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0013",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 5
+      },
+      "model": {
+        "groundedness": 4,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 5,
+        "completeness": 4
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0204",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0013",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 5
+      },
+      "model": {
+        "groundedness": 4,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 4
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0140",
+      "human": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0210",
+      "human": {
+        "groundedness": 5,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 3,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0202",
+      "human": {
+        "groundedness": 4,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 1,
+        "relevance": 2,
+        "correctness_safety": 2,
+        "tone": 3,
+        "completeness": 2
+      },
+      "human_pass": true,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0154",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 3,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0131",
+      "human": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 2,
+        "tone": 4,
+        "completeness": 4
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0177",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0191",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 5
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 3,
+        "correctness_safety": 2,
+        "tone": 3,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0177",
+      "human": {
+        "groundedness": 5,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 1,
+        "correctness_safety": 3,
+        "tone": 2,
+        "completeness": 1
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0070",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0052",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 4,
+        "correctness_safety": 4,
+        "tone": 5,
+        "completeness": 4
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0052",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0131",
+      "human": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 5,
+        "completeness": 3
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 3,
+        "correctness_safety": 3,
+        "tone": 4,
+        "completeness": 4
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0204",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0067",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0070",
+      "human": {
+        "groundedness": 5,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0131",
+      "human": {
+        "groundedness": 5,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 3,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0140",
+      "human": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 2,
+        "correctness_safety": 2,
+        "tone": 4,
+        "completeness": 1
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0202",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 4,
+        "relevance": 4,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 4
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0052",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 4,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 4,
+        "completeness": 4
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0154",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0067",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0140",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0070",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 4
+      },
+      "model": {
+        "groundedness": 4,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0191",
+      "human": {
+        "groundedness": 5,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0202",
+      "human": {
+        "groundedness": 5,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 4,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0013",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 5
+      },
+      "model": {
+        "groundedness": 4,
+        "relevance": 3,
+        "correctness_safety": 4,
+        "tone": 5,
+        "completeness": 4
+      },
+      "human_pass": true,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0154",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 4,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": false,
+      "model_pass": true
+    },
+    {
+      "id": "gold_0210",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 5
+      },
+      "model": {
+        "groundedness": 5,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 3,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0204",
+      "human": {
+        "groundedness": 5,
+        "relevance": 3,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 2
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0177",
+      "human": {
+        "groundedness": 5,
+        "relevance": 4,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 3
+      },
+      "model": {
+        "groundedness": 3,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 4,
+        "completeness": 2
+      },
+      "human_pass": false,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0210",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 5
+      },
+      "model": {
+        "groundedness": 5,
+        "relevance": 2,
+        "correctness_safety": 4,
+        "tone": 3,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": false
+    },
+    {
+      "id": "gold_0067",
+      "human": {
+        "groundedness": 5,
+        "relevance": 5,
+        "correctness_safety": 5,
+        "tone": 5,
+        "completeness": 5
+      },
+      "model": {
+        "groundedness": 2,
+        "relevance": 2,
+        "correctness_safety": 3,
+        "tone": 4,
+        "completeness": 3
+      },
+      "human_pass": true,
+      "model_pass": false
+    }
+  ]
+}

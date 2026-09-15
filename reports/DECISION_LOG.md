@@ -104,11 +104,16 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     list) is there, not buried in code, so tuning is visible in a diff.
 
 17. **Golden set: 30 hand-labelled from scratch, then 203 model-assisted drafts
-    (233 total).** The 30-row seed was labelled first, cold. The remaining 203
-    were drafted by applying the written protocol (`SAMPLING_NOTES.md`) and
-    stamped `label_source: "model_assisted"` pending an independent human review
-    pass (`label_tool.py --review`). Disclosed in `SAMPLING_NOTES.md` and next
-    to every results table. Mix: 155 auto / 78 escalate.
+    (233 total), 139 of them since human-reviewed.** The 30-row seed was
+    labelled first, cold. The remaining 203 were drafted by applying the
+    written protocol (`SAMPLING_NOTES.md`) and stamped `label_source:
+    "model_assisted"`. A review pass (`label_tool.py --review`) then walked
+    139 of them, changing 12 labels (10 intents, 4 actions) and flipping them
+    to `human`; 64 remain `model_assisted`. The eval was re-run on the
+    reviewed labels by replaying the committed cache — same model outputs,
+    macro-F1 0.63 → 0.60, missed-escalation 0.53 → 0.55 — and REPORT.md
+    reports the post-review numbers. Disclosed in `SAMPLING_NOTES.md` and
+    next to every results table. Mix: 155 auto / 78 escalate (unchanged).
 
 18. **One committed run, on the full golden set, rather than several partial
     ones.** Earlier iterations had three backends at n=30/n=150 with no
@@ -141,4 +146,10 @@ Non-obvious choices, and why. Ordered roughly by where they bite.
     Gemini keys were available, so worker and judge are the same model and
     the report says so in three places rather than pretending otherwise. The
     honest version of "judge independence" is a config line away, not a
-    claim.
+    claim. It was subsequently exercised: the 36-row judge-agreement check
+    (`make judge`) was re-run with `LLM_JUDGE_PROVIDER=groq` (env override,
+    not the committed config default) once a Groq key was available — κ went
+    from 0.532 (self) to 0.566 (cross-vendor), still below the 0.6 bar
+    (§3.4). `config.yaml`'s default stays unset on purpose, so `make eval`
+    keeps replaying the committed §3.3 headline keyless from
+    `.llm_cache/gemini`.

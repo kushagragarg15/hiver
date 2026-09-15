@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":4,\"relevance\":4,\"correctness_safety\":4,\"tone\":4,\"completeness\":4,\"overall_pass\":true,\"notes\":\"Safe diagnostic question, DM request aligns with reference. No invented policy or over-promising.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

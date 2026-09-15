@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":3,\"correctness_safety\":2,\"tone\":4,\"completeness\":4,\"overall_pass\":false,\"notes\":\"Assumes iPhone specifically; reference only asks for 'device' generically. Misleading if customer uses Android.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

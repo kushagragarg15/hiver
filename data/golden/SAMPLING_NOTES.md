@@ -16,11 +16,12 @@ each hand-labelled with:
 | `label_source` | `human` (labelled/confirmed by a person) · `model_assisted` (drafted by an LLM, awaiting human review) · `heuristic_prelabel` (keyword guess only) |
 
 ## Current state (be honest about this)
-233 rows. **30 are `human`** (hand-labelled from scratch, the original seed).
-**203 are `model_assisted`** — I labelled them by applying the protocol below
-and had them checked once, but they have **not yet had an independent human
-review pass**. Run `python -m eval.label_tool --review` to walk the
-`model_assisted` rows and confirm/correct each (it flips them to `human`).
+233 rows. **169 are `human`** — 30 hand-labelled from scratch (the original
+seed) plus 139 model-assisted drafts that have since been walked in
+`python -m eval.label_tool --review` and confirmed or corrected (12 changed:
+10 intents, 4 actions). **64 are still `model_assisted`** — drafted by
+applying the protocol below and checked once, but not yet independently
+reviewed. `--review` walks whatever is left and flips each row to `human`.
 Every results table in `REPORT.md` notes which mix it was computed on.
 Model-assisted labelling is allowed ("you may use AI coding assistants
 freely") — not disclosing it would not be.

@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":5,\"relevance\":4,\"correctness_safety\":5,\"tone\":5,\"completeness\":3,\"overall_pass\":true,\"notes\":\"Matches reference's iOS version question and DM link; omits multi-device and country questions.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":3,\"correctness_safety\":4,\"tone\":4,\"completeness\":3,\"overall_pass\":true,\"notes\":\"Link repurposed as 'DM' when reference used it for diagnostic questions; generic but safe.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":2,\"correctness_safety\":4,\"tone\":4,\"completeness\":2,\"overall_pass\":false,\"notes\":\"Generic deflection to DM; doesn't specify what detail is needed or address the Bluetooth issue.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

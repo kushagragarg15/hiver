@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":3,\"correctness_safety\":3,\"tone\":4,\"completeness\":3,\"overall_pass\":false,\"notes\":\"DM request is vague and deflects; misses the iOS version diagnostic the brand actually used.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

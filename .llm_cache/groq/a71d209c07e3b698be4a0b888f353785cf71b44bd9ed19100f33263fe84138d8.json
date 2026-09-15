@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":2,\"relevance\":1,\"correctness_safety\":3,\"tone\":2,\"completeness\":1,\"overall_pass\":false,\"notes\":\"Deflects to DM instead of answering the clear yes/no question; 'sorry to hear that' is inappropriate.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

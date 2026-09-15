@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":3,\"correctness_safety\":4,\"tone\":4,\"completeness\":2,\"overall_pass\":true,\"notes\":\"Reasonable question but misses acknowledging disruption and doesn't match reference's approach of asking if update completed.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

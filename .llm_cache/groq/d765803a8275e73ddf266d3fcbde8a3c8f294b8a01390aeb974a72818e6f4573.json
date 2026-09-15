@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":4,\"correctness_safety\":4,\"tone\":4,\"completeness\":3,\"overall_pass\":true,\"notes\":\"Reasonable diagnostic question, but doesn't match reference (iOS version check) or acknowledge the long-standing nature of the issue.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

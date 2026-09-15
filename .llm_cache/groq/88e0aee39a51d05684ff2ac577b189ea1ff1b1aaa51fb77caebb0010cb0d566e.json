@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":2,\"relevance\":2,\"correctness_safety\":2,\"tone\":4,\"completeness\":1,\"overall_pass\":false,\"notes\":\"Asking for location is unsupported by reference and irrelevant to holster-related accidental dial issue.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

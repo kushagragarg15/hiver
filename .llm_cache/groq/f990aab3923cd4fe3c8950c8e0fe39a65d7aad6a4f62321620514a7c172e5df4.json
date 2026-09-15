@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":4,\"relevance\":3,\"correctness_safety\":5,\"tone\":4,\"completeness\":4,\"overall_pass\":true,\"notes\":\"Matches reference intent; slightly terse for an emotional customer but safe and actionable.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

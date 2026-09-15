@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":2,\"relevance\":2,\"correctness_safety\":3,\"tone\":4,\"completeness\":3,\"overall_pass\":false,\"notes\":\"Invents a country-based diagnostic step not in reference; brand actually asked for macOS version.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

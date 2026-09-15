@@ -54,7 +54,7 @@ make pick             # brand ranking -> reports/brand_selection.json (won't ove
 make prep             # twcs.csv -> data/processed/<brand>_{history,eval_pool}.jsonl
 make candidates       # stratified sample -> data/golden/golden_candidates.jsonl
 python -m eval.label_tool            # interactive labeller -> data/golden/golden_set.jsonl
-python -m eval.label_tool --review   # review the 203 model-assisted rows (flips them to `human`)
+python -m eval.label_tool --review   # review the remaining 64 model-assisted rows (flips them to `human`)
 ```
 
 ### Is the LLM judge trustworthy?
@@ -62,7 +62,11 @@ python -m eval.label_tool --review   # review the 203 model-assisted rows (flips
 make worksheet        # -> data/golden/judge_worksheet.csv  (score it by hand)
 # save your scores as data/golden/judge_human_scores.csv
 make judge            # -> reports/judge_agreement.json  (Cohen's kappa vs you)
+# cross-vendor check (needs GROQ_API_KEY; doesn't touch the committed gemini headline):
+LLM_JUDGE_PROVIDER=groq make judge
 ```
+Already run once each way: κ=0.532 (gemini, self) / κ=0.566 (groq, cross-vendor)
+— both below the κ≥0.6 trust bar (`REPORT.md` §3.4).
 
 ---
 
@@ -110,24 +114,27 @@ dict for failure analysis.
 ## Headline (n=233, `gemini-3.1-flash-lite`) and what it hides
 | | agent | simple baseline | trivial baseline |
 |---|---|---|---|
-| intent macro-F1 / accuracy | **0.63 / 0.69** | keyword 0.46 / 0.43 | majority 0.08 / 0.47 |
-| missed-escalation rate ↓ | **0.53** | intent-prior 0.54 | always-escalate 0.00 |
+| intent macro-F1 / accuracy | **0.60 / 0.67** | keyword 0.43 / 0.42 | majority 0.08 / 0.46 |
+| missed-escalation rate ↓ | **0.55** | intent-prior 0.56 | always-escalate 0.00 |
 | reply judge pass-rate | **0.91** | retrieval-only 0.64 | canned "DM us" 0.81 |
 
 Full version: `REPORT.md` §5.
-- **Solid:** the classifier beats the keyword + majority baselines; head
-  classes F1 0.67–0.78.
-- **Not deployable:** the escalate/auto stack auto-handles **53% of messages
+- **Solid:** the classifier beats the keyword + majority baselines; the four
+  largest classes F1 0.70–0.78.
+- **Not deployable:** the escalate/auto stack auto-handles **55% of messages
   that needed a human** and is one row away from the intent-prior lookup —
   the confidence and retrieval floors never fire, and the taxonomy routes
   physical hardware faults (bent, water, logic board) to *auto*
   (`REPORT.md` §4 F1/F2).
 - **Thin:** the agent beats canned on judge pass-rate only on *relevance*;
   groundedness is identical and 88% of agent replies are DM redirects.
-- Golden set: **233 rows**, 203 of them model-assisted drafts pending review
-  (`python -m eval.label_tool --review`). Single annotator, hindsight labels.
-- Judge = worker model, and **no human anchor** yet (`make worksheet` →
-  hand-score → `make judge`).
+- Golden set: **233 rows** — 169 human-labelled, 64 still model-assisted
+  (`python -m eval.label_tool --review`). Single annotator, hindsight labels;
+  the review pass changed ~9% of labels and moved macro-F1 0.63 → 0.60,
+  missed-escalation 0.53 → 0.55 with the model outputs held fixed.
+- Judge trust measured against a human on 36 rows, both self-judged (gemini,
+  κ=0.532) and cross-vendor (groq/qwen3, κ=0.566) — both below the κ≥0.6 bar
+  (`reports/judge_agreement.json`, `reports/REPORT.md` §3.4).
 - Dataset is 2017; "how the brand resolves things" is frozen there.
 
 ## Attribution

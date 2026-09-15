@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":3,\"correctness_safety\":4,\"tone\":4,\"completeness\":3,\"overall_pass\":true,\"notes\":\"Safe but generic; misses the specific macOS version question the brand actually asked.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

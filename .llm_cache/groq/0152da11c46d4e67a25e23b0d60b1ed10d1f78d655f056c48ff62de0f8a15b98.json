@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":4,\"relevance\":3,\"correctness_safety\":4,\"tone\":5,\"completeness\":4,\"overall_pass\":true,\"notes\":\"Matches reference intent; could acknowledge recall/serial but safe and actionable.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}

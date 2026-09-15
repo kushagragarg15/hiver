@@ -1,0 +1,1 @@
+{"content": "{\"groundedness\":3,\"relevance\":2,\"correctness_safety\":3,\"tone\":4,\"completeness\":2,\"overall_pass\":false,\"notes\":\"Generic DM deflection; no diagnostic questions or acknowledgment of the specific update/sleep issue.\"}", "model": "qwen/qwen3.8-27b", "provider": "groq"}
